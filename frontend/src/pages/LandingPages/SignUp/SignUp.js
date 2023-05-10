@@ -18,9 +18,22 @@ import routes from "routes";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 
-function SignUp() {
+const SignUp = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+
+
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("clicked"); 
+    
+
+
+  }
+
+
 
   return (
     <>
@@ -29,7 +42,7 @@ function SignUp() {
         action={{
           type: "external",
           route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
+          label: "Login",
           color: "info",
         }}
         transparent
@@ -105,7 +118,7 @@ function SignUp() {
                     </MKTypography>
                   </MKBox>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton variant="gradient" color="info" fullWidth onClick={handleClick}>
                       sign up
                     </MKButton>
                   </MKBox>

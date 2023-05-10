@@ -83,7 +83,7 @@ export default {
         variant="button"
         fontWeight="regular"
       >
-        Creative Tim
+        Tripster
       </MKTypography>
       .
     </MKTypography>

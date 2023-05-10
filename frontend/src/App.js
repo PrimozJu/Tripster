@@ -25,7 +25,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 // Material Kit 2 React themes
 import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
-import SignIn from "pages/LandingPages/SignIn";
+import SignIn from "pages/LandingPages/SignIn/SignIn";
 import SignUp from "pages/LandingPages/SignUp/SignUp";
 // Material Kit 2 React routes
 import routes from "routes";
