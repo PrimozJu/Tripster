@@ -26,10 +26,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import SignIn from "pages/LandingPages/SignIn";
+import SignUp from "pages/LandingPages/SignUp/SignUp";
 // Material Kit 2 React routes
 import routes from "routes";
 import { useState } from "react";
-
 
 
 const App = () => {
@@ -63,7 +63,7 @@ const App = () => {
         {getRoutes(routes)}
         <Route path="/presentation" element={<Presentation />} />
         <Route path="/user/login" element={<SignIn/>} />
-        <Route path="/user/signin" element={<SignIn/>} />
+        <Route path="/user/signup" element={<SignUp/>} />
         <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
     </ThemeProvider>
