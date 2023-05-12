@@ -50,9 +50,9 @@ const colRef = collection(db, "users");
 
 getDocs(colRef).then((querySnapshot) => {
   querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
+    //console.log(`${doc.id} => ${doc.data()}`);
   });
-  console.log("ah shit")
+  //console.log("ah shit")
 });
 
 

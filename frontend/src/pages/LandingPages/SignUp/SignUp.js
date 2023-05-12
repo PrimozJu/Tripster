@@ -18,22 +18,75 @@ import routes from "routes";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 
+
+import { collection, addDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+
+
 const SignUp = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const [newDocData, setNewDocData] = useState({});
 
 
+
+
+  const handleInputChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setNewDocData(values => ({ ...values, [name]: value })) //to ne deluje sploh jebote
+    //console.log(newDocData);   //LIGHTWEIGHT BABY
+
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("clicked"); 
-    
+    console.log("clicked");
 
+
+    if (newDocData.password === newDocData.password2) {
+      const email = newDocData.email; //to je to
+      const password = newDocData.password; //to je to
+      console.log(email, password);
+      const db = getFirestore();
+      const addNewDoc = async () => {
+        console.log(newDocData);
+        try {
+
+          /* const docRef = await addDoc(collection(db, "users"), newDocData);
+          console.log("Document written with ID: ", docRef.id);
+          setNewDocData({}); */
+
+
+          const auth = getAuth();
+          createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              // ...
+              console.log("uspesno registriran user: ", user);
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log("napaka pri registraciji: ", errorCode, errorMessage);
+              // ..
+            });
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      };
+      addNewDoc()
+    }
 
   }
-
-
 
   return (
     <>
@@ -88,22 +141,22 @@ const SignUp = () => {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email Address" fullWidth />
+                    <MKInput type="text" label="Email Address" name="email" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput type="password" label="Password" name="password" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Confirm Password" fullWidth />
+                    <MKInput type="password" label="Confirm Password" name="password2" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="text" label="First Name" fullWidth />
+                    <MKInput type="text" label="First Name" name="name" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="text" label="Last Name" fullWidth />
+                    <MKInput type="text" label="Last Name" name="last_name" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="text" label="Country" fullWidth />
+                    <MKInput type="text" label="Country" name="country" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -125,18 +178,18 @@ const SignUp = () => {
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       Already have an account?{" "}
-                        <Link to="/user/login" style={{ textDecoration: "none" }}>
-                            Sign in
-                        </Link>
+                      <Link to="/user/login" style={{ textDecoration: "none" }}>
+                        Sign in
+                      </Link>
                     </MKTypography>
-                    </MKBox>
+                  </MKBox>
                 </MKBox>
-                </MKBox>
+              </MKBox>
             </Card>
-            </Grid>
+          </Grid>
         </Grid>
-        </MKBox>
+      </MKBox>
     </>
-    );
+  );
 }
 export default SignUp;

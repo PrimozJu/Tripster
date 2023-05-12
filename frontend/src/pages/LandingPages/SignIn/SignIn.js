@@ -45,10 +45,55 @@ import routes from "routes";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
+import { collection, addDoc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { useEffect } from "react";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+
+
 function SignInBasic() {
   const [rememberMe, setRememberMe] = useState(false);
-
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  
+  
+
+
+  const [input, setInput] = useState({});
+
+  const handleInputChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInput(values => ({ ...values, [name]: value })) //to ne deluje sploh jebote
+    //console.log(newDocData);   //LIGHTWEIGHT BABY
+
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("clicked");
+    const email = input.email; //to je to
+    const password = input.password; //to je to
+
+
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log("uspesno prijavlen " , user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+
+  }
+  
+  
+
 
   return (
     <>
@@ -57,7 +102,7 @@ function SignInBasic() {
         action={{
           type: "external",
           route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
+          label: "Login",
           color: "info",
         }}
         transparent
@@ -106,10 +151,10 @@ function SignInBasic() {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput type="email" name="email" label="Email" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput type="password" password="password" label="Password" name="password" onChange={handleInputChange} fullWidth />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -124,7 +169,7 @@ function SignInBasic() {
                     </MKTypography>
                   </MKBox>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton variant="gradient" color="info"  onClick={handleClick} fullWidth>
                       sign in
                     </MKButton>
                   </MKBox>
