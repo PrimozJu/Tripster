@@ -67,7 +67,8 @@ import Dropdowns from "layouts/sections/elements/dropdowns";
 import ProgressBars from "layouts/sections/elements/progress-bars";
 import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
-
+import Stays from "pages/LandingPages/Stays/Stays";
+import Itinerary from "pages/LandingPages/Itinirary/Itinerary"
 const routes = [
   {
     name: "Plan",
@@ -79,9 +80,9 @@ const routes = [
         name: "",
         collapse: [
           {
-            name: "Hotels",
-            route: "/pages/landing-pages/about-us",
-            component: <AboutUs />,
+            name: "Stays",
+            route: "/plan/stays",
+            component: <Stays />,
           },
           {
             name: "Flights",
@@ -89,9 +90,9 @@ const routes = [
             component: <ContactUs />,
           },
           {
-            name: "Car rental",
-            route: "/pages/landing-pages/author",
-            component: <Author />,
+            name: "Plan",
+            route: "/plan/itinerary",
+            component: <Itinerary />,
           },
         ],
       },
