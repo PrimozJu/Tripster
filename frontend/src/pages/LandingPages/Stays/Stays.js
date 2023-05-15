@@ -51,7 +51,7 @@ const Stays = () => {
 
     //    setLoading(false
     setLoading(false);
-    
+
   }
 
   return (
@@ -100,7 +100,7 @@ const Stays = () => {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Join millions of travellers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
+              Join mekdonalc millions of travellers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
             </MKTypography>
           </Grid>
         </Container>
@@ -118,19 +118,16 @@ const Stays = () => {
         }}
       >
 
-        The search engine will go here
+        
         <FormAirBnb handleForm={handleForm} />
         <div id="data"></div>
-        {/*       <ApartmentList data={response.data.results} />
- */}
-
-        {/*   {response && <ApartmentList data={response.data.results} />} */}
+       
 
         {loading ? (
-  <ReactLoading type="bars" color="#000" height={50} width={50} />
-) : response ? (
-  <ApartmentList data={response.data.results} />
-) : null}
+          <ReactLoading type="bars" color="#000" height={50} width={50} />
+        ) : response ? (
+          <ApartmentList data={response.data.results} />
+        ) : null}
       </Card>
 
 

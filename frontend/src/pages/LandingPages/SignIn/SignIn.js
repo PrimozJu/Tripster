@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 
 // react-router-dom components
@@ -51,7 +36,7 @@ import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-
+import ConitnueGoogle from "./ContinueGoogle";
 
 function SignInBasic() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -187,6 +172,9 @@ function SignInBasic() {
                         Sign up
                       </MKTypography>
                     </MKTypography>
+                    <center>or</center>
+
+                    <ConitnueGoogle/>
                   </MKBox>
                 </MKBox>
               </MKBox>
