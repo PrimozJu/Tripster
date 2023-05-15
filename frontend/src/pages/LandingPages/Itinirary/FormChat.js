@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import MKBox from "components/MKBox";
+import MKInput from "components/MKInput";
 
 function TripForm({ submit }) {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [numTravelers, setNumTravelers] = useState("");
-  const [desiredContinent, setDesiredLocation] = useState("");
+  const [desiredContinent, setDesiredContinent] = useState("");
   const [travelType, setTravelType] = useState("");
   const [interests, setInterests] = useState("");
   const [preferredAccommodation, setPreferredAccommodation] = useState("");
@@ -27,81 +29,76 @@ function TripForm({ submit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Departure date:
-        <input
-          type="text"
-          value={departureDate}
-          onChange={(event) => setDepartureDate(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Return date:
-        <input
-          type="text"
-          value={returnDate}
-          onChange={(event) => setReturnDate(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Number of travelers:
-        <input
-          type="text"
-          value={numTravelers}
-          onChange={(event) => setNumTravelers(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Desired location:
-        <input
-          type="text"
-          value={desiredContinent}
-          onChange={(event) => setDesiredLocation(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Travel type:
-        <input
-          type="text"
-          value={travelType}
-          onChange={(event) => setTravelType(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Interests:
-        <input
-          type="text"
-          value={interests}
-          onChange={(event) => setInterests(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Preferred accommodation:
-        <input
-          type="text"
-          value={preferredAccommodation}
-          onChange={(event) => setPreferredAccommodation(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Max budget:
-        <input
-          type="text"
-          value={maxBudget}
-          onChange={(event) => setMaxBudget(event.target.value)}
-        />
-      </label>
-      <br />
+      <MKBox display="flex" flexDirection="column" gap={2}>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Departure date:</label>
+          <MKInput
+            type="text"
+            value={departureDate}
+            onChange={(event) => setDepartureDate(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Return date:</label>
+          <MKInput
+            type="text"
+            value={returnDate}
+            onChange={(event) => setReturnDate(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Number of travelers:</label>
+          <MKInput
+            type="text"
+            value={numTravelers}
+            onChange={(event) => setNumTravelers(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Desired location:</label>
+          <MKInput
+            type="text"
+            value={desiredContinent}
+            onChange={(event) => setDesiredContinent(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Travel type:</label>
+          <MKInput
+            type="text"
+            value={travelType}
+            onChange={(event) => setTravelType(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Interests:</label>
+          <MKInput
+            type="text"
+            value={interests}
+            onChange={(event) => setInterests(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Preferred accommodation:</label>
+          <MKInput
+            type="text"
+            value={preferredAccommodation}
+            onChange={(event) => setPreferredAccommodation(event.target.value)}
+          />
+        </MKBox>
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <label>Max budget:</label>
+          <MKInput
+            type="text"
+            value={maxBudget}
+            onChange={(event) => setMaxBudget(event.target.value)}
+          />
+        </MKBox>
+      </MKBox>
       <button type="submit">Submit</button>
     </form>
   );
 }
 
 export default TripForm;
+
