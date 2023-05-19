@@ -34,7 +34,7 @@ function TripForm({ submit }) {
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Departure date:</label>
           <MKInput
-            type="text"
+            type="date"
             value={departureDate}
             onChange={(event) => setDepartureDate(event.target.value)}
           />
@@ -42,7 +42,7 @@ function TripForm({ submit }) {
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Return date:</label>
           <MKInput
-            type="text"
+            type="date"
             value={returnDate}
             onChange={(event) => setReturnDate(event.target.value)}
           />
