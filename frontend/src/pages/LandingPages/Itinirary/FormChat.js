@@ -3,14 +3,14 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 
 function TripForm({ submit }) {
-  const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [numTravelers, setNumTravelers] = useState("");
-  const [desiredContinent, setDesiredContinent] = useState("");
-  const [travelType, setTravelType] = useState("");
-  const [interests, setInterests] = useState("");
-  const [preferredAccommodation, setPreferredAccommodation] = useState("");
-  const [maxBudget, setMaxBudget] = useState("");
+  const [departureDate, setDepartureDate] = useState("18-7-2023");
+  const [returnDate, setReturnDate] = useState("29-7-2023");
+  const [numTravelers, setNumTravelers] = useState("1");
+  const [desiredContinent, setDesiredContinent] = useState("Europe");
+  const [travelType, setTravelType] = useState("adventure");
+  const [interests, setInterests] = useState("hiking");
+  const [preferredAccommodation, setPreferredAccommodation] = useState("hotels");
+  const [maxBudget, setMaxBudget] = useState("10000");
 
   const handleSubmit = (event) => {
     event.preventDefault();
