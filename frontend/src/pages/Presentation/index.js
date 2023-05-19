@@ -46,6 +46,8 @@ import footerRoutes from "footer.routes";
 // Images
 import bgImage from "assets/images/tnf.jpg";
 
+import AutoComplete from "../../components/Autocomplete/AutoComplete";
+import countriesList from "components/Autocomplete/cities";
 function Presentation() {
   return (
     <>
@@ -111,6 +113,11 @@ function Presentation() {
        
         The search engine will go here
         
+        <section>
+        <div className="uk-padding uk-width-1-2@m">
+            <AutoComplete countries={countriesList} />
+        </div>
+    </section>
 
       </Card>
       <MKBox pt={6} px={1} mt={6}>
