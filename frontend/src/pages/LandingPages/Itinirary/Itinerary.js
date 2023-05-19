@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TripForm from "./FormChat";
-import axios from "axios";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import Container from "@mui/material/Container";
@@ -57,14 +56,13 @@ const Itinerary = () => {
 
         console.log(data);
         setResponse(data);
-        
+
         setLoading(false);
       })
       .catch((error) => {
         console.error(error);
-      setLoading(false);
+        setLoading(false);
       });
-
   }
 
   return (
