@@ -26,7 +26,7 @@ const Stays = () => {
     console.log(params);
     const options = {
       method: "GET",
-      url: "https://airbnb13.p.rapidapi.com/search-location",
+      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/airbnb",
       params: {
         location: params.location,
         checkin: params.checkin,
@@ -37,15 +37,12 @@ const Stays = () => {
         pets: params.pets,
         page: params.page,
         currency: params.currency,
-      },
-      headers: {
-        "X-RapidAPI-Key": "0e529198bdmshaba36f78a36a9a5p1a9db0jsn082565d2fdf8",
-        "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-      },
+      }
     };
 
     setLoading(true);
     const respons = await axios.request(options);
+    console.log(respons);
     setResponse(respons)
     console.log(respons.data.results);
 

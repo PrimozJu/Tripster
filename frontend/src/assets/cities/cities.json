@@ -1,0 +1,4316 @@
+[
+    {"0": "A Coruña"
+    },
+    {"1": "Aabenraa"
+    },
+    {"2": "Aachen"
+    },
+    {"3": "Aalborg"
+    },
+    {"4": "Aarhus"
+    },
+    {"5": "Abdipaşa"
+    },
+    {"6": "Abrantes"
+    },
+    {"7": "Achim"
+    },
+    {"8": "Acireale"
+    },
+    {"9": "Acri"
+    },
+    {"10": "Acıgöl"
+    },
+    {"11": "Afyon"
+    },
+    {"12": "Agen"
+    },
+    {"13": "Agrigento"
+    },
+    {"14": "Agropoli"
+    },
+    {"15": "Agueda"
+    },
+    {"16": "Ahlbeck"
+    },
+    {"17": "Aichach"
+    },
+    {"18": "Aiken, SC"
+    },
+    {"19": "Aiud"
+    },
+    {"20": "Aix-en-Provence"
+    },
+    {"21": "Aix-les-Bains"
+    },
+    {"22": "Akdağmadeni"
+    },
+    {"23": "Akhisar"
+    },
+    {"24": "Aksaray"
+    },
+    {"25": "Akyaka"
+    },
+    {"26": "Akçaabat"
+    },
+    {"27": "Akçakoca"
+    },
+    {"28": "Akçay - Balıkesir"
+    },
+    {"29": "Akçay - Samsun"
+    },
+    {"30": "Akşehir"
+    },
+    {"31": "Alaca"
+    },
+    {"32": "Alanya"
+    },
+    {"33": "Alaplı"
+    },
+    {"34": "Alaşehir"
+    },
+    {"35": "Alba Adriatica"
+    },
+    {"36": "Alba Iulia"
+    },
+    {"37": "Albergaria-a-Velha"
+    },
+    {"38": "Alberobello"
+    },
+    {"39": "Albufeira"
+    },
+    {"40": "Aldeanueva del Camino"
+    },
+    {"41": "Aldeia da Ponte"
+    },
+    {"42": "Aleksinac"
+    },
+    {"43": "Alessandria"
+    },
+    {"44": "Alexandria"
+    },
+    {"45": "Alfaiates"
+    },
+    {"46": "Aliağa"
+    },
+    {"47": "Alicante"
+    },
+    {"48": "Alifuatpaşa"
+    },
+    {"49": "Alingsås"
+    },
+    {"50": "Almada"
+    },
+    {"51": "Alsfeld"
+    },
+    {"52": "Altamura"
+    },
+    {"53": "Altınoluk"
+    },
+    {"54": "Altınova (Ayvalık)"
+    },
+    {"55": "Alytus"
+    },
+    {"56": "Amantea"
+    },
+    {"57": "Amarante"
+    },
+    {"58": "Amasra"
+    },
+    {"59": "Amasya"
+    },
+    {"60": "Amavida"
+    },
+    {"61": "Amiens"
+    },
+    {"62": "Amsterdam"
+    },
+    {"63": "Amstetten"
+    },
+    {"64": "Anadia"
+    },
+    {"65": "Anaheim, CA"
+    },
+    {"66": "Ancona"
+    },
+    {"67": "Andria"
+    },
+    {"68": "Angers"
+    },
+    {"69": "Ankara"
+    },
+    {"70": "Anklam"
+    },
+    {"71": "Annecy"
+    },
+    {"72": "Annemasse"
+    },
+    {"73": "Antalya"
+    },
+    {"74": "Antwerp"
+    },
+    {"75": "Aosta"
+    },
+    {"76": "Aprilia"
+    },
+    {"77": "Arad"
+    },
+    {"78": "Araklı"
+    },
+    {"79": "Araç"
+    },
+    {"80": "Arco de Baúlhe"
+    },
+    {"81": "Arcos de Valdevez"
+    },
+    {"82": "Ardeşen"
+    },
+    {"83": "Arezzo"
+    },
+    {"84": "Argelès-sur-mer"
+    },
+    {"85": "Arhavi"
+    },
+    {"86": "Arkadia"
+    },
+    {"87": "Arlon"
+    },
+    {"88": "Arpajon"
+    },
+    {"89": "Artova"
+    },
+    {"90": "Artvin"
+    },
+    {"91": "Aschaffenburg"
+    },
+    {"92": "Ascoli Piceno"
+    },
+    {"93": "Assisi"
+    },
+    {"94": "Atlanta, GA"
+    },
+    {"95": "Attnang-Puchheim"
+    },
+    {"96": "Augsburg"
+    },
+    {"97": "Augusta"
+    },
+    {"98": "Augusta, GA"
+    },
+    {"99": "Augustów"
+    },
+    {"100": "Auray"
+    },
+    {"101": "Austin, TX"
+    },
+    {"102": "Auxerre"
+    },
+    {"103": "Avanos"
+    },
+    {"104": "Aveiro"
+    },
+    {"105": "Avellino"
+    },
+    {"106": "Avenal, CA"
+    },
+    {"107": "Avetrana"
+    },
+    {"108": "Avezzano"
+    },
+    {"109": "Avignon"
+    },
+    {"110": "Avila"
+    },
+    {"111": "Avranches"
+    },
+    {"112": "Aydın"
+    },
+    {"113": "Ayvalık"
+    },
+    {"114": "Ağrı"
+    },
+    {"115": "Aşkale"
+    },
+    {"116": "Babina Greda"
+    },
+    {"117": "Bacău"
+    },
+    {"118": "Bad Salzuflen"
+    },
+    {"119": "Bad Wörishofen"
+    },
+    {"120": "Badajoz"
+    },
+    {"121": "Baden-Baden"
+    },
+    {"122": "Bakersfield, CA"
+    },
+    {"123": "Bale"
+    },
+    {"124": "Baltimore, MD"
+    },
+    {"125": "Balıkesir"
+    },
+    {"126": "Balș"
+    },
+    {"127": "Bamberg"
+    },
+    {"128": "Banaz"
+    },
+    {"129": "Bandırma"
+    },
+    {"130": "Banja Luka"
+    },
+    {"131": "Bansin"
+    },
+    {"132": "Banská Bystrica"
+    },
+    {"133": "Bar"
+    },
+    {"134": "Baranowicze"
+    },
+    {"135": "Barban"
+    },
+    {"136": "Barcelona"
+    },
+    {"137": "Barcelona El Prat Airport"
+    },
+    {"138": "Bardejov"
+    },
+    {"139": "Bari"
+    },
+    {"140": "Barletta"
+    },
+    {"141": "Barstow, CA"
+    },
+    {"142": "Bartın"
+    },
+    {"143": "Basel"
+    },
+    {"144": "Basel EuroAirport"
+    },
+    {"145": "Bastogne"
+    },
+    {"146": "Baton Rouge, LA"
+    },
+    {"147": "Battipaglia"
+    },
+    {"148": "Bauska"
+    },
+    {"149": "Bautzen"
+    },
+    {"150": "Bayburt"
+    },
+    {"151": "Bayonne"
+    },
+    {"152": "Bayreuth"
+    },
+    {"153": "Baños de Montemayor"
+    },
+    {"154": "Bačka Topola"
+    },
+    {"155": "Baška"
+    },
+    {"156": "Beaumont, TX"
+    },
+    {"157": "Beaune"
+    },
+    {"158": "Beclean"
+    },
+    {"159": "Bedenica"
+    },
+    {"160": "Bedřichov"
+    },
+    {"161": "Bejar"
+    },
+    {"162": "Belek"
+    },
+    {"163": "Belfort"
+    },
+    {"164": "Belgrade"
+    },
+    {"165": "Bellegarde-sur-Valserine"
+    },
+    {"166": "Bellevue, WA"
+    },
+    {"167": "Bellingham, WA"
+    },
+    {"168": "Bellinzona"
+    },
+    {"169": "Belovar"
+    },
+    {"170": "Belvedere Marittimo"
+    },
+    {"171": "Benavente"
+    },
+    {"172": "Benesov"
+    },
+    {"173": "Benevento"
+    },
+    {"174": "Benidorm"
+    },
+    {"175": "Berane"
+    },
+    {"176": "Bergama"
+    },
+    {"177": "Bergamo"
+    },
+    {"178": "Bergamo Orio al Serio Airport"
+    },
+    {"179": "Bergen (Celle)"
+    },
+    {"180": "Berinovac"
+    },
+    {"181": "Berlin"
+    },
+    {"182": "Bern"
+    },
+    {"183": "Besançon"
+    },
+    {"184": "Bettolle"
+    },
+    {"185": "Beyşehir"
+    },
+    {"186": "Beşevler"
+    },
+    {"187": "Beşikdüzü"
+    },
+    {"188": "Biarritz"
+    },
+    {"189": "Biała Podlaska"
+    },
+    {"190": "Białka Tatrzańska"
+    },
+    {"191": "Białystok"
+    },
+    {"192": "Bibbona-Bolgheri"
+    },
+    {"193": "Bibinje"
+    },
+    {"194": "Bibići"
+    },
+    {"195": "Bielefeld"
+    },
+    {"196": "Bielsk Podlaski"
+    },
+    {"197": "Biga"
+    },
+    {"198": "Bihać"
+    },
+    {"199": "Bijažići"
+    },
+    {"200": "Bijelo Polje"
+    },
+    {"201": "Bilbao"
+    },
+    {"202": "Bilecik"
+    },
+    {"203": "Bileća"
+    },
+    {"204": "Biloxi, MS"
+    },
+    {"205": "Binderup"
+    },
+    {"206": "Binghamton, NY"
+    },
+    {"207": "Bingöl"
+    },
+    {"208": "Biograd"
+    },
+    {"209": "Birmingham"
+    },
+    {"210": "Bisag"
+    },
+    {"211": "Bisceglie"
+    },
+    {"212": "Bisignano"
+    },
+    {"213": "Bistrița"
+    },
+    {"214": "Bitlis"
+    },
+    {"215": "Bitola"
+    },
+    {"216": "Bitonto"
+    },
+    {"217": "Bivio Cantinella"
+    },
+    {"218": "Blankaholm"
+    },
+    {"219": "Blaževdol"
+    },
+    {"220": "Bled"
+    },
+    {"221": "Blois"
+    },
+    {"222": "Blythe, CA"
+    },
+    {"223": "Bobolice"
+    },
+    {"224": "Bochum"
+    },
+    {"225": "Bodrum"
+    },
+    {"226": "Bohumín"
+    },
+    {"227": "Bolesławiec"
+    },
+    {"228": "Bollène"
+    },
+    {"229": "Bologna"
+    },
+    {"230": "Bolu"
+    },
+    {"231": "Bolvadin"
+    },
+    {"232": "Bonn"
+    },
+    {"233": "Borca di Cadore"
+    },
+    {"234": "Bordeaux"
+    },
+    {"235": "Borovo"
+    },
+    {"236": "Borås"
+    },
+    {"237": "Borçka"
+    },
+    {"238": "Bosiljevo"
+    },
+    {"239": "Boston, MA"
+    },
+    {"240": "Botoșani"
+    },
+    {"241": "Botricello"
+    },
+    {"242": "Bourges"
+    },
+    {"243": "Boyabat"
+    },
+    {"244": "Boyalıca"
+    },
+    {"245": "Bozen (Bolzano)"
+    },
+    {"246": "Bozüyük"
+    },
+    {"247": "Božejov"
+    },
+    {"248": "Bradford"
+    },
+    {"249": "Braga"
+    },
+    {"250": "Bragança"
+    },
+    {"251": "Bratislava"
+    },
+    {"252": "Bratislava Airport"
+    },
+    {"253": "Brașov"
+    },
+    {"254": "Breda"
+    },
+    {"255": "Bregenz"
+    },
+    {"256": "Bremen"
+    },
+    {"257": "Brescia"
+    },
+    {"258": "Bressanone"
+    },
+    {"259": "Brest"
+    },
+    {"260": "Brest (BY)"
+    },
+    {"261": "Breznica"
+    },
+    {"262": "Breznički Hum"
+    },
+    {"263": "Brezno"
+    },
+    {"264": "Bridgend"
+    },
+    {"265": "Brindisi"
+    },
+    {"266": "Bristol"
+    },
+    {"267": "Brive-la-Gaillarde"
+    },
+    {"268": "Brkići"
+    },
+    {"269": "Brno"
+    },
+    {"270": "Brod"
+    },
+    {"271": "Brseč"
+    },
+    {"272": "Brtnice"
+    },
+    {"273": "Bruges"
+    },
+    {"274": "Brunswick"
+    },
+    {"275": "Brussels"
+    },
+    {"276": "Brussels Airport"
+    },
+    {"277": "Brzeg"
+    },
+    {"278": "Brăila"
+    },
+    {"279": "Brčko"
+    },
+    {"280": "Bršadin"
+    },
+    {"281": "Bucak"
+    },
+    {"282": "Bucharest"
+    },
+    {"283": "Bucharest Airport"
+    },
+    {"284": "Budapest"
+    },
+    {"285": "Budapest Airport"
+    },
+    {"286": "Budva"
+    },
+    {"287": "Buffalo, NY"
+    },
+    {"288": "Bugojno"
+    },
+    {"289": "Buje"
+    },
+    {"290": "Bukovlje"
+    },
+    {"291": "Bukowina Tatrzańska"
+    },
+    {"292": "Bulancak"
+    },
+    {"293": "Buldan"
+    },
+    {"294": "Bumbești-Jiu"
+    },
+    {"295": "Buniel"
+    },
+    {"296": "Burdur"
+    },
+    {"297": "Burgos"
+    },
+    {"298": "Burhaniye"
+    },
+    {"299": "Bursa"
+    },
+    {"300": "Busko-Zdrój"
+    },
+    {"301": "Busovača"
+    },
+    {"302": "Busto Arsizio"
+    },
+    {"303": "Buzău"
+    },
+    {"304": "Bydgoszcz"
+    },
+    {"305": "Bystřice"
+    },
+    {"306": "Bytów"
+    },
+    {"307": "Bánovce nad Bebravou"
+    },
+    {"308": "Bârlad"
+    },
+    {"309": "Béziers"
+    },
+    {"310": "Băile Herculane"
+    },
+    {"311": "Cabourg"
+    },
+    {"312": "Caceres"
+    },
+    {"313": "Caen"
+    },
+    {"314": "Cahors"
+    },
+    {"315": "Calafat"
+    },
+    {"316": "Caldas da Rainha"
+    },
+    {"317": "Calopezzati"
+    },
+    {"318": "Caltanissetta"
+    },
+    {"319": "Campobasso"
+    },
+    {"320": "Canicattì"
+    },
+    {"321": "Cannes"
+    },
+    {"322": "Capbreton - Hossegor"
+    },
+    {"323": "Caracal"
+    },
+    {"324": "Caransebeș"
+    },
+    {"325": "Carcassonne"
+    },
+    {"326": "Cardiff"
+    },
+    {"327": "Cariati"
+    },
+    {"328": "Casamassima"
+    },
+    {"329": "Casas del Puerto"
+    },
+    {"330": "Cascais"
+    },
+    {"331": "Caserta"
+    },
+    {"332": "Cassino"
+    },
+    {"333": "Castellammare di Stabia"
+    },
+    {"334": "Castellon de la Plana"
+    },
+    {"335": "Castelo Branco"
+    },
+    {"336": "Castelvetrano"
+    },
+    {"337": "Castets"
+    },
+    {"338": "Castrovillari-Frascineto"
+    },
+    {"339": "Catania"
+    },
+    {"340": "Catanzaro"
+    },
+    {"341": "Cattolica"
+    },
+    {"342": "Cazin"
+    },
+    {"343": "Cedar City, UT"
+    },
+    {"344": "Ceglie Messapica"
+    },
+    {"345": "Celle"
+    },
+    {"346": "Celorico da Beira"
+    },
+    {"347": "Cerignola"
+    },
+    {"348": "Cernavodă"
+    },
+    {"349": "Cervera"
+    },
+    {"350": "Cervia"
+    },
+    {"351": "Cesena"
+    },
+    {"352": "Cesenatico"
+    },
+    {"353": "Cetinje"
+    },
+    {"354": "Cetraro"
+    },
+    {"355": "Chalon-sur-Saône"
+    },
+    {"356": "Chambéry"
+    },
+    {"357": "Chamonix-Mont-Blanc"
+    },
+    {"358": "Charlotte, NC"
+    },
+    {"359": "Chateaulin"
+    },
+    {"360": "Chatillon"
+    },
+    {"361": "Chaves"
+    },
+    {"362": "Cheb"
+    },
+    {"363": "Chemnitz"
+    },
+    {"364": "Chernivtsі"
+    },
+    {"365": "Chester"
+    },
+    {"366": "Chieti"
+    },
+    {"367": "Chisinau"
+    },
+    {"368": "Chivasso"
+    },
+    {"369": "Chojnice"
+    },
+    {"370": "Chomutov"
+    },
+    {"371": "Chrudim"
+    },
+    {"372": "Chur"
+    },
+    {"373": "Châlons-en-champagne"
+    },
+    {"374": "Château-Thierry"
+    },
+    {"375": "Chłapowo"
+    },
+    {"376": "Cide"
+    },
+    {"377": "Ciechocinek"
+    },
+    {"378": "Cieszyn"
+    },
+    {"379": "Cihanbeyli"
+    },
+    {"380": "Cirkovljan"
+    },
+    {"381": "Cirò Marina"
+    },
+    {"382": "Cista Provo"
+    },
+    {"383": "Civitanova Marche"
+    },
+    {"384": "Clermont-Ferrand"
+    },
+    {"385": "Cluj-Napoca"
+    },
+    {"386": "Coblenz"
+    },
+    {"387": "Coeur d'Alene, ID"
+    },
+    {"388": "Coimbra"
+    },
+    {"389": "Colmar"
+    },
+    {"390": "Cologne"
+    },
+    {"391": "Como"
+    },
+    {"392": "Compiègne"
+    },
+    {"393": "Concarneau"
+    },
+    {"394": "Constance"
+    },
+    {"395": "Constanța"
+    },
+    {"396": "Copenhagen"
+    },
+    {"397": "Copenhagen Airport (Kastrup)"
+    },
+    {"398": "Corato"
+    },
+    {"399": "Corigliano"
+    },
+    {"400": "Cortina d'Ampezzo"
+    },
+    {"401": "Corvallis, OR"
+    },
+    {"402": "Cosenza"
+    },
+    {"403": "Cottbus"
+    },
+    {"404": "Courmayeur"
+    },
+    {"405": "Covilhã"
+    },
+    {"406": "Craiova"
+    },
+    {"407": "Cremona"
+    },
+    {"408": "Crikvenica"
+    },
+    {"409": "Cropani"
+    },
+    {"410": "Crotone"
+    },
+    {"411": "Cupra Marittima"
+    },
+    {"412": "Cutro"
+    },
+    {"413": "Czarna Górna"
+    },
+    {"414": "Czorsztyn"
+    },
+    {"415": "Częstochowa"
+    },
+    {"416": "Człuchów"
+    },
+    {"417": "Câmpia Turzii"
+    },
+    {"418": "Câmpulung Moldovenesc"
+    },
+    {"419": "Călărași"
+    },
+    {"420": "Dahme"
+    },
+    {"421": "Dalaman"
+    },
+    {"422": "Dallas, TX"
+    },
+    {"423": "Darende"
+    },
+    {"424": "Darmstadt"
+    },
+    {"425": "Datça"
+    },
+    {"426": "Davis, CA"
+    },
+    {"427": "Dax"
+    },
+    {"428": "Deauville"
+    },
+    {"429": "Debar"
+    },
+    {"430": "Dej"
+    },
+    {"431": "Delft"
+    },
+    {"432": "Delmenhorst"
+    },
+    {"433": "Delnice"
+    },
+    {"434": "Den Bosch (‘s-Hertogenbosch)"
+    },
+    {"435": "Denizli"
+    },
+    {"436": "Derby"
+    },
+    {"437": "Derepazarı"
+    },
+    {"438": "Derventa"
+    },
+    {"439": "Desná"
+    },
+    {"440": "Dessau"
+    },
+    {"441": "Deva"
+    },
+    {"442": "Devrek"
+    },
+    {"443": "Diamante"
+    },
+    {"444": "Didim"
+    },
+    {"445": "Dieppe"
+    },
+    {"446": "Differdange"
+    },
+    {"447": "Dijon"
+    },
+    {"448": "Dikili"
+    },
+    {"449": "Dinar"
+    },
+    {"450": "Doboj"
+    },
+    {"451": "Dole"
+    },
+    {"452": "Dolní Dvořiště"
+    },
+    {"453": "Dolný Kubín"
+    },
+    {"454": "Donaueschingen"
+    },
+    {"455": "Donja Dubrava"
+    },
+    {"456": "Donja Zelina"
+    },
+    {"457": "Donji Andrijevci"
+    },
+    {"458": "Donji Mihaljevec"
+    },
+    {"459": "Donji Miholjac"
+    },
+    {"460": "Donji Milanovac"
+    },
+    {"461": "Donji Pustakovec"
+    },
+    {"462": "Donji Vakuf"
+    },
+    {"463": "Donoratico-Castagneto Carducci"
+    },
+    {"464": "Donovaly"
+    },
+    {"465": "Dortmund"
+    },
+    {"466": "Drachten"
+    },
+    {"467": "Drač"
+    },
+    {"468": "Draškovec"
+    },
+    {"469": "Dresden"
+    },
+    {"470": "Drobeta-Turnu Severin"
+    },
+    {"471": "Druskininkai"
+    },
+    {"472": "Drvenik"
+    },
+    {"473": "Dubci"
+    },
+    {"474": "Dubrovnik"
+    },
+    {"475": "Dugi Rat"
+    },
+    {"476": "Dugopolje"
+    },
+    {"477": "Duisburg"
+    },
+    {"478": "Dunkerque"
+    },
+    {"479": "Durham, NC"
+    },
+    {"480": "Duszniki-Zdrój"
+    },
+    {"481": "Düsseldorf"
+    },
+    {"482": "Düzce"
+    },
+    {"483": "Dębica"
+    },
+    {"484": "Dębki"
+    },
+    {"485": "Dźwirzyno"
+    },
+    {"486": "Eboli"
+    },
+    {"487": "Edremit"
+    },
+    {"488": "Eindhoven"
+    },
+    {"489": "Eisenach"
+    },
+    {"490": "El Centro, CA"
+    },
+    {"491": "El Fresno"
+    },
+    {"492": "Elazığ"
+    },
+    {"493": "Elblag"
+    },
+    {"494": "Eleşkirt"
+    },
+    {"495": "Ellensburg, WA"
+    },
+    {"496": "Elmadağ"
+    },
+    {"497": "Elmalık (Bolu)"
+    },
+    {"498": "Emet"
+    },
+    {"499": "Emirdağ"
+    },
+    {"500": "Empoli"
+    },
+    {"501": "Engen"
+    },
+    {"502": "Enna"
+    },
+    {"503": "Erbaa"
+    },
+    {"504": "Erciş"
+    },
+    {"505": "Ercolano"
+    },
+    {"506": "Erdek"
+    },
+    {"507": "Ereğli-Kdz"
+    },
+    {"508": "Erfelek"
+    },
+    {"509": "Erfurt"
+    },
+    {"510": "Erlangen"
+    },
+    {"511": "Erzincan"
+    },
+    {"512": "Erzurum"
+    },
+    {"513": "Esbjerg"
+    },
+    {"514": "Esch-sur-Alzette"
+    },
+    {"515": "Escondido, CA"
+    },
+    {"516": "Eskişehir"
+    },
+    {"517": "Eskişehir TCDD Gar"
+    },
+    {"518": "Espiye"
+    },
+    {"519": "Esposende"
+    },
+    {"520": "Essen"
+    },
+    {"521": "Eugene, OR"
+    },
+    {"522": "Everett, WA"
+    },
+    {"523": "Evora"
+    },
+    {"524": "Eynesil"
+    },
+    {"525": "Ezine"
+    },
+    {"526": "Eğirdir"
+    },
+    {"527": "Ełk"
+    },
+    {"528": "Fafe"
+    },
+    {"529": "Falkenberg"
+    },
+    {"530": "Falköping"
+    },
+    {"531": "Faro"
+    },
+    {"532": "Fasano"
+    },
+    {"533": "Fatsa"
+    },
+    {"534": "Fayetteville, NC"
+    },
+    {"535": "Ferrara"
+    },
+    {"536": "Fetești"
+    },
+    {"537": "Fethiye"
+    },
+    {"538": "Figueira da Foz"
+    },
+    {"539": "Filiași"
+    },
+    {"540": "Finike"
+    },
+    {"541": "Firmo"
+    },
+    {"542": "Fisciano"
+    },
+    {"543": "Flagstaff, AZ"
+    },
+    {"544": "Florence"
+    },
+    {"545": "Florence, SC"
+    },
+    {"546": "Focșani"
+    },
+    {"547": "Foggia"
+    },
+    {"548": "Follonica"
+    },
+    {"549": "Forbach"
+    },
+    {"550": "Fort Lauderdale, FL"
+    },
+    {"551": "Fort Myers, FL"
+    },
+    {"552": "Fort Pierce, FL"
+    },
+    {"553": "Fort Worth, TX"
+    },
+    {"554": "Foča"
+    },
+    {"555": "Francavilla Fontana"
+    },
+    {"556": "Frankfurt"
+    },
+    {"557": "Frankfurt (Oder)"
+    },
+    {"558": "Frankfurt Airport"
+    },
+    {"559": "Frankfurt Hahn"
+    },
+    {"560": "Freiburg (i.Br.)"
+    },
+    {"561": "Fresno, CA"
+    },
+    {"562": "Freudenstadt"
+    },
+    {"563": "Freyung"
+    },
+    {"564": "Fribourg (Suisse)"
+    },
+    {"565": "Friedrichshafen"
+    },
+    {"566": "Frosinone"
+    },
+    {"567": "Frymburk"
+    },
+    {"568": "Fréjus"
+    },
+    {"569": "Fulda"
+    },
+    {"570": "Fundão"
+    },
+    {"571": "Fátima"
+    },
+    {"572": "Fårbo"
+    },
+    {"573": "Fécamp"
+    },
+    {"574": "Fürth"
+    },
+    {"575": "Făgăraș"
+    },
+    {"576": "Fălticeni"
+    },
+    {"577": "Fındıklı"
+    },
+    {"578": "Gacko"
+    },
+    {"579": "Gajana Vodnjan"
+    },
+    {"580": "Galați"
+    },
+    {"581": "Galdo"
+    },
+    {"582": "Galižana"
+    },
+    {"583": "Gallipoli"
+    },
+    {"584": "Gamleby"
+    },
+    {"585": "Gandia"
+    },
+    {"586": "Gardaland"
+    },
+    {"587": "Garmisch-Partenkirchen"
+    },
+    {"588": "Garčin"
+    },
+    {"589": "Gdańsk"
+    },
+    {"590": "Gdynia"
+    },
+    {"591": "Gebze"
+    },
+    {"592": "Gelibolu"
+    },
+    {"593": "Gelsenkirchen"
+    },
+    {"594": "Gemlik"
+    },
+    {"595": "Geneva"
+    },
+    {"596": "Geneva Airport"
+    },
+    {"597": "Genoa"
+    },
+    {"598": "Gera"
+    },
+    {"599": "Gerze"
+    },
+    {"600": "Gevaş"
+    },
+    {"601": "Geyikli"
+    },
+    {"602": "Ghent"
+    },
+    {"603": "Gherla"
+    },
+    {"604": "Gießen"
+    },
+    {"605": "Ginjal"
+    },
+    {"606": "Gioia del Colle"
+    },
+    {"607": "Gioia Tauro"
+    },
+    {"608": "Giresun"
+    },
+    {"609": "Girona"
+    },
+    {"610": "Girona Airport"
+    },
+    {"611": "Giulianova"
+    },
+    {"612": "Giurgiu"
+    },
+    {"613": "Gliwice"
+    },
+    {"614": "Golubac"
+    },
+    {"615": "Goražde"
+    },
+    {"616": "Goričica"
+    },
+    {"617": "Gornja Vrba"
+    },
+    {"618": "Gornji Kneginec"
+    },
+    {"619": "Gornji Milanovac"
+    },
+    {"620": "Gorzów Wielkopolski"
+    },
+    {"621": "Gospić"
+    },
+    {"622": "Gostivar"
+    },
+    {"623": "Gothenburg"
+    },
+    {"624": "Gothenburg Airport (Landvetter)"
+    },
+    {"625": "Gradiška"
+    },
+    {"626": "Gradište"
+    },
+    {"627": "Grajewo"
+    },
+    {"628": "Granada"
+    },
+    {"629": "Grand Canyon (West Rim), AZ"
+    },
+    {"630": "Gravina in Puglia"
+    },
+    {"631": "Graz"
+    },
+    {"632": "Greensboro, NC"
+    },
+    {"633": "Greenville, SC"
+    },
+    {"634": "Greifswald"
+    },
+    {"635": "Grenoble"
+    },
+    {"636": "Groningen"
+    },
+    {"637": "Grosseto"
+    },
+    {"638": "Grottaglie"
+    },
+    {"639": "Grottaminarda"
+    },
+    {"640": "Grottammare"
+    },
+    {"641": "Groß Särchen"
+    },
+    {"642": "Grubine"
+    },
+    {"643": "Grude"
+    },
+    {"644": "Grudziądz"
+    },
+    {"645": "Gryfów Śląski"
+    },
+    {"646": "Grzybowo"
+    },
+    {"647": "Gränna"
+    },
+    {"648": "Grömitz"
+    },
+    {"649": "Guarda"
+    },
+    {"650": "Guardia Piemontese"
+    },
+    {"651": "Guimarães"
+    },
+    {"652": "Guingamp"
+    },
+    {"653": "Gura Humorului"
+    },
+    {"654": "Györ"
+    },
+    {"655": "Gökçebey"
+    },
+    {"656": "Gölcük"
+    },
+    {"657": "Gömeç"
+    },
+    {"658": "Gönen"
+    },
+    {"659": "Görele"
+    },
+    {"660": "Göreme"
+    },
+    {"661": "Görlitz"
+    },
+    {"662": "Göttingen"
+    },
+    {"663": "Gülşehir"
+    },
+    {"664": "Gümüldür"
+    },
+    {"665": "Gümüşhane"
+    },
+    {"666": "Güroymak"
+    },
+    {"667": "Gürün"
+    },
+    {"668": "Gütersloh"
+    },
+    {"669": "Güvercinlik"
+    },
+    {"670": "Găești"
+    },
+    {"671": "Hacıbektaş"
+    },
+    {"672": "Haderslev"
+    },
+    {"673": "Hafik"
+    },
+    {"674": "Hagondange"
+    },
+    {"675": "Halle"
+    },
+    {"676": "Hallsberg"
+    },
+    {"677": "Halmstad"
+    },
+    {"678": "Hamburg"
+    },
+    {"679": "Hamm"
+    },
+    {"680": "Hanau"
+    },
+    {"681": "Handlová"
+    },
+    {"682": "Hanover"
+    },
+    {"683": "Harkány"
+    },
+    {"684": "Harrachov"
+    },
+    {"685": "Hartford, CT"
+    },
+    {"686": "Havlíčkův Brod"
+    },
+    {"687": "Havza"
+    },
+    {"688": "Hayrettin"
+    },
+    {"689": "Heidelberg"
+    },
+    {"690": "Heilbronn"
+    },
+    {"691": "Heiligenhafen"
+    },
+    {"692": "Helmstedt"
+    },
+    {"693": "Helsingborg"
+    },
+    {"694": "Hendaye"
+    },
+    {"695": "Henderson, NC"
+    },
+    {"696": "Herceg Novi"
+    },
+    {"697": "Heringsdorf"
+    },
+    {"698": "Herning"
+    },
+    {"699": "Hervas"
+    },
+    {"700": "Hildesheim"
+    },
+    {"701": "Himmelkron"
+    },
+    {"702": "Hisarcık"
+    },
+    {"703": "Hliník nad Hronom"
+    },
+    {"704": "Hluboká nad Vltavou"
+    },
+    {"705": "Hodkovice nad Mohelkou"
+    },
+    {"706": "Hof"
+    },
+    {"707": "Hollywood, FL"
+    },
+    {"708": "Holstebro"
+    },
+    {"709": "Homburg"
+    },
+    {"710": "Honfleur"
+    },
+    {"711": "Hopa"
+    },
+    {"712": "Horasan"
+    },
+    {"713": "Horní Vltavice"
+    },
+    {"714": "Horsens"
+    },
+    {"715": "Houston, TX"
+    },
+    {"716": "Hoyerswerda"
+    },
+    {"717": "Hradec Králové"
+    },
+    {"718": "Hranice na Moravě"
+    },
+    {"719": "Hrastje"
+    },
+    {"720": "Hrboki"
+    },
+    {"721": "Hreljići"
+    },
+    {"722": "Hrubieszów"
+    },
+    {"723": "Huelva"
+    },
+    {"724": "Hulín"
+    },
+    {"725": "Humenné"
+    },
+    {"726": "Humpolec"
+    },
+    {"727": "Hunedoara"
+    },
+    {"728": "Huntsville, TX"
+    },
+    {"729": "Hüyük"
+    },
+    {"730": "Iași"
+    },
+    {"731": "Ilgaz"
+    },
+    {"732": "Ilgın"
+    },
+    {"733": "Ilhavo"
+    },
+    {"734": "Ilok"
+    },
+    {"735": "Imotski"
+    },
+    {"736": "Imperia"
+    },
+    {"737": "Incarville"
+    },
+    {"738": "Ingolstadt"
+    },
+    {"739": "Innsbruck"
+    },
+    {"740": "Interlaken"
+    },
+    {"741": "Irig"
+    },
+    {"742": "Irun"
+    },
+    {"743": "Irvine, CA"
+    },
+    {"744": "Isernia"
+    },
+    {"745": "Islamorada, FL"
+    },
+    {"746": "Isola di Capo Rizzuto"
+    },
+    {"747": "Isparta"
+    },
+    {"748": "Isselburg"
+    },
+    {"749": "Ithaca, NY"
+    },
+    {"750": "Ivano-Frankivsk"
+    },
+    {"751": "Ivrea"
+    },
+    {"752": "Ičići"
+    },
+    {"753": "Iłowa"
+    },
+    {"754": "Jablonec nad Nisou"
+    },
+    {"755": "Jaen"
+    },
+    {"756": "Jajce"
+    },
+    {"757": "Janov nad Nisou"
+    },
+    {"758": "Janów Lubelski"
+    },
+    {"759": "Jarošov"
+    },
+    {"760": "Jastrowie"
+    },
+    {"761": "Jastrzębia Góra"
+    },
+    {"762": "Jastrzębie-Zdrój"
+    },
+    {"763": "Jasło"
+    },
+    {"764": "Jelenia Góra"
+    },
+    {"765": "Jelgava"
+    },
+    {"766": "Jelšava"
+    },
+    {"767": "Jena"
+    },
+    {"768": "Jesolo"
+    },
+    {"769": "Jihlava"
+    },
+    {"770": "Jindřichův Hradec"
+    },
+    {"771": "Jirkov"
+    },
+    {"772": "Jurići"
+    },
+    {"773": "Juršići"
+    },
+    {"774": "Jönköping"
+    },
+    {"775": "Kahla"
+    },
+    {"776": "Kaiserslautern"
+    },
+    {"777": "Kakanj"
+    },
+    {"778": "Kale"
+    },
+    {"779": "Kalkan"
+    },
+    {"780": "Kalmar"
+    },
+    {"781": "Kamenice nad Lipou"
+    },
+    {"782": "Kamenjak"
+    },
+    {"783": "Kamenmost"
+    },
+    {"784": "Kamenný Újezd"
+    },
+    {"785": "Karabük"
+    },
+    {"786": "Karacabey"
+    },
+    {"787": "Karakoçan"
+    },
+    {"788": "Karamürsel"
+    },
+    {"789": "Kargalıyeniköy (Taytem)"
+    },
+    {"790": "Kargı"
+    },
+    {"791": "Karlobag"
+    },
+    {"792": "Karlovac"
+    },
+    {"793": "Karlovy Vary"
+    },
+    {"794": "Karlskoga"
+    },
+    {"795": "Karlsruhe"
+    },
+    {"796": "Karlstad"
+    },
+    {"797": "Karpacz"
+    },
+    {"798": "Karup"
+    },
+    {"799": "Karviná"
+    },
+    {"800": "Karwia"
+    },
+    {"801": "Kassel"
+    },
+    {"802": "Kastamonu"
+    },
+    {"803": "Katowice"
+    },
+    {"804": "Kaunas"
+    },
+    {"805": "Kavak"
+    },
+    {"806": "Kayaş"
+    },
+    {"807": "Kaynarca (Bursa)"
+    },
+    {"808": "Kayseri"
+    },
+    {"809": "Kałuszyn"
+    },
+    {"810": "Kaş"
+    },
+    {"811": "Kaštela"
+    },
+    {"812": "Kehl"
+    },
+    {"813": "Kemer"
+    },
+    {"814": "Key West, FL"
+    },
+    {"815": "Keçiborlu"
+    },
+    {"816": "Keşan"
+    },
+    {"817": "Keşap"
+    },
+    {"818": "Khmelnytskyi"
+    },
+    {"819": "Kiel"
+    },
+    {"820": "Kielce"
+    },
+    {"821": "Kingman, AZ"
+    },
+    {"822": "Kiseljak"
+    },
+    {"823": "Kičevo"
+    },
+    {"824": "Kladovo"
+    },
+    {"825": "Klagenfurt"
+    },
+    {"826": "Klausen (Chiusa)"
+    },
+    {"827": "Kleinwelka"
+    },
+    {"828": "Kljenovac"
+    },
+    {"829": "Kluszkowce"
+    },
+    {"830": "Knin"
+    },
+    {"831": "Kocaeli"
+    },
+    {"832": "Kolašin"
+    },
+    {"833": "Kolbuszowa"
+    },
+    {"834": "Kolding"
+    },
+    {"835": "Kolobrzeg"
+    },
+    {"836": "Kolomyia"
+    },
+    {"837": "Kolín"
+    },
+    {"838": "Komin"
+    },
+    {"839": "Konin"
+    },
+    {"840": "Konjic"
+    },
+    {"841": "Konya"
+    },
+    {"842": "Koper"
+    },
+    {"843": "Koprivnica"
+    },
+    {"844": "Korenica"
+    },
+    {"845": "Korkuteli"
+    },
+    {"846": "Korswandt"
+    },
+    {"847": "Kortrijk"
+    },
+    {"848": "Koserow"
+    },
+    {"849": "Kosmonosy"
+    },
+    {"850": "Koszalin"
+    },
+    {"851": "Kotor"
+    },
+    {"852": "Kotoriba"
+    },
+    {"853": "Kovancılar"
+    },
+    {"854": "Kozcağız"
+    },
+    {"855": "Kozlu"
+    },
+    {"856": "Kořenov"
+    },
+    {"857": "Kościerzyna"
+    },
+    {"858": "Košice"
+    },
+    {"859": "Kožino"
+    },
+    {"860": "Kraków"
+    },
+    {"861": "Kraków Airport"
+    },
+    {"862": "Kraljevica"
+    },
+    {"863": "Krasnystaw"
+    },
+    {"864": "Kraśnik"
+    },
+    {"865": "Krefeld"
+    },
+    {"866": "Kristinehamn"
+    },
+    {"867": "Krivodol"
+    },
+    {"868": "Križ"
+    },
+    {"869": "Krk"
+    },
+    {"870": "Krnjak"
+    },
+    {"871": "Krosno"
+    },
+    {"872": "Krościenko nad Dunajcem"
+    },
+    {"873": "Krucemburk"
+    },
+    {"874": "Kruševac"
+    },
+    {"875": "Krynica Morska"
+    },
+    {"876": "Krynica-Zdroj"
+    },
+    {"877": "Krátká Ves"
+    },
+    {"878": "Kubova Huť"
+    },
+    {"879": "Kudowa-Zdrój"
+    },
+    {"880": "Kukaleta"
+    },
+    {"881": "Kula (RS)"
+    },
+    {"882": "Kula (TR)"
+    },
+    {"883": "Kulu"
+    },
+    {"884": "Kumanovo"
+    },
+    {"885": "Kumla"
+    },
+    {"886": "Kumluca"
+    },
+    {"887": "Kupferzell/ Hohenlohe"
+    },
+    {"888": "Kupres"
+    },
+    {"889": "Kuršanec"
+    },
+    {"890": "Kutina"
+    },
+    {"891": "Kuşadası"
+    },
+    {"892": "Kyiv"
+    },
+    {"893": "Kysak"
+    },
+    {"894": "Kölpinsee"
+    },
+    {"895": "Königswartha"
+    },
+    {"896": "Köyceğiz"
+    },
+    {"897": "Köşk"
+    },
+    {"898": "Kümbet (Seyitgazi)"
+    },
+    {"899": "Kütahya"
+    },
+    {"900": "Küçükkuyu"
+    },
+    {"901": "Kąty Rybackie"
+    },
+    {"902": "Kırıkkale"
+    },
+    {"903": "Kırşehir"
+    },
+    {"904": "Kłodzko"
+    },
+    {"905": "Křižanov"
+    },
+    {"906": "L'Aquila"
+    },
+    {"907": "La Roche Sur Foron"
+    },
+    {"908": "La Roche sur Yon"
+    },
+    {"909": "La Rochelle"
+    },
+    {"910": "La Serrada"
+    },
+    {"911": "La Spezia"
+    },
+    {"912": "La Torre"
+    },
+    {"913": "Labin"
+    },
+    {"914": "Lafayette, LA"
+    },
+    {"915": "Lagonegro"
+    },
+    {"916": "Lagos"
+    },
+    {"917": "Lake Charles, LA"
+    },
+    {"918": "Lakeland, FL"
+    },
+    {"919": "Laktaši"
+    },
+    {"920": "Lamego"
+    },
+    {"921": "Lamezia Terme"
+    },
+    {"922": "Lana"
+    },
+    {"923": "Lanciano"
+    },
+    {"924": "Langres"
+    },
+    {"925": "Lapseki"
+    },
+    {"926": "Las Vegas, NV"
+    },
+    {"927": "Lausanne"
+    },
+    {"928": "Laval"
+    },
+    {"929": "Lavello"
+    },
+    {"930": "Lazarevac"
+    },
+    {"931": "Le Castella"
+    },
+    {"932": "Le Havre"
+    },
+    {"933": "Le Mans"
+    },
+    {"934": "Leavenworth /Peshastin, WA"
+    },
+    {"935": "Lecce"
+    },
+    {"936": "Leeds"
+    },
+    {"937": "Leer"
+    },
+    {"938": "Legnica"
+    },
+    {"939": "Leicester"
+    },
+    {"940": "Leipzig"
+    },
+    {"941": "Leiria"
+    },
+    {"942": "Leoben"
+    },
+    {"943": "Leon"
+    },
+    {"944": "Lesina"
+    },
+    {"945": "Lesko"
+    },
+    {"946": "Leszno"
+    },
+    {"947": "Lety"
+    },
+    {"948": "Liberec"
+    },
+    {"949": "Lido di Classe"
+    },
+    {"950": "Lido di Savio"
+    },
+    {"951": "Liezen"
+    },
+    {"952": "Lille"
+    },
+    {"953": "Limoges"
+    },
+    {"954": "Lindau"
+    },
+    {"955": "Linköping"
+    },
+    {"956": "Linz"
+    },
+    {"957": "Lipno nad Vltavou"
+    },
+    {"958": "Lipova"
+    },
+    {"959": "Liptovský Mikuláš"
+    },
+    {"960": "Lisbon"
+    },
+    {"961": "Liverpool"
+    },
+    {"962": "Livno"
+    },
+    {"963": "Livorno"
+    },
+    {"964": "Liège"
+    },
+    {"965": "Lišov"
+    },
+    {"966": "Ljig"
+    },
+    {"967": "Ljubljana"
+    },
+    {"968": "Ljubuški"
+    },
+    {"969": "Lleida"
+    },
+    {"970": "Lloret de Mar"
+    },
+    {"971": "Loborika"
+    },
+    {"972": "Locorotondo"
+    },
+    {"973": "London"
+    },
+    {"974": "London Heathrow"
+    },
+    {"975": "Longarone"
+    },
+    {"976": "Lons-le-Saunier"
+    },
+    {"977": "Loreto"
+    },
+    {"978": "Lorient"
+    },
+    {"979": "Los Angeles, CA"
+    },
+    {"980": "Loughborough"
+    },
+    {"981": "Louny"
+    },
+    {"982": "Lourosa"
+    },
+    {"983": "Loučovice"
+    },
+    {"984": "Lovran"
+    },
+    {"985": "Lovrec"
+    },
+    {"986": "Lubartów"
+    },
+    {"987": "Lubań"
+    },
+    {"988": "Lubenec"
+    },
+    {"989": "Lubin"
+    },
+    {"990": "Lublin"
+    },
+    {"991": "Lucca"
+    },
+    {"992": "Ludbreg"
+    },
+    {"993": "Lugano"
+    },
+    {"994": "Lugoj"
+    },
+    {"995": "Lumberton, NC"
+    },
+    {"996": "Lund"
+    },
+    {"997": "Lunel"
+    },
+    {"998": "Lutowiska"
+    },
+    {"999": "Lutsk"
+    },
+    {"1000": "Luxembourg"
+    },
+    {"1001": "Luzern"
+    },
+    {"1002": "Luzzi"
+    },
+    {"1003": "Lučany"
+    },
+    {"1004": "Lučenec"
+    },
+    {"1005": "Lviv"
+    },
+    {"1006": "Lyon"
+    },
+    {"1007": "Lyon Saint-Exupéry Airport"
+    },
+    {"1008": "Lásenice"
+    },
+    {"1009": "Lörrach"
+    },
+    {"1010": "Lübeck"
+    },
+    {"1011": "Lębork"
+    },
+    {"1012": "M.Kemal Paşa"
+    },
+    {"1013": "Maarheeze"
+    },
+    {"1014": "Maastricht"
+    },
+    {"1015": "Macedo de Cavaleiros"
+    },
+    {"1016": "Macerata"
+    },
+    {"1017": "Madrid"
+    },
+    {"1018": "Magdeburg"
+    },
+    {"1019": "Maglaj"
+    },
+    {"1020": "Maglie"
+    },
+    {"1021": "Mainz"
+    },
+    {"1022": "Makarska"
+    },
+    {"1023": "Makedonski Brod"
+    },
+    {"1024": "Mala Subotica"
+    },
+    {"1025": "Malaga"
+    },
+    {"1026": "Malatya"
+    },
+    {"1027": "Malbork"
+    },
+    {"1028": "Malinska"
+    },
+    {"1029": "Malmö"
+    },
+    {"1030": "Manavgat"
+    },
+    {"1031": "Manchester"
+    },
+    {"1032": "Mandatoriccio"
+    },
+    {"1033": "Manduria"
+    },
+    {"1034": "Manfredonia"
+    },
+    {"1035": "Mangualde"
+    },
+    {"1036": "Manisa"
+    },
+    {"1037": "Mannheim"
+    },
+    {"1038": "Manresa"
+    },
+    {"1039": "Mantova"
+    },
+    {"1040": "Marathon, FL"
+    },
+    {"1041": "Margherita di Savoia"
+    },
+    {"1042": "Maribor"
+    },
+    {"1043": "Marija na Muri"
+    },
+    {"1044": "Marijampole"
+    },
+    {"1045": "Markdorf"
+    },
+    {"1046": "Marling (Marlengo)"
+    },
+    {"1047": "Marmaris"
+    },
+    {"1048": "Marseille"
+    },
+    {"1049": "Marseille Airport"
+    },
+    {"1050": "Martina Franca"
+    },
+    {"1051": "Martinsicuro"
+    },
+    {"1052": "Marčana"
+    },
+    {"1053": "Maslenica"
+    },
+    {"1054": "Massafra"
+    },
+    {"1055": "Matera"
+    },
+    {"1056": "Mazara del Vallo"
+    },
+    {"1057": "Maçka"
+    },
+    {"1058": "Mačvanska Mitrovica"
+    },
+    {"1059": "Mealhalda"
+    },
+    {"1060": "Mecitözü"
+    },
+    {"1061": "Medgidia"
+    },
+    {"1062": "Medveja"
+    },
+    {"1063": "Medyka"
+    },
+    {"1064": "Meersburg"
+    },
+    {"1065": "Mekece"
+    },
+    {"1066": "Memmingen"
+    },
+    {"1067": "Memmingen Airport"
+    },
+    {"1068": "Menemen"
+    },
+    {"1069": "Menfi"
+    },
+    {"1070": "Mengen (TR)"
+    },
+    {"1071": "Meran (Merano)"
+    },
+    {"1072": "Mercan"
+    },
+    {"1073": "Merseburg"
+    },
+    {"1074": "Merzifon"
+    },
+    {"1075": "Merzig"
+    },
+    {"1076": "Mesagne"
+    },
+    {"1077": "Messina"
+    },
+    {"1078": "Meta"
+    },
+    {"1079": "Metković"
+    },
+    {"1080": "Metz"
+    },
+    {"1081": "Metzingen"
+    },
+    {"1082": "Međugorje"
+    },
+    {"1083": "Miami, FL"
+    },
+    {"1084": "Michalovce"
+    },
+    {"1085": "Middelfart"
+    },
+    {"1086": "Mielec"
+    },
+    {"1087": "Mielno"
+    },
+    {"1088": "Milan"
+    },
+    {"1089": "Milan Malpensa Airport"
+    },
+    {"1090": "Milano Marittima"
+    },
+    {"1091": "Milas"
+    },
+    {"1092": "Miličín"
+    },
+    {"1093": "Minsk"
+    },
+    {"1094": "Mirabilandia"
+    },
+    {"1095": "Mirandela"
+    },
+    {"1096": "Mirto Crosia"
+    },
+    {"1097": "Misano Adriatico"
+    },
+    {"1098": "Misterhult"
+    },
+    {"1099": "Mittenwald"
+    },
+    {"1100": "Międzyrzec Podlaski"
+    },
+    {"1101": "Mjölby"
+    },
+    {"1102": "Mladá Boleslav"
+    },
+    {"1103": "Mlawa"
+    },
+    {"1104": "Mobile, AL"
+    },
+    {"1105": "Modena"
+    },
+    {"1106": "Modica"
+    },
+    {"1107": "Modlin Airport"
+    },
+    {"1108": "Modrič"
+    },
+    {"1109": "Mohovo"
+    },
+    {"1110": "Moita da Serra"
+    },
+    {"1111": "Mojkovac"
+    },
+    {"1112": "Mola di Bari"
+    },
+    {"1113": "Molfetta"
+    },
+    {"1114": "Mollerusa"
+    },
+    {"1115": "Monfiorenzo"
+    },
+    {"1116": "Mongrassano"
+    },
+    {"1117": "Monopoli"
+    },
+    {"1118": "Montabaur"
+    },
+    {"1119": "Montallegro"
+    },
+    {"1120": "Montana"
+    },
+    {"1121": "Montauban"
+    },
+    {"1122": "Montbéliard"
+    },
+    {"1123": "Montecatini"
+    },
+    {"1124": "Monterey, CA"
+    },
+    {"1125": "Montesilvano"
+    },
+    {"1126": "Montpellier"
+    },
+    {"1127": "Montélimar"
+    },
+    {"1128": "Morlaix"
+    },
+    {"1129": "Mormanno"
+    },
+    {"1130": "Mortágua"
+    },
+    {"1131": "Moses Lake"
+    },
+    {"1132": "Most"
+    },
+    {"1133": "Most Raša"
+    },
+    {"1134": "Mostar"
+    },
+    {"1135": "Mošćenička Draga"
+    },
+    {"1136": "Mrzezyno"
+    },
+    {"1137": "Mrčajevci"
+    },
+    {"1138": "Muccia"
+    },
+    {"1139": "Mucur"
+    },
+    {"1140": "Mukachevo"
+    },
+    {"1141": "Mulhouse"
+    },
+    {"1142": "Munich"
+    },
+    {"1143": "Munich International Airport"
+    },
+    {"1144": "Murcia"
+    },
+    {"1145": "Murter"
+    },
+    {"1146": "Muráň"
+    },
+    {"1147": "Murça"
+    },
+    {"1148": "Muñana"
+    },
+    {"1149": "Muñochas"
+    },
+    {"1150": "Muñogalindo"
+    },
+    {"1151": "Muğla"
+    },
+    {"1152": "Muş"
+    },
+    {"1153": "Myślenice"
+    },
+    {"1154": "Mérida"
+    },
+    {"1155": "Mönchengladbach"
+    },
+    {"1156": "Mönsterås"
+    },
+    {"1157": "Mühldorf"
+    },
+    {"1158": "Münchberg"
+    },
+    {"1159": "Münster"
+    },
+    {"1160": "Nakło Nad Notecią"
+    },
+    {"1161": "Namur"
+    },
+    {"1162": "Nancy"
+    },
+    {"1163": "Nantes"
+    },
+    {"1164": "Naples"
+    },
+    {"1165": "Naples Airport"
+    },
+    {"1166": "Naples, FL"
+    },
+    {"1167": "Narbonne"
+    },
+    {"1168": "Nardò"
+    },
+    {"1169": "Nasavrky"
+    },
+    {"1170": "Naumburg (Saale)"
+    },
+    {"1171": "Navamorales"
+    },
+    {"1172": "Nave"
+    },
+    {"1173": "Nazaré"
+    },
+    {"1174": "Nazilli"
+    },
+    {"1175": "Neckarsulm"
+    },
+    {"1176": "Nedelišće"
+    },
+    {"1177": "Neschwitz"
+    },
+    {"1178": "Neumarkt am Wallersee"
+    },
+    {"1179": "Neustadt in Holstein"
+    },
+    {"1180": "Nevesinje"
+    },
+    {"1181": "Nevşehir"
+    },
+    {"1182": "New Haven, CT"
+    },
+    {"1183": "New Orleans, LA"
+    },
+    {"1184": "New York, NY"
+    },
+    {"1185": "Newport (South Wales)"
+    },
+    {"1186": "Niagara Falls, NY"
+    },
+    {"1187": "Nice"
+    },
+    {"1188": "Nidzica"
+    },
+    {"1189": "Nin"
+    },
+    {"1190": "Niort"
+    },
+    {"1191": "Nitra"
+    },
+    {"1192": "Niš"
+    },
+    {"1193": "Nocera inferiore"
+    },
+    {"1194": "Nordhausen"
+    },
+    {"1195": "Norrköping"
+    },
+    {"1196": "North Augusta, SC"
+    },
+    {"1197": "North Bend, WA"
+    },
+    {"1198": "Northampton"
+    },
+    {"1199": "Nottingham"
+    },
+    {"1200": "Nova Bila"
+    },
+    {"1201": "Nova Gradiška"
+    },
+    {"1202": "Nova Varoš"
+    },
+    {"1203": "Novara"
+    },
+    {"1204": "Novi Marof"
+    },
+    {"1205": "Novi Pazar"
+    },
+    {"1206": "Novi Sad"
+    },
+    {"1207": "Novi Travnik"
+    },
+    {"1208": "Novi Vinodolski"
+    },
+    {"1209": "Novohrad-Volynskyi"
+    },
+    {"1210": "Novska"
+    },
+    {"1211": "Nová Báňa"
+    },
+    {"1212": "Nowy Sącz"
+    },
+    {"1213": "Nowy Targ"
+    },
+    {"1214": "Noyelles-Godault"
+    },
+    {"1215": "Nuremberg"
+    },
+    {"1216": "Nuštar"
+    },
+    {"1217": "Nyborg"
+    },
+    {"1218": "Nyköping"
+    },
+    {"1219": "Nykøbing Falster"
+    },
+    {"1220": "Nykøbing Mors"
+    },
+    {"1221": "Náchod"
+    },
+    {"1222": "Námestovo"
+    },
+    {"1223": "Nîmes"
+    },
+    {"1224": "Oakland and East Bay, CA"
+    },
+    {"1225": "Oberhausen"
+    },
+    {"1226": "Odense"
+    },
+    {"1227": "Odesa"
+    },
+    {"1228": "Oeynhausen"
+    },
+    {"1229": "Of"
+    },
+    {"1230": "Offenburg"
+    },
+    {"1231": "Ohrid"
+    },
+    {"1232": "Olbramovice"
+    },
+    {"1233": "Oldenburg"
+    },
+    {"1234": "Oliveira do Hospital"
+    },
+    {"1235": "Olomouc"
+    },
+    {"1236": "Olot"
+    },
+    {"1237": "Olsztyn"
+    },
+    {"1238": "Olympia, WA"
+    },
+    {"1239": "Omiš"
+    },
+    {"1240": "Ondřejov"
+    },
+    {"1241": "Onești"
+    },
+    {"1242": "Ontario, CA"
+    },
+    {"1243": "Opatija"
+    },
+    {"1244": "Opatovac"
+    },
+    {"1245": "Opole"
+    },
+    {"1246": "Opuzen"
+    },
+    {"1247": "Orašje"
+    },
+    {"1248": "Ordu"
+    },
+    {"1249": "Orem / Provo, UT"
+    },
+    {"1250": "Orhangazi"
+    },
+    {"1251": "Orlamünde"
+    },
+    {"1252": "Orlando, FL"
+    },
+    {"1253": "Orléans"
+    },
+    {"1254": "Orlík nad Vltavou"
+    },
+    {"1255": "Ortaca"
+    },
+    {"1256": "Ortaköy (Aksaray)"
+    },
+    {"1257": "Orte"
+    },
+    {"1258": "Orthez"
+    },
+    {"1259": "Ortona"
+    },
+    {"1260": "Orăștie"
+    },
+    {"1261": "Orșova"
+    },
+    {"1262": "Osijek"
+    },
+    {"1263": "Osimo"
+    },
+    {"1264": "Oskarshamn"
+    },
+    {"1265": "Osmancık"
+    },
+    {"1266": "Osnabrück"
+    },
+    {"1267": "Osová Bítýška"
+    },
+    {"1268": "Ostrava"
+    },
+    {"1269": "Ostroda"
+    },
+    {"1270": "Ostrov nad Oslavou"
+    },
+    {"1271": "Ostrowiec Swietokrzyski"
+    },
+    {"1272": "Ostuni"
+    },
+    {"1273": "Otočac"
+    },
+    {"1274": "Otranto"
+    },
+    {"1275": "Otrić - Seoci"
+    },
+    {"1276": "Otrokovice"
+    },
+    {"1277": "Ouistreham"
+    },
+    {"1278": "Oulx"
+    },
+    {"1279": "Oviedo"
+    },
+    {"1280": "Oğulpaşa"
+    },
+    {"1281": "Ořechov"
+    },
+    {"1282": "Padiernos"
+    },
+    {"1283": "Padua"
+    },
+    {"1284": "Paestum"
+    },
+    {"1285": "Paka"
+    },
+    {"1286": "Pakoštane"
+    },
+    {"1287": "Palermo"
+    },
+    {"1288": "Palm Springs, CA"
+    },
+    {"1289": "Palmdale, CA"
+    },
+    {"1290": "Palmi"
+    },
+    {"1291": "Palovec"
+    },
+    {"1292": "Pamplona"
+    },
+    {"1293": "Pamukova"
+    },
+    {"1294": "Panevezys"
+    },
+    {"1295": "Paola"
+    },
+    {"1296": "Pardubice"
+    },
+    {"1297": "Paris"
+    },
+    {"1298": "Paris CDG Airport"
+    },
+    {"1299": "Paris Orly Airport"
+    },
+    {"1300": "Parma"
+    },
+    {"1301": "Parndorf Designer Outlet"
+    },
+    {"1302": "Partille"
+    },
+    {"1303": "Pasewalk"
+    },
+    {"1304": "Pasinler"
+    },
+    {"1305": "Passau"
+    },
+    {"1306": "Patnos"
+    },
+    {"1307": "Pau"
+    },
+    {"1308": "Pazar"
+    },
+    {"1309": "Pazardzhik"
+    },
+    {"1310": "Pazin"
+    },
+    {"1311": "Paços de Ferreira"
+    },
+    {"1312": "Pedaso"
+    },
+    {"1313": "Pedras Salgadas"
+    },
+    {"1314": "Pelhřimov"
+    },
+    {"1315": "Penafiel"
+    },
+    {"1316": "Perpignan"
+    },
+    {"1317": "Perugia"
+    },
+    {"1318": "Perušić"
+    },
+    {"1319": "Perşembe"
+    },
+    {"1320": "Pesaro"
+    },
+    {"1321": "Pescara"
+    },
+    {"1322": "Peschici"
+    },
+    {"1323": "Peschiera del Garda"
+    },
+    {"1324": "Peso da Régua"
+    },
+    {"1325": "Petrovac"
+    },
+    {"1326": "Petroșani"
+    },
+    {"1327": "Petrčane"
+    },
+    {"1328": "Pforzheim"
+    },
+    {"1329": "Philadelphia, PA"
+    },
+    {"1330": "Phoenix-Tempe, AZ"
+    },
+    {"1331": "Piacenza"
+    },
+    {"1332": "Pian del Lago"
+    },
+    {"1333": "Piano di Sorrento"
+    },
+    {"1334": "Piding"
+    },
+    {"1335": "Piedrahita"
+    },
+    {"1336": "Pietrapaola"
+    },
+    {"1337": "Piešťany"
+    },
+    {"1338": "Pinarbasi"
+    },
+    {"1339": "Piraziz"
+    },
+    {"1340": "Pirovac"
+    },
+    {"1341": "Pisa"
+    },
+    {"1342": "Pisek"
+    },
+    {"1343": "Pistoia"
+    },
+    {"1344": "Pitești"
+    },
+    {"1345": "Pitomača"
+    },
+    {"1346": "Pizzo"
+    },
+    {"1347": "Piła"
+    },
+    {"1348": "Plailly (Parc Astérix)"
+    },
+    {"1349": "Planá nad Lužnicí"
+    },
+    {"1350": "Plitvice Lakes (Plitvička Jezera)"
+    },
+    {"1351": "Pljevlja"
+    },
+    {"1352": "Ploce"
+    },
+    {"1353": "Plock"
+    },
+    {"1354": "Ploermel"
+    },
+    {"1355": "Ploiești"
+    },
+    {"1356": "Plomin"
+    },
+    {"1357": "Plomin - Vidikovac"
+    },
+    {"1358": "Plovdiv"
+    },
+    {"1359": "Plzeň"
+    },
+    {"1360": "Podgorica"
+    },
+    {"1361": "Podgradina"
+    },
+    {"1362": "Poggibonsi"
+    },
+    {"1363": "Poitiers"
+    },
+    {"1364": "Polanica-Zdrój"
+    },
+    {"1365": "Polatlı"
+    },
+    {"1366": "Polača"
+    },
+    {"1367": "Polańczyk"
+    },
+    {"1368": "Policoro"
+    },
+    {"1369": "Polignano a Mare"
+    },
+    {"1370": "Poličnik"
+    },
+    {"1371": "Polkowice"
+    },
+    {"1372": "Polla"
+    },
+    {"1373": "Polyanytsya (Bukovel)"
+    },
+    {"1374": "Pombal"
+    },
+    {"1375": "Pompei"
+    },
+    {"1376": "Ponte da Barca"
+    },
+    {"1377": "Ponte de Lima"
+    },
+    {"1378": "Pontevedra"
+    },
+    {"1379": "Poprad"
+    },
+    {"1380": "Pordenone"
+    },
+    {"1381": "Poreč"
+    },
+    {"1382": "Port Aventura"
+    },
+    {"1383": "Port St. Lucie, FL"
+    },
+    {"1384": "Portland, OR"
+    },
+    {"1385": "Porto"
+    },
+    {"1386": "Porto Cesareo"
+    },
+    {"1387": "Porto d'Ascoli"
+    },
+    {"1388": "Porto Empedocle"
+    },
+    {"1389": "Porto Garibaldi"
+    },
+    {"1390": "Porto Recanati"
+    },
+    {"1391": "Porto San Giorgio"
+    },
+    {"1392": "Porto Sant'Elpidio"
+    },
+    {"1393": "Portorož"
+    },
+    {"1394": "Posedarje"
+    },
+    {"1395": "Posušje"
+    },
+    {"1396": "Potenza"
+    },
+    {"1397": "Potsdam"
+    },
+    {"1398": "Považská Bystrica"
+    },
+    {"1399": "Poznań"
+    },
+    {"1400": "Požarevac"
+    },
+    {"1401": "Požega (Serbia)"
+    },
+    {"1402": "Prague"
+    },
+    {"1403": "Prato"
+    },
+    {"1404": "Prelog"
+    },
+    {"1405": "Presečno"
+    },
+    {"1406": "Prešov"
+    },
+    {"1407": "Prgomet"
+    },
+    {"1408": "Prievidza"
+    },
+    {"1409": "Prijepolje"
+    },
+    {"1410": "Prilep"
+    },
+    {"1411": "Privlaka"
+    },
+    {"1412": "Prnjavor"
+    },
+    {"1413": "Prodol"
+    },
+    {"1414": "Protivín"
+    },
+    {"1415": "Providence, RI"
+    },
+    {"1416": "Przemyśl"
+    },
+    {"1417": "Ptuj"
+    },
+    {"1418": "Puebla de Sanabria"
+    },
+    {"1419": "Puente de Congosto"
+    },
+    {"1420": "Puget-sur-Argens"
+    },
+    {"1421": "Pula"
+    },
+    {"1422": "Punat"
+    },
+    {"1423": "Putignano"
+    },
+    {"1424": "Puttgarden"
+    },
+    {"1425": "Puławy"
+    },
+    {"1426": "Pušćine"
+    },
+    {"1427": "Pärnu"
+    },
+    {"1428": "Pécs"
+    },
+    {"1429": "Périgueux"
+    },
+    {"1430": "Póvoa do Varzim"
+    },
+    {"1431": "Přední Výtoň"
+    },
+    {"1432": "Přerov"
+    },
+    {"1433": "Quimper"
+    },
+    {"1434": "Rabka-Zdrój"
+    },
+    {"1435": "Radom"
+    },
+    {"1436": "Radzyń Podlaski"
+    },
+    {"1437": "Ragusa"
+    },
+    {"1438": "Rakovica"
+    },
+    {"1439": "Raleigh, NC"
+    },
+    {"1440": "Randers"
+    },
+    {"1441": "Raubling"
+    },
+    {"1442": "Ravenna"
+    },
+    {"1443": "Ravensburg"
+    },
+    {"1444": "Ravna Gora (odmorište)"
+    },
+    {"1445": "Razgrad"
+    },
+    {"1446": "Raša"
+    },
+    {"1447": "Rašeljke"
+    },
+    {"1448": "Raška"
+    },
+    {"1449": "Ražanj"
+    },
+    {"1450": "Redwood City, CA"
+    },
+    {"1451": "Refahiye"
+    },
+    {"1452": "Regensburg"
+    },
+    {"1453": "Reggio Calabria"
+    },
+    {"1454": "Reggio Emilia"
+    },
+    {"1455": "Reims"
+    },
+    {"1456": "Rennes"
+    },
+    {"1457": "Reno, NV"
+    },
+    {"1458": "Reutlingen"
+    },
+    {"1459": "Revúca"
+    },
+    {"1460": "Reșița"
+    },
+    {"1461": "Rheinfelden"
+    },
+    {"1462": "Ribariće"
+    },
+    {"1463": "Riccione"
+    },
+    {"1464": "Richmond, VA"
+    },
+    {"1465": "Rieti"
+    },
+    {"1466": "Riga"
+    },
+    {"1467": "Rijeka"
+    },
+    {"1468": "Rimavská Sobota"
+    },
+    {"1469": "Rimini"
+    },
+    {"1470": "Ringe"
+    },
+    {"1471": "Ringsted"
+    },
+    {"1472": "Rivera de Corneja"
+    },
+    {"1473": "Riverside, CA"
+    },
+    {"1474": "Rivne"
+    },
+    {"1475": "Rize"
+    },
+    {"1476": "Rochefort"
+    },
+    {"1477": "Rochester, NY"
+    },
+    {"1478": "Rodange"
+    },
+    {"1479": "Rodi Garganico"
+    },
+    {"1480": "Roermond"
+    },
+    {"1481": "Roman"
+    },
+    {"1482": "Rome"
+    },
+    {"1483": "Rome Ciampino Airport"
+    },
+    {"1484": "Rome Fiumicino Airport"
+    },
+    {"1485": "Rosarno"
+    },
+    {"1486": "Rosenheim"
+    },
+    {"1487": "Roseto degli Abruzzi"
+    },
+    {"1488": "Roskilde"
+    },
+    {"1489": "Rossano"
+    },
+    {"1490": "Rostock"
+    },
+    {"1491": "Rotterdam"
+    },
+    {"1492": "Rouen"
+    },
+    {"1493": "Rovanjska"
+    },
+    {"1494": "Rovereto"
+    },
+    {"1495": "Rovinari"
+    },
+    {"1496": "Rovinj"
+    },
+    {"1497": "Rowy"
+    },
+    {"1498": "Rozewie"
+    },
+    {"1499": "Rožaje"
+    },
+    {"1500": "Rožmberk"
+    },
+    {"1501": "Rožnava"
+    },
+    {"1502": "Roșiorii de Vede"
+    },
+    {"1503": "Rudkøbing"
+    },
+    {"1504": "Rudolstadt"
+    },
+    {"1505": "Ruse"
+    },
+    {"1506": "Rust (Europa-Park)"
+    },
+    {"1507": "Ruvo di Puglia"
+    },
+    {"1508": "Ružomberok"
+    },
+    {"1509": "Rzeszów"
+    },
+    {"1510": "Râmnicu Sărat"
+    },
+    {"1511": "Râmnicu Vâlcea"
+    },
+    {"1512": "Saalfeld"
+    },
+    {"1513": "Saarbrücken"
+    },
+    {"1514": "Sabugal"
+    },
+    {"1515": "Sabunike"
+    },
+    {"1516": "Sacramento, CA"
+    },
+    {"1517": "Safranbolu"
+    },
+    {"1518": "Saint Jean de Luz"
+    },
+    {"1519": "Saint-Brieuc"
+    },
+    {"1520": "Saint-Dizier"
+    },
+    {"1521": "Saint-Gervais-Les-Bains"
+    },
+    {"1522": "Saint-Malo"
+    },
+    {"1523": "Saint-Étienne"
+    },
+    {"1524": "Saintes"
+    },
+    {"1525": "Sakarya"
+    },
+    {"1526": "Sala Consilina"
+    },
+    {"1527": "Salamanca"
+    },
+    {"1528": "Salerno"
+    },
+    {"1529": "Salihleraltı"
+    },
+    {"1530": "Salihli"
+    },
+    {"1531": "Salinas, CA"
+    },
+    {"1532": "Sallanches"
+    },
+    {"1533": "Salou"
+    },
+    {"1534": "Salt Lake City, UT"
+    },
+    {"1535": "Salzburg"
+    },
+    {"1536": "Salzwedel"
+    },
+    {"1537": "Samsun"
+    },
+    {"1538": "San Antonio, TX"
+    },
+    {"1539": "San Benedetto del Tronto"
+    },
+    {"1540": "San Bernardino, CA"
+    },
+    {"1541": "San Cosmo Albanese"
+    },
+    {"1542": "San Demetrio Corone"
+    },
+    {"1543": "San Diego, CA"
+    },
+    {"1544": "San Francisco, CA"
+    },
+    {"1545": "San Giorgio Albanese"
+    },
+    {"1546": "San Giovanni Rotondo"
+    },
+    {"1547": "San Jose, CA"
+    },
+    {"1548": "San Luis Obispo, CA"
+    },
+    {"1549": "San Marco Argentano"
+    },
+    {"1550": "San Marcos, TX"
+    },
+    {"1551": "San Miguel de Corneja"
+    },
+    {"1552": "San Salvo"
+    },
+    {"1553": "San Sebastián"
+    },
+    {"1554": "San Severo"
+    },
+    {"1555": "San Vincenzo"
+    },
+    {"1556": "San Vito dei Normanni "
+    },
+    {"1557": "San Vito di Cadore"
+    },
+    {"1558": "San Ysidro, CA"
+    },
+    {"1559": "Sandomierz"
+    },
+    {"1560": "Sandıklı"
+    },
+    {"1561": "Sangerhausen"
+    },
+    {"1562": "Sankt Pölten"
+    },
+    {"1563": "Sanok"
+    },
+    {"1564": "Sanremo"
+    },
+    {"1565": "Sant Feliu de Guixols"
+    },
+    {"1566": "Sant'Agnello"
+    },
+    {"1567": "Santa Barbara, CA"
+    },
+    {"1568": "Santa Comba Dão"
+    },
+    {"1569": "Santa Cruz do Bispo"
+    },
+    {"1570": "Santa Cruz, CA"
+    },
+    {"1571": "Santa Maria del Arroyo"
+    },
+    {"1572": "Santa Maria del Cedro"
+    },
+    {"1573": "Santa Maria di Leuca"
+    },
+    {"1574": "Santa Maria, CA"
+    },
+    {"1575": "Santa Sofia d'Epiro"
+    },
+    {"1576": "Santander"
+    },
+    {"1577": "Santarém"
+    },
+    {"1578": "Santhià"
+    },
+    {"1579": "Santiago de Compostela"
+    },
+    {"1580": "Santibañez de Bejar"
+    },
+    {"1581": "Sarajevo"
+    },
+    {"1582": "Sarasota, FL"
+    },
+    {"1583": "Sarayköy"
+    },
+    {"1584": "Sarbinowo"
+    },
+    {"1585": "Sarižol"
+    },
+    {"1586": "Sarno"
+    },
+    {"1587": "Saronno"
+    },
+    {"1588": "Sarıgöl"
+    },
+    {"1589": "Sarımsaklı"
+    },
+    {"1590": "Saumur"
+    },
+    {"1591": "Savona"
+    },
+    {"1592": "Sazomín"
+    },
+    {"1593": "Scalea"
+    },
+    {"1594": "Scharbeutz"
+    },
+    {"1595": "Schiavonea"
+    },
+    {"1596": "Schleiz"
+    },
+    {"1597": "Schweinfurt"
+    },
+    {"1598": "Schwerin"
+    },
+    {"1599": "Scranton, PA"
+    },
+    {"1600": "Seattle, WA"
+    },
+    {"1601": "Sebeș"
+    },
+    {"1602": "Seefeld"
+    },
+    {"1603": "Seferihisar"
+    },
+    {"1604": "Seget Donji"
+    },
+    {"1605": "Seia"
+    },
+    {"1606": "Sejny"
+    },
+    {"1607": "Selimiye"
+    },
+    {"1608": "Seline"
+    },
+    {"1609": "Sellia Marina"
+    },
+    {"1610": "Selçuk"
+    },
+    {"1611": "Senirkent"
+    },
+    {"1612": "Senj"
+    },
+    {"1613": "Sereď"
+    },
+    {"1614": "Serik"
+    },
+    {"1615": "Serravalle Scrivia (Outlet)"
+    },
+    {"1616": "Sestanovac"
+    },
+    {"1617": "Sesvete"
+    },
+    {"1618": "Setubal"
+    },
+    {"1619": "Sevilla"
+    },
+    {"1620": "Seydişehir"
+    },
+    {"1621": "Seyitgazi"
+    },
+    {"1622": "Sfântu Gheorghe"
+    },
+    {"1623": "Sheffield"
+    },
+    {"1624": "Shumen"
+    },
+    {"1625": "Siauliai"
+    },
+    {"1626": "Sibari"
+    },
+    {"1627": "Sibiu"
+    },
+    {"1628": "Sicignano"
+    },
+    {"1629": "Siculiana"
+    },
+    {"1630": "Siedlce"
+    },
+    {"1631": "Siegen"
+    },
+    {"1632": "Siemiatycze"
+    },
+    {"1633": "Siena"
+    },
+    {"1634": "Sieradz"
+    },
+    {"1635": "Sierksdorf (Hansa Park)"
+    },
+    {"1636": "Silkeborg"
+    },
+    {"1637": "Simbach"
+    },
+    {"1638": "Sinaia"
+    },
+    {"1639": "Singen"
+    },
+    {"1640": "Sinj"
+    },
+    {"1641": "Sinop"
+    },
+    {"1642": "Sinsheim"
+    },
+    {"1643": "Sintra"
+    },
+    {"1644": "Siofok"
+    },
+    {"1645": "Siracusa"
+    },
+    {"1646": "Sivas"
+    },
+    {"1647": "Sivaslı"
+    },
+    {"1648": "Sivrihisar"
+    },
+    {"1649": "Skanderborg"
+    },
+    {"1650": "Skarzysko-Kamienna"
+    },
+    {"1651": "Skive"
+    },
+    {"1652": "Sklené nad Oslavou"
+    },
+    {"1653": "Skopje"
+    },
+    {"1654": "Skradin"
+    },
+    {"1655": "Skradinsko Polje"
+    },
+    {"1656": "Skövde"
+    },
+    {"1657": "Slagelse"
+    },
+    {"1658": "Slano"
+    },
+    {"1659": "Slatina (HR)"
+    },
+    {"1660": "Slatina (RO)"
+    },
+    {"1661": "Slatiňany"
+    },
+    {"1662": "Slavonski Brod"
+    },
+    {"1663": "Slobozia"
+    },
+    {"1664": "Slunj"
+    },
+    {"1665": "Smržovka"
+    },
+    {"1666": "Soblinec"
+    },
+    {"1667": "Soběslav"
+    },
+    {"1668": "Sofia"
+    },
+    {"1669": "Sokolov"
+    },
+    {"1670": "Solhan"
+    },
+    {"1671": "Solin"
+    },
+    {"1672": "Solina"
+    },
+    {"1673": "Soltau"
+    },
+    {"1674": "Sopot"
+    },
+    {"1675": "Sora"
+    },
+    {"1676": "Sorgun"
+    },
+    {"1677": "Sorrento"
+    },
+    {"1678": "Sotin"
+    },
+    {"1679": "South Hill, VA"
+    },
+    {"1680": "Spezzano Albanese"
+    },
+    {"1681": "Spišská Nová Ves"
+    },
+    {"1682": "Split"
+    },
+    {"1683": "Splügen"
+    },
+    {"1684": "Spokane, WA"
+    },
+    {"1685": "Spremberg"
+    },
+    {"1686": "Srbobran"
+    },
+    {"1687": "Srebrenik"
+    },
+    {"1688": "Sremska Mitrovica"
+    },
+    {"1689": "Srđevići"
+    },
+    {"1690": "St. Gallen"
+    },
+    {"1691": "St. George, UT"
+    },
+    {"1692": "St. Michael"
+    },
+    {"1693": "St. Petersburg, FL"
+    },
+    {"1694": "St. Valentin"
+    },
+    {"1695": "Stalowa Wola"
+    },
+    {"1696": "Stankovci"
+    },
+    {"1697": "Stargard"
+    },
+    {"1698": "Starigrad (NP Paklenica)"
+    },
+    {"1699": "Starigrad (Senj)"
+    },
+    {"1700": "Starogard Gdański"
+    },
+    {"1701": "Staré Město u Uh. Hr."
+    },
+    {"1702": "Steccato di Cutro"
+    },
+    {"1703": "Stegna"
+    },
+    {"1704": "Stendal"
+    },
+    {"1705": "Sterzing (Vipiteno)"
+    },
+    {"1706": "Steyr"
+    },
+    {"1707": "Stockach"
+    },
+    {"1708": "Stockholm"
+    },
+    {"1709": "Stockholm Arlanda T 2/3"
+    },
+    {"1710": "Stockholm Arlanda T 4"
+    },
+    {"1711": "Stockholm Skavsta Airport"
+    },
+    {"1712": "Stoke on Trent"
+    },
+    {"1713": "Ston"
+    },
+    {"1714": "Strakonice"
+    },
+    {"1715": "Strasbourg"
+    },
+    {"1716": "Strongoli Marina"
+    },
+    {"1717": "Struga"
+    },
+    {"1718": "Strzelce Opolskie"
+    },
+    {"1719": "Stráž nad Nežárkou"
+    },
+    {"1720": "Studénka"
+    },
+    {"1721": "Stuttgart"
+    },
+    {"1722": "Subotica"
+    },
+    {"1723": "Suceava"
+    },
+    {"1724": "Suchdol nad Odrou"
+    },
+    {"1725": "Sukošan"
+    },
+    {"1726": "Sulmona"
+    },
+    {"1727": "Sultanhisar"
+    },
+    {"1728": "Suluova"
+    },
+    {"1729": "Sulusaray"
+    },
+    {"1730": "Sungurlu"
+    },
+    {"1731": "Susurluk"
+    },
+    {"1732": "Sutomore"
+    },
+    {"1733": "Suwałki"
+    },
+    {"1734": "Suşehri"
+    },
+    {"1735": "Sv. Ivan Zelina"
+    },
+    {"1736": "Sv. Juraj u Trnju"
+    },
+    {"1737": "Sv. Kirin"
+    },
+    {"1738": "Sveti Filip i Jakov"
+    },
+    {"1739": "Sveti Marko"
+    },
+    {"1740": "Svetvinčenat"
+    },
+    {"1741": "Svilajnac"
+    },
+    {"1742": "Swansea"
+    },
+    {"1743": "Swornegacie"
+    },
+    {"1744": "Syracuse, NY"
+    },
+    {"1745": "Szczawnica"
+    },
+    {"1746": "Szczecin"
+    },
+    {"1747": "Szczecin Lotnisko Goleniów"
+    },
+    {"1748": "Szczecinek"
+    },
+    {"1749": "Szeged"
+    },
+    {"1750": "Szklarska Poręba"
+    },
+    {"1751": "Sztutowo"
+    },
+    {"1752": "São João da Madeira"
+    },
+    {"1753": "Söderköping"
+    },
+    {"1754": "Södertälje"
+    },
+    {"1755": "Söke"
+    },
+    {"1756": "Sønderborg"
+    },
+    {"1757": "Sürmene"
+    },
+    {"1758": "Słubice"
+    },
+    {"1759": "Słupsk"
+    },
+    {"1760": "Tacoma, WA"
+    },
+    {"1761": "Tai di Cadore"
+    },
+    {"1762": "Tallinn"
+    },
+    {"1763": "Tampa, FL"
+    },
+    {"1764": "Tanvald"
+    },
+    {"1765": "Taormina"
+    },
+    {"1766": "Taranto"
+    },
+    {"1767": "Tarbes"
+    },
+    {"1768": "Tarnów"
+    },
+    {"1769": "Tarragona"
+    },
+    {"1770": "Tarsia"
+    },
+    {"1771": "Tatvan"
+    },
+    {"1772": "Tavas"
+    },
+    {"1773": "Tavşanlı"
+    },
+    {"1774": "Taşköprü"
+    },
+    {"1775": "Tecuci"
+    },
+    {"1776": "Tefenni"
+    },
+    {"1777": "Teiuș"
+    },
+    {"1778": "Tekija"
+    },
+    {"1779": "Tekirdağ"
+    },
+    {"1780": "Tekkeköy"
+    },
+    {"1781": "Temple, TX"
+    },
+    {"1782": "Teramo"
+    },
+    {"1783": "Tercan"
+    },
+    {"1784": "Terespol"
+    },
+    {"1785": "Terme"
+    },
+    {"1786": "Termoli"
+    },
+    {"1787": "Terni"
+    },
+    {"1788": "Ternopil"
+    },
+    {"1789": "Tetovo"
+    },
+    {"1790": "The Hague"
+    },
+    {"1791": "Thiers"
+    },
+    {"1792": "Thionville"
+    },
+    {"1793": "Thisted"
+    },
+    {"1794": "Thun"
+    },
+    {"1795": "Timișoara"
+    },
+    {"1796": "Timmendorfer Strand"
+    },
+    {"1797": "Tirana"
+    },
+    {"1798": "Tirebolu"
+    },
+    {"1799": "Tisno"
+    },
+    {"1800": "Tisovec"
+    },
+    {"1801": "Titisee-Neustadt"
+    },
+    {"1802": "Tivat"
+    },
+    {"1803": "Todi"
+    },
+    {"1804": "Tokat"
+    },
+    {"1805": "Toledo"
+    },
+    {"1806": "Tomar"
+    },
+    {"1807": "Tomislavgrad"
+    },
+    {"1808": "Tondela"
+    },
+    {"1809": "Toprakcuma"
+    },
+    {"1810": "Torano Castello"
+    },
+    {"1811": "Tordesillas"
+    },
+    {"1812": "Torre Melissa"
+    },
+    {"1813": "Torres Novas"
+    },
+    {"1814": "Torres vedras"
+    },
+    {"1815": "Torretta Crucoli"
+    },
+    {"1816": "Tortora"
+    },
+    {"1817": "Torul"
+    },
+    {"1818": "Toruń"
+    },
+    {"1819": "Tosya"
+    },
+    {"1820": "Toulon"
+    },
+    {"1821": "Toulouse"
+    },
+    {"1822": "Toulouse Blagnac Airport"
+    },
+    {"1823": "Tours"
+    },
+    {"1824": "Trabzon"
+    },
+    {"1825": "Trajanova Tabla"
+    },
+    {"1826": "Trakai"
+    },
+    {"1827": "Trani"
+    },
+    {"1828": "Travnik"
+    },
+    {"1829": "Trebinje"
+    },
+    {"1830": "Trento"
+    },
+    {"1831": "Trenčín"
+    },
+    {"1832": "Treviso"
+    },
+    {"1833": "Trhová Kamenice"
+    },
+    {"1834": "Tribunj"
+    },
+    {"1835": "Trier"
+    },
+    {"1836": "Trieste"
+    },
+    {"1837": "Trieste Airport"
+    },
+    {"1838": "Trilj"
+    },
+    {"1839": "Trnava (SK)"
+    },
+    {"1840": "Trogir"
+    },
+    {"1841": "Troyes"
+    },
+    {"1842": "Trošti"
+    },
+    {"1843": "Trstenik"
+    },
+    {"1844": "Tuchola"
+    },
+    {"1845": "Tucson, AZ"
+    },
+    {"1846": "Tudela"
+    },
+    {"1847": "Tulcea"
+    },
+    {"1848": "Tulle"
+    },
+    {"1849": "Tullnerfeld"
+    },
+    {"1850": "Tunel Učka - Istok"
+    },
+    {"1851": "Tunel Učka - zapad"
+    },
+    {"1852": "Turda"
+    },
+    {"1853": "Turgutlu"
+    },
+    {"1854": "Turhal"
+    },
+    {"1855": "Turi"
+    },
+    {"1856": "Turin"
+    },
+    {"1857": "Turnov"
+    },
+    {"1858": "Turčin"
+    },
+    {"1859": "Tutak"
+    },
+    {"1860": "Tuzla"
+    },
+    {"1861": "Tvrdošín"
+    },
+    {"1862": "Tábor"
+    },
+    {"1863": "Tárrega"
+    },
+    {"1864": "Târgoviște"
+    },
+    {"1865": "Târgu Frumos"
+    },
+    {"1866": "Târgu Jiu"
+    },
+    {"1867": "Târgu Secuiesc"
+    },
+    {"1868": "Tübingen"
+    },
+    {"1869": "Tălmaciu"
+    },
+    {"1870": "Třeboň"
+    },
+    {"1871": "Třebíč"
+    },
+    {"1872": "Třinec"
+    },
+    {"1873": "Udbina"
+    },
+    {"1874": "Udine"
+    },
+    {"1875": "Ugento "
+    },
+    {"1876": "Uherské Hradište"
+    },
+    {"1877": "Uherský Brod"
+    },
+    {"1878": "Uhlstaedt"
+    },
+    {"1879": "Ula"
+    },
+    {"1880": "Ulm"
+    },
+    {"1881": "Ulricehamn"
+    },
+    {"1882": "Uluborlu"
+    },
+    {"1883": "Ulus"
+    },
+    {"1884": "Umag"
+    },
+    {"1885": "Uman"
+    },
+    {"1886": "Uppsala"
+    },
+    {"1887": "Urbino"
+    },
+    {"1888": "Urla"
+    },
+    {"1889": "Usedom"
+    },
+    {"1890": "Ussel"
+    },
+    {"1891": "Ustka"
+    },
+    {"1892": "Ustronie Morskie"
+    },
+    {"1893": "Ustrzyki Dolne"
+    },
+    {"1894": "Ustrzyki Górne"
+    },
+    {"1895": "Utrecht"
+    },
+    {"1896": "Uzhhorod"
+    },
+    {"1897": "Uşak"
+    },
+    {"1898": "Užice"
+    },
+    {"1899": "Vaccarizzo Albanese"
+    },
+    {"1900": "Vaduz"
+    },
+    {"1901": "Vagos"
+    },
+    {"1902": "Vakfıkebir"
+    },
+    {"1903": "Val Vomano"
+    },
+    {"1904": "Valbruna"
+    },
+    {"1905": "Valdemarsvik"
+    },
+    {"1906": "Valence (France)"
+    },
+    {"1907": "Valencia"
+    },
+    {"1908": "Valladolid"
+    },
+    {"1909": "Valpovo"
+    },
+    {"1910": "Van"
+    },
+    {"1911": "Vannes"
+    },
+    {"1912": "Varaždin"
+    },
+    {"1913": "Varaždin Breg"
+    },
+    {"1914": "Varna"
+    },
+    {"1915": "Vaslui"
+    },
+    {"1916": "Vasto"
+    },
+    {"1917": "Vatra Dornei"
+    },
+    {"1918": "Vatín"
+    },
+    {"1919": "Vechta"
+    },
+    {"1920": "Vejen"
+    },
+    {"1921": "Vejle"
+    },
+    {"1922": "Velika Kladuša"
+    },
+    {"1923": "Veliko Gradište"
+    },
+    {"1924": "Veljun"
+    },
+    {"1925": "Velká Bíteš"
+    },
+    {"1926": "Venice"
+    },
+    {"1927": "Venice Airport"
+    },
+    {"1928": "Venlo"
+    },
+    {"1929": "Ventimiglia"
+    },
+    {"1930": "Ventura, CA"
+    },
+    {"1931": "Verdun"
+    },
+    {"1932": "Verin"
+    },
+    {"1933": "Verona"
+    },
+    {"1934": "Verrès"
+    },
+    {"1935": "Versailles"
+    },
+    {"1936": "Veselí nad Lužnicí"
+    },
+    {"1937": "Viana do Castelo"
+    },
+    {"1938": "Vibo Valentia"
+    },
+    {"1939": "Viborg"
+    },
+    {"1940": "Vic"
+    },
+    {"1941": "Vicenza"
+    },
+    {"1942": "Vico Equense"
+    },
+    {"1943": "Victorville, CA"
+    },
+    {"1944": "Vidago"
+    },
+    {"1945": "Vidin"
+    },
+    {"1946": "Vidovec Donji"
+    },
+    {"1947": "Vielha"
+    },
+    {"1948": "Vienna"
+    },
+    {"1949": "Vienna Airport"
+    },
+    {"1950": "Vieste"
+    },
+    {"1951": "Vigo"
+    },
+    {"1952": "Vila Pouca de Aguiar"
+    },
+    {"1953": "Vila Real"
+    },
+    {"1954": "Vilar Formoso"
+    },
+    {"1955": "Villa San Giovanni"
+    },
+    {"1956": "Villach"
+    },
+    {"1957": "Villafranca de la Sierra"
+    },
+    {"1958": "Villatoro"
+    },
+    {"1959": "Villefranche-sur-Saône"
+    },
+    {"1960": "Villetelle"
+    },
+    {"1961": "Villingen-Schwenningen"
+    },
+    {"1962": "Vilnius"
+    },
+    {"1963": "Vimperk"
+    },
+    {"1964": "Vinkovci"
+    },
+    {"1965": "Vinnytsia"
+    },
+    {"1966": "Vir"
+    },
+    {"1967": "Virovitica"
+    },
+    {"1968": "Visalia, CA"
+    },
+    {"1969": "Viseu"
+    },
+    {"1970": "Visoko"
+    },
+    {"1971": "Viterbo"
+    },
+    {"1972": "Vitez"
+    },
+    {"1973": "Vitoria-Gasteiz"
+    },
+    {"1974": "Višegrad"
+    },
+    {"1975": "Vodice"
+    },
+    {"1976": "Vodnjan"
+    },
+    {"1977": "Vodňany"
+    },
+    {"1978": "Voiron"
+    },
+    {"1979": "Vojnův Městec"
+    },
+    {"1980": "Volyně"
+    },
+    {"1981": "Votice"
+    },
+    {"1982": "Vozilići"
+    },
+    {"1983": "Vratsa"
+    },
+    {"1984": "Vrbas"
+    },
+    {"1985": "Vrgorac"
+    },
+    {"1986": "Vrnjačka Banja"
+    },
+    {"1987": "Vrpolje"
+    },
+    {"1988": "Vrútky"
+    },
+    {"1989": "Vukovar"
+    },
+    {"1990": "Vyšší Brod"
+    },
+    {"1991": "Västervik"
+    },
+    {"1992": "Västerås"
+    },
+    {"1993": "Vöcklabruck"
+    },
+    {"1994": "Větřní"
+    },
+    {"1995": "Waco, TX"
+    },
+    {"1996": "Wangen"
+    },
+    {"1997": "Warnemünde"
+    },
+    {"1998": "Warrington"
+    },
+    {"1999": "Warsaw"
+    },
+    {"2000": "Washington, D.C."
+    },
+    {"2001": "Weiden in der Oberpfalz"
+    },
+    {"2002": "Weimar"
+    },
+    {"2003": "Weißenfels"
+    },
+    {"2004": "Wels"
+    },
+    {"2005": "Wenatchee, WA"
+    },
+    {"2006": "Werbkowice"
+    },
+    {"2007": "West Palm Beach, FL"
+    },
+    {"2008": "Wiener Neustadt"
+    },
+    {"2009": "Wiesbaden"
+    },
+    {"2010": "Winterthur"
+    },
+    {"2011": "Wismar"
+    },
+    {"2012": "Wittichenau"
+    },
+    {"2013": "Wolpertshausen"
+    },
+    {"2014": "Wroclaw Airport"
+    },
+    {"2015": "Wrocław"
+    },
+    {"2016": "Wuppertal"
+    },
+    {"2017": "Würzburg"
+    },
+    {"2018": "Władysławowo"
+    },
+    {"2019": "Włocławek"
+    },
+    {"2020": "Yalova"
+    },
+    {"2021": "Yalvaç"
+    },
+    {"2022": "Yaremche"
+    },
+    {"2023": "Yasinya"
+    },
+    {"2024": "Yatağan"
+    },
+    {"2025": "Yenice (Çanakkale)"
+    },
+    {"2026": "Yenipazar (Aydın)"
+    },
+    {"2027": "Yeniçağa"
+    },
+    {"2028": "Yenişehir (Bursa)"
+    },
+    {"2029": "Yeşilyurt"
+    },
+    {"2030": "York"
+    },
+    {"2031": "Yozgat"
+    },
+    {"2032": "Yuma, AZ"
+    },
+    {"2033": "Yvetot"
+    },
+    {"2034": "Yıldızeli"
+    },
+    {"2035": "Zabrežani"
+    },
+    {"2036": "Zabrze"
+    },
+    {"2037": "Zadar"
+    },
+    {"2038": "Zadvarje"
+    },
+    {"2039": "Zagorje"
+    },
+    {"2040": "Zagreb"
+    },
+    {"2041": "Zagreb Dubrava"
+    },
+    {"2042": "Zagvozd"
+    },
+    {"2043": "Zagórz"
+    },
+    {"2044": "Zakopane"
+    },
+    {"2045": "Zamora"
+    },
+    {"2046": "Zamość"
+    },
+    {"2047": "Zara"
+    },
+    {"2048": "Zaragoza"
+    },
+    {"2049": "Zatoka"
+    },
+    {"2050": "Zaton"
+    },
+    {"2051": "Zeitz"
+    },
+    {"2052": "Zempin"
+    },
+    {"2053": "Zenica"
+    },
+    {"2054": "Zgorzelec"
+    },
+    {"2055": "Zhytomyr"
+    },
+    {"2056": "Zielona Góra"
+    },
+    {"2057": "Zinnowitz"
+    },
+    {"2058": "Zirchow"
+    },
+    {"2059": "Zittau"
+    },
+    {"2060": "Zlatibor"
+    },
+    {"2061": "Zlatá Koruna"
+    },
+    {"2062": "Zlaté Moravce"
+    },
+    {"2063": "Znojmo"
+    },
+    {"2064": "Zonguldak"
+    },
+    {"2065": "Zurich"
+    },
+    {"2066": "Zurich Airport"
+    },
+    {"2067": "Zvolen"
+    },
+    {"2068": "Zweibrücken"
+    },
+    {"2069": "Zwickau"
+    },
+    {"2070": "Zábřeh na Moravě"
+    },
+    {"2071": "Záhony"
+    },
+    {"2072": "Çan"
+    },
+    {"2073": "Çanakkale"
+    },
+    {"2074": "Çandarlı"
+    },
+    {"2075": "Çankırı"
+    },
+    {"2076": "Çarşamba"
+    },
+    {"2077": "Çarşıbaşı"
+    },
+    {"2078": "Çavdır"
+    },
+    {"2079": "Çay"
+    },
+    {"2080": "Çaycuma"
+    },
+    {"2081": "Çayeli"
+    },
+    {"2082": "Çerkezköy"
+    },
+    {"2083": "Çerkeşli"
+    },
+    {"2084": "Çeşme"
+    },
+    {"2085": "Çine"
+    },
+    {"2086": "Çivril"
+    },
+    {"2087": "Çorlu"
+    },
+    {"2088": "Çorum"
+    },
+    {"2089": "Étampes"
+    },
+    {"2090": "Étretat"
+    },
+    {"2091": "Ödeshög"
+    },
+    {"2092": "Örebro"
+    },
+    {"2093": "Övündü - Gumushane"
+    },
+    {"2094": "Özdere"
+    },
+    {"2095": "Ústrašín"
+    },
+    {"2096": "Ústí nad Orlicí "
+    },
+    {"2097": "Überlingen"
+    },
+    {"2098": "Ückeritz"
+    },
+    {"2099": "Ünye"
+    },
+    {"2100": "Ürkmez"
+    },
+    {"2101": "Čadca"
+    },
+    {"2102": "Čakovec"
+    },
+    {"2103": "Čapljina"
+    },
+    {"2104": "Čačak"
+    },
+    {"2105": "Čehovec"
+    },
+    {"2106": "Černá v Pošumaví"
+    },
+    {"2107": "Česká Bělá"
+    },
+    {"2108": "České Budějovice"
+    },
+    {"2109": "Český Krumlov"
+    },
+    {"2110": "Český Těšín"
+    },
+    {"2111": "Čimelice"
+    },
+    {"2112": "Čitluk"
+    },
+    {"2113": "Čkyně"
+    },
+    {"2114": "Čubani"
+    },
+    {"2115": "Đakovo"
+    },
+    {"2116": "Đurđevac"
+    },
+    {"2117": "İhsaniye"
+    },
+    {"2118": "İmranlı"
+    },
+    {"2119": "İnegöl"
+    },
+    {"2120": "İsabeyli"
+    },
+    {"2121": "İstanbul"
+    },
+    {"2122": "İyidere"
+    },
+    {"2123": "İzmir"
+    },
+    {"2124": "İznik"
+    },
+    {"2125": "Łeba"
+    },
+    {"2126": "Łomża"
+    },
+    {"2127": "Łowicz"
+    },
+    {"2128": "Łódź"
+    },
+    {"2129": "Świdnik"
+    },
+    {"2130": "Świebodzin"
+    },
+    {"2131": "Şarkikaraağaç"
+    },
+    {"2132": "Şarkışla"
+    },
+    {"2133": "Šaini"
+    },
+    {"2134": "Šarengrad"
+    },
+    {"2135": "Šibenik"
+    },
+    {"2136": "Široki Brijeg"
+    },
+    {"2137": "Škicini"
+    },
+    {"2138": "Štefanec"
+    },
+    {"2139": "Štrba"
+    },
+    {"2140": "Štrmac"
+    },
+    {"2141": "Štítnik"
+    },
+    {"2142": "Štěpánovice"
+    },
+    {"2143": "Šuica"
+    },
+    {"2144": "Żnin"
+    },
+    {"2145": "Żory"
+    },
+    {"2146": "Žabljak"
+    },
+    {"2147": "Žarnovica"
+    },
+    {"2148": "Ždírec nad Doubravou"
+    },
+    {"2149": "Želino"
+    },
+    {"2150": "Žepče"
+    },
+    {"2151": "Žiar nad Hronom"
+    },
+    {"2152": "Žilina"
+    },
+    {"2153": "Žminj"
+    },
+    {"2154": "Županja"
+    },
+    {"2155": "Žďár nad Sázavou"
+    },
+    {"2156": "Țăndărei"
+    }
+]

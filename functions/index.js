@@ -1,9 +1,10 @@
-const {initializeApp} = require("firebase-admin/app");
-const {getFirestore} = require("firebase-admin/firestore");
+const { initializeApp } = require("firebase-admin/app");
+const { getFirestore } = require("firebase-admin/firestore");
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const express = require("express");
+const axios = require("axios");
 
 initializeApp();
 const db = getFirestore();
@@ -15,6 +16,61 @@ app.use((req, res, next) => {
     next();
 });
 
+//kak se authenticata userja
+app.post("/authenticate", async (req, res) => {
+    const idToken = req.headers["authorization"];
+    const user = req.body;
+
+    if (!idToken) {
+        return res.status(401).send("Unauthorized");
+    }
+
+    try {
+        await admin.auth().verifyIdToken(idToken);
+        console.log(user.email + " authenticated");
+        return res.status(200).send("authenticated");
+    } catch (err) {
+        console.log(err);
+        return res.status(401).send(`POST request failed ${err}`);
+    }
+});
+
+app.get("/airbnb", async (req, res) => {
+    // fetch("https://airbnb13.p.rapidapi.com/search-location", {
+    //     method: "GET",
+    //     headers: {
+    //         "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
+    //         "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+    //     },
+    //     params: req.query
+    // }).then((response) => {
+    //     console.log(response);
+    //     return res.send(response.data);
+    // }).catch((err) => {
+    //     console.error(err.message);
+    //     return res.send(err.message);
+    // });
+    console.log(req.query);
+    const options = {
+        method: "GET",
+        url: "https://airbnb13.p.rapidapi.com/search-location",
+        params: req.query,
+        headers: {
+          "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
+          "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+        },
+      };
+      try {
+        const response = await axios.request(options);
+        const responseData = response.data; 
+        res.status(200).send(responseData);
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send(err.message);
+      }
+});
+
+//En nacin sejvanja v DB
 app.get("/test", (req, res) => {
     const collectionRef = admin.firestore().collection("test");
 
@@ -32,23 +88,7 @@ app.get("/test", (req, res) => {
         });
 });
 
-app.post("/test", (req, res) => {
-    const documentData = {
-        field1: "field1",
-        field2: "field2",
-    };
-
-    const collectionRef = admin.firestore().collection("test");
-
-    collectionRef.add(documentData).then((snapshot) => {
-        console.log("Document written with ID: ", snapshot.id);
-        res.status(200).send("POST request received");
-    }).catch((error) => {
-        console.error("Error adding document: ", error);
-        res.status(500).send("POST request failed");
-    });
-});
-
+//drugi nacin sejvanja v DB
 app.post("/test1", async (req, res) => {
     const docRef = db.collection("test2").doc("alovena");
 
@@ -57,14 +97,10 @@ app.post("/test1", async (req, res) => {
         last: 'Lovelace',
         born: 1815
     }).then((snapshot) => {
-        res.status(200).send(`POST request received ${snapshot}`);
+        res.status(200).send(`POST request received ${JSON.stringify(snapshot)}`);
     }).catch((error) => {
         res.status(500).send(`POST request failed ${error}`);
     });
-});
-
-app.delete("/", (req, res) => {
-    res.status(200).send("DELETE request received");
 });
 
 //Deploja funkcijo
