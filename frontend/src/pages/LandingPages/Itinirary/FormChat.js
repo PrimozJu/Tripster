@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
-
+import AutoComplete from "../../../components/Autocomplete/AutoComplete";
+import countriesList from "../../../components/Autocomplete/cities";
 function TripForm({ submit }) {
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
@@ -56,11 +57,8 @@ function TripForm({ submit }) {
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Desired location:</label>
-          <MKInput
-            type="text"
-            value={desiredContinent}
-            onChange={(event) => setDesiredContinent(event.target.value)}
-          />
+          <AutoComplete countries={countriesList} setDesiredContinent={setDesiredContinent} />
+
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Travel type:</label>
