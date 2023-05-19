@@ -69,6 +69,7 @@ import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 import Stays from "pages/LandingPages/Stays/Stays";
 import Itinerary from "pages/LandingPages/Itinirary/Itinerary"
+import Flights from "pages/LandingPages/Flights/Flights"
 const routes = [
   {
     name: "Plan",
@@ -86,8 +87,8 @@ const routes = [
           },
           {
             name: "Flights",
-            route: "/pages/landing-pages/contact-us",
-            component: <ContactUs />,
+            route: "/plan/flights",
+            component: <Flights />,
           },
           {
             name: "Plan",
