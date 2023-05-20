@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
@@ -36,7 +35,10 @@ const FormAirBnb = ({ handleForm }) => {
       <MKBox display="flex" flexDirection="column" gap={2}>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Location:</label>
-          <AutoComplete countries={countriesList} setDesiredContinent={setLocation} />
+          <AutoComplete
+            countries={countriesList}
+            setDesiredContinent={setLocation}
+          />
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Checkin:</label>
