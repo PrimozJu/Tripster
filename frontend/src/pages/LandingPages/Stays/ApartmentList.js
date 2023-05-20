@@ -54,7 +54,7 @@ function ApartmentList({ data }) {
                   <strong>Price:</strong> {result.price.total}{" "}
                   {result.price.currency}
                 </p>
-                <a href={result.url} className="btn btn-primary">
+                <a href={result.deeplink} className="btn btn-primary">
                   Click here to book
                 </a>
               </div>

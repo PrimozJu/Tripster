@@ -36,20 +36,7 @@ app.post("/authenticate", async (req, res) => {
 });
 
 app.get("/airbnb", async (req, res) => {
-  // fetch("https://airbnb13.p.rapidapi.com/search-location", {
-  //     method: "GET",
-  //     headers: {
-  //         "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
-  //         "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-  //     },
-  //     params: req.query
-  // }).then((response) => {
-  //     console.log(response);
-  //     return res.send(response.data);
-  // }).catch((err) => {
-  //     console.error(err.message);
-  //     return res.send(err.message);
-  // });
+  console.log("Priso si v airbnb");
   console.log(req.query);
   const options = {
     method: "GET",
@@ -63,6 +50,7 @@ app.get("/airbnb", async (req, res) => {
   try {
     const response = await axios.request(options);
     const responseData = response.data;
+    console.log(responseData);
     res.status(200).send(responseData);
   } catch (err) {
     console.error(err.message);
@@ -112,6 +100,7 @@ app.post("/itineary-chat-gpt", async (req, res) => {
 
   try {
     const params = req.body;
+    console.log(params);
 
     const departureDate = params.departureDate;
     const returnDate = params.returnDate;
