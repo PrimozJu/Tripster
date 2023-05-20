@@ -4,7 +4,7 @@ const Autocomplete = props => {
 
     const items = props.countries;
     const setDesiredContinent = props.setDesiredContinent
-    console.log(items);
+    console.log(items);;
 
     const [state, setState] = useState({
         activeItem: 0,
@@ -34,9 +34,6 @@ const Autocomplete = props => {
             displayItems: false,
             inputValue: e.currentTarget.innerText
         });
-
-        setDesiredContinent(e.currentTarget.innerText)
-        console.log(e.currentTarget.innerText);
     };
 
 
