@@ -53,7 +53,7 @@ app.get("/airbnb", async (req, res) => {
     //Dodajanje v bazo
     const jsonData = req.query;
     jsonData.search_type = "airbnb";
-    const documentId = jsonData.id;
+    const documentId = "user1" //jsonData.id;
     db.collection(documentId).add(jsonData);
 
     //API klic za airbnb
@@ -145,7 +145,7 @@ app.post("/itineary-chat-gpt", async (req, res) => {
     //Dodajanje v bazo
     const jsonData = req.body;
     jsonData.search_type = "itineary-chat-gpt";
-    const documentId = jsonData.id;
+    const documentId = "user1" //jsonData.id;
     db.collection(documentId).add(jsonData);
 
     //API klic za chat gpt
