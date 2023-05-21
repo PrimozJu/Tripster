@@ -36,21 +36,31 @@ app.post("/authenticate", async (req, res) => {
 });
 
 app.get("/airbnb", async (req, res) => {
-  console.log("Priso si v airbnb");
+  //Get data from request
   console.log(req.query);
+  const data = req.query;
+
   const options = {
     method: "GET",
     url: "https://airbnb13.p.rapidapi.com/search-location",
-    params: req.query,
+    params: data,
     headers: {
       "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
       "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
     },
   };
   try {
+    //Dodajanje v bazo
+    const jsonData = req.query;
+    jsonData.search_type = "airbnb";
+    const documentId = jsonData.id;
+    db.collection(documentId).add(jsonData);
+
+    //API klic za airbnb
     const response = await axios.request(options);
+
+    //Send data back to frontend
     const responseData = response.data;
-    console.log(responseData);
     res.status(200).send(responseData);
   } catch (err) {
     console.error(err.message);
@@ -99,9 +109,8 @@ app.post("/itineary-chat-gpt", async (req, res) => {
   //const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?`;
 
   try {
+    //Get params from request
     const params = req.body;
-    console.log(params);
-
     const departureDate = params.departureDate;
     const returnDate = params.returnDate;
     const numTravelers = params.numTravelers;
@@ -110,9 +119,9 @@ app.post("/itineary-chat-gpt", async (req, res) => {
     const interests = params.interest;
     const preferredAccommodation = params.preferredAccommodation;
     const maxBudget = params.maxBudget;
-    // prostor za belezenje searchov
-    const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?, Can you return me only JSON format? I want to use your response on my website, so please provide only JSON format, I dont want your extra words before and after json you give me, because I cant json.parse it. JUST GIVE ME JSON FORMAT WITHOUT ANY TEXT AROUND IT. Thank you`;
+
     // V query se dodaj fixen izgled json formata, za lazjo predstavitev na fe
+    const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?, Can you return me only JSON format? I want to use your response on my website, so please provide only JSON format, I dont want your extra words before and after json you give me, because I cant json.parse it. JUST GIVE ME JSON FORMAT WITHOUT ANY TEXT AROUND IT. Thank you`;
 
     const options = {
       method: "POST",
@@ -131,14 +140,25 @@ app.post("/itineary-chat-gpt", async (req, res) => {
         ],
       },
     };
+    console.log("JSON DATA v bazo");
 
+    //Dodajanje v bazo
+    const jsonData = req.body;
+    jsonData.search_type = "itineary-chat-gpt";
+    const documentId = jsonData.id;
+    db.collection(documentId).add(jsonData);
+
+    //API klic za chat gpt
     console.log("Zacenjam posiljanje chatu");
     const respons = await axios.request(options);
+
+    //Send data back to frontend
     console.log(respons.data.choices[0].message.content);
     res.send(JSON.stringify(respons.data.choices[0].message.content));
   } catch (error) {
     res.status(500).send(`POST request failed ${error}`);
   }
 });
+
 //Deploja funkcijo
 exports.app = functions.region("europe-west2").https.onRequest(app);
