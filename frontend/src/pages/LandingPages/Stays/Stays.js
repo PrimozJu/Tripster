@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import FormAirBnb from "./FormAirBnb";
 import axios from "axios";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -13,20 +13,17 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 
-
 const Stays = () => {
   //let response;
-  const [response, setResponse] = useState(undefined)
+  const [response, setResponse] = useState(undefined);
   //ne seri
   const [loading, setLoading] = useState(false);
-
-
 
   async function handleForm(params) {
     console.log(params);
     const options = {
       method: "GET",
-      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/airbnb",
+      url: "https://europe-west2-tripsterpraktikum-e913c.cloudfunctions.net/app/airbnb",
       params: {
         location: params.location,
         checkin: params.checkin,
@@ -37,22 +34,21 @@ const Stays = () => {
         pets: params.pets,
         page: params.page,
         currency: params.currency,
-      }
+      },
     };
 
     setLoading(true);
     const respons = await axios.request(options);
     console.log(respons);
-    setResponse(respons)
+    setResponse(respons);
     console.log(respons.data.results);
 
     //    setLoading(false
     setLoading(false);
-
   }
 
   return (
-    <div >
+    <div>
       <DefaultNavbar
         routes={routes}
         action={{
@@ -97,7 +93,9 @@ const Stays = () => {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Join mekdonalc millions of travellers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
+              Join mekdonalc millions of travellers around the world and take
+              the journeys that matter. Using our search engine, you can find
+              the best deals on flights, hotels, and car rentals.
             </MKTypography>
           </Grid>
         </Container>
@@ -109,16 +107,14 @@ const Stays = () => {
           mx: { xs: 2, lg: 3 },
           mt: -5,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-
-        
         <FormAirBnb handleForm={handleForm} />
         <div id="data"></div>
-       
 
         {loading ? (
           <ReactLoading type="bars" color="#000" height={50} width={50} />
@@ -126,10 +122,7 @@ const Stays = () => {
           <ApartmentList data={response.data.results} />
         ) : null}
       </Card>
-
-
-
     </div>
-  )
-}
-export default Stays
+  );
+};
+export default Stays;

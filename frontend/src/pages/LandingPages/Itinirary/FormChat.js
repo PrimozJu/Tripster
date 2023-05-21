@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
-
+import AutoComplete from "../../../components/Autocomplete/AutoComplete";
+import countriesList from "../../../components/Autocomplete/cities";
 function TripForm({ submit }) {
-  const [departureDate, setDepartureDate] = useState("");
-  const [returnDate, setReturnDate] = useState("");
-  const [numTravelers, setNumTravelers] = useState("");
-  const [desiredContinent, setDesiredContinent] = useState("");
-  const [travelType, setTravelType] = useState("");
-  const [interests, setInterests] = useState("");
-  const [preferredAccommodation, setPreferredAccommodation] = useState("");
-  const [maxBudget, setMaxBudget] = useState("");
+  const [departureDate, setDepartureDate] = useState("18-7-2023");
+  const [returnDate, setReturnDate] = useState("29-7-2023");
+  const [numTravelers, setNumTravelers] = useState("1");
+  const [desiredContinent, setDesiredContinent] = useState("Europe");
+  const [travelType, setTravelType] = useState("adventure");
+  const [interests, setInterests] = useState("hiking");
+  const [preferredAccommodation, setPreferredAccommodation] = useState("hotels");
+  const [maxBudget, setMaxBudget] = useState("10000");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +34,7 @@ function TripForm({ submit }) {
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Departure date:</label>
           <MKInput
-            type="text"
+            type="date"
             value={departureDate}
             onChange={(event) => setDepartureDate(event.target.value)}
           />
@@ -41,7 +42,7 @@ function TripForm({ submit }) {
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Return date:</label>
           <MKInput
-            type="text"
+            type="date"
             value={returnDate}
             onChange={(event) => setReturnDate(event.target.value)}
           />
@@ -56,11 +57,8 @@ function TripForm({ submit }) {
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Desired location:</label>
-          <MKInput
-            type="text"
-            value={desiredContinent}
-            onChange={(event) => setDesiredContinent(event.target.value)}
-          />
+          <AutoComplete countries={countriesList} setDesiredContinent={setDesiredContinent} />
+
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
           <label>Travel type:</label>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TripForm from "./FormChat";
-import axios from "axios";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import Container from "@mui/material/Container";
@@ -26,39 +25,44 @@ const Itinerary = () => {
     const preferredAccommodation = params.preferredAccommodation;
     const maxBudget = params.maxBudget;
 
-    const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?`;
-
-    console.log(query);
+    const jsonData = {
+      departureDate: departureDate,
+      returnDate: returnDate,
+      numTravelers: numTravelers,
+      desiredContinent: desiredContinent,
+      travelType: travelType,
+      interests: interests,
+      preferredAccommodation: preferredAccommodation,
+      maxBudget: maxBudget,
+    };
 
     const options = {
       method: "POST",
-      url: "https://chatgpt53.p.rapidapi.com/",
-      headers: {
-        "content-type": "application/json",
-        "X-RapidAPI-Key": "0e529198bdmshaba36f78a36a9a5p1a9db0jsn082565d2fdf8",
-        "X-RapidAPI-Host": "chatgpt53.p.rapidapi.com",
-      },
-      data: {
-        messages: [
-          {
-            role: "user",
-            content: query,
-          },
-        ],
-      },
+      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/itineary-chat-gpt",
+      data: JSON.stringify(jsonData),
     };
 
-    try {
-      setLoading(true);
-      const respons = await axios.request(options);
-      console.log(respons.data.choices[0].message.content);
-      setResponse(respons.data.choices[0].message.content);
-      //document.getElementById("chatDiv").innerHTML = response.data.choices[0].message.content;
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
+    fetch(options.url, {
+      method: options.method,
+      body: options.data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response data here
+        setLoading(true);
+
+        console.log(data);
+        setResponse(data);
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   }
 
   return (
@@ -118,7 +122,9 @@ const Itinerary = () => {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Join millions of travelers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
+              Join millions of travelers around the world and take the journeys
+              that matter. Using our search engine, you can find the best deals
+              on flights, hotels, and car rentals.
             </MKTypography>
           </Grid>
         </Container>
@@ -130,7 +136,8 @@ const Itinerary = () => {
           mx: { xs: 2, lg: 3 },
           mt: -5,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
