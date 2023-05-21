@@ -9,6 +9,7 @@ const axios = require("axios");
 initializeApp();
 const db = getFirestore();
 const app = express();
+
 app.use((req, res, next) => {
     res.set("Access-Control-Allow-Origin", "*");
     res.set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
@@ -36,21 +37,6 @@ app.post("/authenticate", async (req, res) => {
 });
 
 app.get("/airbnb", async (req, res) => {
-    // fetch("https://airbnb13.p.rapidapi.com/search-location", {
-    //     method: "GET",
-    //     headers: {
-    //         "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
-    //         "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-    //     },
-    //     params: req.query
-    // }).then((response) => {
-    //     console.log(response);
-    //     return res.send(response.data);
-    // }).catch((err) => {
-    //     console.error(err.message);
-    //     return res.send(err.message);
-    // });
-    console.log(req.query);
     const options = {
         method: "GET",
         url: "https://airbnb13.p.rapidapi.com/search-location",

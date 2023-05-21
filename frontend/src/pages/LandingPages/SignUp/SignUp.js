@@ -18,11 +18,7 @@ import routes from "routes";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import GoogleLogin from 'react-google-login';
 
-import { onAuthStateChanged } from "firebase/auth";
-
-
-
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
@@ -63,30 +59,32 @@ const SignUp = () => {
       const db = getFirestore();
       const addNewDoc = async () => {
         console.log(newDocData);
-        try {
 
-          /* const docRef = await addDoc(collection(db, "users"), newDocData);
-          console.log("Document written with ID: ", docRef.id);
-          setNewDocData({}); */
+        /* const docRef = await addDoc(collection(db, "users"), newDocData);
+        console.log("Document written with ID: ", docRef.id);
+        setNewDocData({}); */
 
+        const db = getFirestore();
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            const { email, name, last_name, country } = newDocData;
+            const { uid } = user;
 
-          const auth = getAuth();
-          createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-              // Signed in 
-              const user = userCredential.user;
-              // ...
-              console.log("uspesno registriran user: ", user);
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log("napaka pri registraciji: ", errorCode, errorMessage);
-              // ..
-            });
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
+            //Doda userja v bazo
+            const userRef = doc(db, "users", email);
+            setDoc(userRef, { uid, email, name, last_name, country })
+              .then(() => {
+                console.log(`Document written with ID: ${uid}`);
+              }).catch((error) => {
+                console.error("Error adding document: ", error.message);
+              });
+          }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log("napaka pri registraciji: ", errorCode, errorMessage);
+          });
       };
       addNewDoc()
     }
