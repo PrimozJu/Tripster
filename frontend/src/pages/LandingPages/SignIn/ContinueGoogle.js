@@ -22,12 +22,18 @@ import { useEffect } from "react";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useContext } from "react";
+import { UserContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
 const provider = new GoogleAuthProvider();
 
-
 const ConitnueGoogle = () => {
+  const { userIdState,setUserIdState } = useContext(UserContext);
+  const navigate = useNavigate();
 
     const handleClickGoogle = (e) => {
+
+
 
         e.preventDefault();
         console.log("clicked google");
@@ -42,6 +48,11 @@ const ConitnueGoogle = () => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
+        console.log("logged in buddy");
+        setUserIdState(user.uid);
+        navigate("/Presentation");
+
+
         // ...
       }).catch((error) => {
         // Handle Errors here.

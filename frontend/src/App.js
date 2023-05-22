@@ -30,12 +30,18 @@ import SignUp from "pages/LandingPages/SignUp/SignUp";
 // Material Kit 2 React routes
 import routes from "routes";
 import { useState } from "react";
+import User from "pages/LandingPages/User/User";
+import { createContext } from "react";
 
-
+export const UserContext = createContext()
 const App = () => {
 
   const[logged,setLogged]=useState(false);
   const { pathname } = useLocation();
+
+
+
+  const[userIdState,setUserIdState]=useState(null);
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -60,13 +66,16 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <UserContext.Provider value={{userIdState,setUserIdState}}>
       <Routes>
         {getRoutes(routes)}
         <Route path="/presentation" element={<Presentation />} />
         <Route path="/user/login" element={<SignIn/>} />
         <Route path="/user/signup" element={<SignUp/>} />
+        <Route path="/user/profile" element={<User/>} />
         <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
+      </UserContext.Provider>
     </ThemeProvider>
   );
 }

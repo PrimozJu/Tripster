@@ -10,6 +10,10 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import ItineraryDetails from "./ItineraryDetails";
+import firebase from "firebase/app";
+import { getAuth } from "firebase/auth";
+//import "firebase/auth";
+
 const Itinerary = () => {
   const [response, setResponse] = useState(undefined);
   const [loading, setLoading] = useState(false);
@@ -24,6 +28,8 @@ const Itinerary = () => {
     const interests = params.interest;
     const preferredAccommodation = params.preferredAccommodation;
     const maxBudget = params.maxBudget;
+  
+    
 
     const jsonData = {
       departureDate: departureDate,
@@ -65,7 +71,25 @@ const Itinerary = () => {
       });
   }
 
-  return (
+  
+  const auth = getAuth();
+const user = auth.currentUser;
+
+
+  if (user) {
+    // User is signed in.
+    console.log("user je prijavljen");
+    // ...
+  } else {
+    // No user is signed in.
+    console.log("user NI prijavljen");
+  }
+  
+
+
+
+
+return (
     <div>
       <DefaultNavbar
         routes={routes}

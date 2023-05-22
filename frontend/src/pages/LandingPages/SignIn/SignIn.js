@@ -38,11 +38,38 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import ConitnueGoogle from "./ContinueGoogle";
 
+
+import { onAuthStateChanged } from "firebase/auth";
+import { useContext } from "react";
+import { UserContext } from "../../../App";
+
 function SignInBasic() {
+
+  const { userIdState,setUserIdState } = useContext(UserContext);
+
+
+
+useEffect(() => { 
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log("prijavljen " + uid);
+      setUserIdState(uid);
+      console.log("userIdState " + userIdState);
+    } else {
+      // User is signed out
+      // ...
+      console.log("ni prijavljen ");
+    }
+  });
+
+},[]);
   const [rememberMe, setRememberMe] = useState(false);
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
-  
-  
+
+
 
 
   const [input, setInput] = useState({});
@@ -64,20 +91,20 @@ function SignInBasic() {
 
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      console.log("uspesno prijavlen " , user);
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log("uspesno prijavlen ", user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
 
   }
-  
-  
+
+
 
 
   return (
@@ -86,7 +113,7 @@ function SignInBasic() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
+          route: "/user/login",
           label: "Login",
           color: "info",
         }}
@@ -130,7 +157,7 @@ function SignInBasic() {
                   Sign in
                 </MKTypography>
                 <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-                
+
                 </Grid>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
@@ -154,7 +181,7 @@ function SignInBasic() {
                     </MKTypography>
                   </MKBox>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info"  onClick={handleClick} fullWidth>
+                    <MKButton variant="gradient" color="info" onClick={handleClick} fullWidth>
                       sign in
                     </MKButton>
                   </MKBox>
@@ -174,7 +201,7 @@ function SignInBasic() {
                     </MKTypography>
                     <center>or</center>
 
-                    <ConitnueGoogle/>
+                    <ConitnueGoogle />
                   </MKBox>
                 </MKBox>
               </MKBox>
@@ -183,7 +210,7 @@ function SignInBasic() {
         </Grid>
       </MKBox>
       <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
-      
+
       </MKBox>
     </>
   );
