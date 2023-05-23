@@ -20,8 +20,6 @@ const Flights = () => {
   //ne seri
   const [loading, setLoading] = useState(false);
 
-
-
   async function handleForm(params) {
     console.log(params);
     const options = {
