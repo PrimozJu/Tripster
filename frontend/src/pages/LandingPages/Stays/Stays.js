@@ -12,12 +12,16 @@ import ApartmentList from "./ApartmentList";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
-
+import { useContext } from "react";
+import { UserContext } from "../../../App";
 const Stays = () => {
   //let response;
   const [response, setResponse] = useState(undefined);
   //ne seri
   const [loading, setLoading] = useState(false);
+
+  const { userIdState,setUserIdState } = useContext(UserContext);
+  console.log(userIdState);
 
   async function handleForm(params) {
     console.log(params);
@@ -34,6 +38,7 @@ const Stays = () => {
         pets: params.pets,
         page: params.page,
         currency: params.currency,
+        userid : userIdState
       },
     };
 

@@ -34,7 +34,7 @@ import { useContext } from "react";
 import { UserContext } from "../../../App";
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
 
-  //const { userIdState,setUserIdState } = useContext(UserContext);
+ const { userIdState,setUserIdState } = useContext(UserContext);
 
 
   const auth = getAuth();
@@ -47,6 +47,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
       const uid = user.uid;
       console.log("v navbaru prijavljen" + uid); //hehe
       setLogged(true);
+      setUserIdState(uid);
       // ...
     } else {
       // User is signed out

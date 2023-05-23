@@ -3,7 +3,7 @@ import MKInput from "components/MKInput";
 const Autocomplete = (props) => {
   const items = props.countries;
   const setDesiredContinent = props.setDesiredContinent;
-  console.log(items);
+  //console.log(items);
 
   const [state, setState] = useState({
     activeItem: 0,
