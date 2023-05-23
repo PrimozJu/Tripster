@@ -15,30 +15,26 @@ import ReactLoading from "react-loading";
 
 
 const Flights = () => {
-  //let response;
   const [response, setResponse] = useState(undefined)
-  //ne seri
   const [loading, setLoading] = useState(false);
 
   async function handleForm(params) {
     console.log(params);
     const options = {
       method: "GET",
-      url: "https://airbnb13.p.rapidapi.com/search-location",
+      url: "https://airbnb13.p.rapidapi.com/search-location", //tu za flighte
       params: {
-        location: params.location,
-        checkin: params.checkin,
-        checkout: params.checkout,
+        fromLocation: params.fromLocation,
+        toLocation: params.toLocation,
+        from: params.from,
+        to: params.to,
         adults: params.adults,
-        children: params.children,
-        infants: params.infants,
-        pets: params.pets,
-        page: params.page,
+        cabinClass : params.cabinClass,
         currency: params.currency,
       },
       headers: {
         "X-RapidAPI-Key": "0e529198bdmshaba36f78a36a9a5p1a9db0jsn082565d2fdf8",
-        "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+        "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",  //tu za flighte
       },
     };
 
@@ -99,6 +95,7 @@ const Flights = () => {
               mt={1}
             >
               Join mekdonalc millions of travellers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
+            
             </MKTypography>
           </Grid>
         </Container>

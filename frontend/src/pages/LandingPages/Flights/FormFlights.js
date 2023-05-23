@@ -3,28 +3,27 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 
 const FormFlights = ({ handleForm }) => {
-    const [location, setLocation] = useState("");
-    const [checkin, setCheckin] = useState("");
-    const [checkout, setCheckout] = useState("");
+    const [fromLocation, setFromLocation] = useState("");
+    const [toLocation, setToLocation] = useState("");
+    const [from, setFrom] = useState("");
+    const [to, setTo] = useState("");
     const [adults, setAdults] = useState(1);
-    const [children, setChildren] = useState(0);
-    const [infants, setInfants] = useState(0);
-    const [pets, setPets] = useState(0);
-    const [page, setPage] = useState(1);
+   
     const [currency, setCurrency] = useState("EUR");
+    
+    const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const params = {
-            location: location.toString(),
-            checkin: checkin.toString(),
-            checkout: checkout.toString(),
+            fromLocation: fromLocation.toString(),
+            toLocation: toLocation.toString(),
+            from: from.toString(),
+            to: to.toString(),
             adults: adults.toString(),
-            children: children.toString(),
-            infants: infants.toString(),
-            pets: pets.toString(),
-            page: page.toString(),
             currency: currency.toString(),
+            cabinClass: cabinClass.toString(),
         };
         handleForm(params);
     };
@@ -33,27 +32,35 @@ const FormFlights = ({ handleForm }) => {
         <form onSubmit={handleSubmit}>
             <MKBox display="flex" flexDirection="column" gap={2}>
                 <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Location:</label>
+                    <label>From where :</label>
                     <MKInput
                         type="text"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
+                        value={fromLocation}
+                        onChange={(e) => setFromLocation(e.target.value)}
                     />
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Checkin:</label>
+                    <label>To where :</label> {/* primeri airport kod da nebos rabo iskat VIE MAD BCN JFK ATH LHR LJU ZAG */}
                     <MKInput
-                        type="date"
-                        value={checkin}
-                        onChange={(e) => setCheckin(e.target.value)}
+                        type="text"
+                        value={toLocation}
+                        onChange={(e) => setToLocation(e.target.value)}
                     />
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Checkout:</label>
+                    <label>FROM:</label>
                     <MKInput
                         type="date"
-                        value={checkout}
-                        onChange={(e) => setCheckout(e.target.value)}
+                        value={from}
+                        onChange={(e) => setFrom(e.target.value)}
+                    />
+                </MKBox>
+                <MKBox display="flex" alignItems="center" gap={1}>
+                    <label>TO:</label>
+                    <MKInput
+                        type="date"
+                        value={to}
+                        onChange={(e) => setTo(e.target.value)}
                     />
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
@@ -65,37 +72,14 @@ const FormFlights = ({ handleForm }) => {
                     />
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Children:</label>
+                    <label>Class:</label>
                     <MKInput
                         type="number"
-                        value={children}
-                        onChange={(e) => setChildren(e.target.value)}
+                        value={cabinClass}
+                        onChange={(e) => setCabinClass(e.target.value)}
                     />
                 </MKBox>
-                <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Infants:</label>
-                    <MKInput
-                        type="number"
-                        value={infants}
-                        onChange={(e) => setInfants(e.target.value)}
-                    />
-                </MKBox>
-                <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Pets:</label>
-                    <MKInput
-                        type="number"
-                        value={pets}
-                        onChange={(e) => setPets(e.target.value)}
-                    />
-                </MKBox>
-                <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Page:</label>
-                    <MKInput
-                        type="number"
-                        value={page}
-                        onChange={(e) => setPage(e.target.value)}
-                    />
-                </MKBox>
+
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>Currency:</label>
                     <MKInput
