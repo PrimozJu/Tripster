@@ -1,5 +1,6 @@
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
+import { airbnbAPIkey, chatGPTAPIkey } from "./secret-keys";
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
@@ -46,7 +47,7 @@ app.get("/airbnb", async (req, res) => {
     url: "https://airbnb13.p.rapidapi.com/search-location",
     params: data,
     headers: {
-      "X-RapidAPI-Key": "afe4876245msh28deaebdd3bfb30p1bae3fjsn903df328d7da",
+      "X-RapidAPI-Key": airbnbAPIkey,
       "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
     },
   };
@@ -129,7 +130,7 @@ app.post("/itineary-chat-gpt", async (req, res) => {
       url: "https://chatgpt53.p.rapidapi.com/",
       headers: {
         "content-type": "application/json",
-        "X-RapidAPI-Key": "0e529198bdmshaba36f78a36a9a5p1a9db0jsn082565d2fdf8",
+        "X-RapidAPI-Key": chatGPTAPIkey,
         "X-RapidAPI-Host": "chatgpt53.p.rapidapi.com",
       },
       data: {
