@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
-
+import AutocompleteAirports from "../../../components/Autocomplete/AutoCompleteAirports";
 const FormFlights = ({ handleForm }) => {
     const [fromLocation, setFromLocation] = useState("");
     const [toLocation, setToLocation] = useState("");
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
     const [adults, setAdults] = useState(1);
-   
     const [currency, setCurrency] = useState("EUR");
-    
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
 
 
@@ -38,6 +36,7 @@ const FormFlights = ({ handleForm }) => {
                         value={fromLocation}
                         onChange={(e) => setFromLocation(e.target.value)}
                     />
+                <AutocompleteAirports/>
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>To where :</label> {/* primeri airport kod da nebos rabo iskat VIE MAD BCN JFK ATH LHR LJU ZAG */}
