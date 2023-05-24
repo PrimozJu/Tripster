@@ -187,3 +187,5 @@ build
 
 # Miscellaneous
 .DS_Store
+
+secret-keys.js

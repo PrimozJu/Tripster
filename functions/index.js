@@ -1,6 +1,6 @@
 const { initializeApp } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
-import { airbnbAPIkey, chatGPTAPIkey } from "./secret-keys";
+import { airbnbAPIkey, chatGPTAPIkey } from "../secret-keys";
 
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");

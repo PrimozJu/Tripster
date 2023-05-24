@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 
+
 const FormFlights = ({ handleForm }) => {
-    const [fromLocation, setFromLocation] = useState("");
-    const [toLocation, setToLocation] = useState("");
-    const [from, setFrom] = useState("");
-    const [to, setTo] = useState("");
+    const [fromLocation, setFromLocation] = useState("LJU");
+    const [toLocation, setToLocation] = useState("JFK");
+    const [from, setFrom] = useState("2023-06-01");
+    const [to, setTo] = useState("2023-06-05");
     const [adults, setAdults] = useState(1);
    
     const [currency, setCurrency] = useState("EUR");
     
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -74,7 +74,7 @@ const FormFlights = ({ handleForm }) => {
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>Class:</label>
                     <MKInput
-                        type="number"
+                        type="text"
                         value={cabinClass}
                         onChange={(e) => setCabinClass(e.target.value)}
                     />
