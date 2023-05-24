@@ -4,7 +4,8 @@ const functions = require("firebase-functions");
 const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
-const { airbnbAPIkey, chatGPTAPIkey } = require("./secret-keys");
+const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
+const { convertToJSON, formatFlightdetails } = require("./funkcije");
 
 
 initializeApp();
@@ -71,9 +72,53 @@ app.get("/airbnb", async (req, res) => {
 });
 
 app.get("/flights", async (req, res) => {
-    console.log(req.body);
+    const params = req.query;
 
-    res.status(200).send("GET request received");
+    if (!params.hasOwnProperty("limit")) {
+        params.limit = 10;
+    }
+    console.log(params);
+
+    const options = {
+        method: "GET",
+        url: "https://api.tequila.kiwi.com/v2/search",
+        headers: {
+            "Content-Type": "application/json",
+            "apikey": flightsAPIkey
+        },
+        params: params
+    }
+
+    const respons = await axios.request(options);
+    const responseData = respons.data.data;
+
+    zaNazaj = []
+    responseData.forEach((element) => {
+
+        const transfer = element.route.map((item) => item.flyFrom);
+
+        const duration = {
+            "utc_departure": element.utc_departure,
+            "utc_arrival": element.utc_arrival
+        }
+
+        const item = {
+            "id": element.id,
+            "cityFrom": element.cityFrom,
+            "cityTo": element.cityTo,
+            "airlines": element.airlines,
+            "availability": element.availability.seats,
+            "price": element.conversion[req.query.curr]
+        }
+
+        const arrayItem = Object.assign(item, formatFlightdetails(duration));
+        arrayItem.transfers = transfer;
+        zaNazaj.push(arrayItem);
+    });
+
+    console.log(zaNazaj);
+
+    res.status(200).send(zaNazaj);
 });
 
 //En nacin sejvanja v DB

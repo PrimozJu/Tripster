@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 
+function convertDateFormat(dateString) {
+    const dateParts = dateString.split('-');
+    const day = dateParts[2];
+    const month = dateParts[1];
+    const year = dateParts[0];
+  
+    return `${day}/${month}/${year}`;
+  }
 
 const FormFlights = ({ handleForm }) => {
     const [fromLocation, setFromLocation] = useState("LJU");
@@ -9,21 +17,21 @@ const FormFlights = ({ handleForm }) => {
     const [from, setFrom] = useState("2023-06-01");
     const [to, setTo] = useState("2023-06-05");
     const [adults, setAdults] = useState(1);
-   
+
     const [currency, setCurrency] = useState("EUR");
-    
+
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const params = {
-            fromLocation: fromLocation.toString(),
-            toLocation: toLocation.toString(),
-            from: from.toString(),
-            to: to.toString(),
+            fly_from: fromLocation.toString(),
+            fly_to: toLocation.toString(),
+            date_from: convertDateFormat(from.toString()),
+            date_to: convertDateFormat(to.toString()),
             adults: adults.toString(),
-            currency: currency.toString(),
-            cabinClass: cabinClass.toString(),
+            curr: currency.toString(),
+            selected_cubins: cabinClass.toString(),
         };
         handleForm(params);
     };

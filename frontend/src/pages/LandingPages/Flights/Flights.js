@@ -54,57 +54,31 @@ const Flights = () => {
   const [response, setResponse] = useState(undefined)
   const [loading, setLoading] = useState(false);
 
-  const currency = "EUR";
-
   async function handleForm(params) {
-    console.log(params);
+    console.log(`parameters: ${JSON.stringify(params)}`);
+
+    //PRIMA - nastavis limit kolko rezultatov ces, default je 10
+    params.limit = 9;
+
     const options = {
       method: "GET",
-      url: "https://api.tequila.kiwi.com/v2/search",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": flightsAPIkey
-      },
-      params: {
-        fly_from: "LJU",
-        fly_to: "JFK",
-        date_from: "01/06/2023",
-        date_to: "05/06/2023",
-        curr: currency,
-        selected_cubins: "M",
-        limit: 5
-      }
-    }
-
-    const optionss = {
-      method: "GET",
-      url: "https://api.tequila.kiwi.com/v2/search",
+      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/flights",
       headers: {
         "Content-Type": "application/json",
       },
-      body: params
+      params: params
     }
 
     setLoading(true);
     const respons = await axios.request(options);
-    const responseData = convertToJSON(respons.request.response);
+
+    //PRIMA - Tu mas array
+    const responseData = respons.data;
     console.log(responseData);
-    const prvi = responseData[0];
-    console.log(`Id: ${prvi.id}, from: ${prvi.cityFrom}, to: ${prvi.cityTo}`);
-    console.log(`airline: ${prvi.airlines}, availaility: ${prvi.availability.seats}`);
-    console.log(`price: ${currency} ${prvi.conversion[currency]}`);
-    const duration = {
-      "utc_departure": prvi.utc_departure,
-      "utc_arrival": prvi.utc_arrival
-    }
-    console.log(formatFlightDetails(duration));
-    console.log(`prestopi: ${prvi.route.map(item => item.flyFrom)}`)
     // setResponse(responseData)
 
 
-    //    setLoading(false
     setLoading(false);
-
   }
 
   return (
