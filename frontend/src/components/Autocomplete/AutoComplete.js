@@ -34,8 +34,9 @@ const Autocomplete = (props) => {
       filteredItems: [],
       displayItems: false,
       inputValue: e.currentTarget.innerText,
+
     });
-  };
+  };    
 
   const handleKeyDown = (e) => {
     const { activeItem, filteredItems } = state;

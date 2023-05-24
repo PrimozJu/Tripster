@@ -1,18 +1,43 @@
 import React, { useEffect, useState } from "react";
 import MKInput from "components/MKInput";
 import Airports from "../../assets/aiports/airports"
-const AutocompleteAirports = () => {
+import { Air } from "@mui/icons-material";
 
-    const airports = Airports; // Assuming Airports is an array of airport objects
-    const items = airports
-    .filter((airport) => airport.name) // Filter out objects without a name field
-    .map((airport) => airport.name); // Extracting names from airport objects
-  
+
+const AutocompleteAirports = (props) => {
+  const findCode = (name) => {
+    console.log("prozim funkcijo findCode");
+    console.log(name);
+    /* Airports.forEach((airport) => {
+      if (airport.name == name) {
+        console.log("Nasel sem letalisce");
+        console.log(airport.iata);
+        return airport.iata;
+      }
+    }); */
+   
+    const airport = Airports.find((airport) => airport.name === name);
+
+    if (airport) {
+      console.log("Nasel sem letalisce");
+      console.log(airport.iata);
+      return airport.iata;
+    }
+    
+    // Return a default value or handle the case when the airport is not found
+    return null;
+  }
+
+  const airports = Airports; // Assuming Airports is an array of airport objects
+  const items = airports
+  .filter((airport) => airport.name) // Filter out objects without a name field
+  .map((airport) => airport.name); // Extracting names from airport objects
+  const setLocation = props.setLocation
+
   console.log(items);
-  //const setDesiredAirport = props.setDesiredAirport;
-  //console.log(items);
-
-
+ 
+  
+  
   const [state, setState] = useState({
     activeItem: 0,
     filteredItems: [],
@@ -22,7 +47,7 @@ const AutocompleteAirports = () => {
 
   const handleChange = (e) => {
     const inputValue = e.currentTarget.value;
-    //setDesiredContinent(e.currentTarget.value);
+    setLocation(e.currentTarget.value);
     const filteredItems = items.filter(
       (optionName) =>
         optionName.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
@@ -34,15 +59,22 @@ const AutocompleteAirports = () => {
       displayItems: true,
       inputValue: e.currentTarget.value,
     });
+    
   };
 
   const handleClick = (e) => {
+    const clickedItemValue = e.currentTarget.innerText;
     setState({
       activeItem: 0,
       filteredItems: [],
       displayItems: false,
-      inputValue: e.currentTarget.innerText,
+      inputValue: clickedItemValue,
+      //ah shit here we go again
+
     });
+    const AirportCode = findCode(clickedItemValue)
+    console.log(AirportCode);
+    setLocation(AirportCode);
   };
 
   const handleKeyDown = (e) => {

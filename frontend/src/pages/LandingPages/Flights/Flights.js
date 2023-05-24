@@ -75,7 +75,9 @@ const Flights = () => {
     //PRIMA - Tu mas array
     const responseData = respons.data;
     console.log(responseData);
-    // setResponse(responseData)
+    
+    setResponse(responseData)
+   
 
 
     setLoading(false);
