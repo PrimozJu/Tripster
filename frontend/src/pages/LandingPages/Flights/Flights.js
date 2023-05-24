@@ -12,42 +12,73 @@ import FlightsList from "./FlightsList";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
+import { flightsAPIkey } from "./secret-keys"
+
+
+const convertToJSON = (serverResponse) => {
+  try {
+    const responseObj = JSON.parse(serverResponse);
+    const dataArray = responseObj.data;
+    return dataArray;
+  } catch (error) {
+    console.error('Error converting server response to JSON:', error);
+    return [];
+  }
+};
+
+
+function formatFlightDetails(flightDetails) {
+  const departureTime = new Date(flightDetails.utc_departure);
+  const arrivalTime = new Date(flightDetails.utc_arrival);
+
+  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+  const formattedDeparture = departureTime.toLocaleString('en-US', options);
+  const formattedArrival = arrivalTime.toLocaleString('en-US', options);
+
+  const durationInMilliseconds = arrivalTime - departureTime;
+  const durationInMinutes = Math.floor(durationInMilliseconds / 60000);
+  const hours = Math.floor(durationInMinutes / 60);
+  const minutes = durationInMinutes % 60;
+  const formattedDuration = `${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''}`;
+
+  return {
+    departure: formattedDeparture,
+    arrival: formattedArrival,
+    duration: formattedDuration
+  };
+}
 
 
 const Flights = () => {
   const [response, setResponse] = useState(undefined)
   const [loading, setLoading] = useState(false);
 
-
-
   async function handleForm(params) {
-    console.log(params);
+    console.log(`parameters: ${JSON.stringify(params)}`);
+
+    //PRIMA - nastavis limit kolko rezultatov ces, default je 10
+    params.limit = 9;
+
     const options = {
       method: "GET",
-      url: "https://airbnb13.p.rapidapi.com/search-location", //tu za flighte
-      params: {
-        fromLocation: params.fromLocation,
-        toLocation: params.toLocation,
-        from: params.from,
-        to: params.to,
-        adults: params.adults,
-        cabinClass : params.cabinClass,
-        currency: params.currency,
-      },
+      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/flights",
       headers: {
-        "X-RapidAPI-Key": "0e529198bdmshaba36f78a36a9a5p1a9db0jsn082565d2fdf8",
-        "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",  //tu za flighte
+        "Content-Type": "application/json",
       },
-    };
+      params: params
+    }
 
     setLoading(true);
     const respons = await axios.request(options);
-    setResponse(respons)
-    console.log(respons.data.results);
 
-    //    setLoading(false
+    //PRIMA - Tu mas array
+    const responseData = respons.data;
+    console.log(responseData);
+    // setResponse(responseData)
+
+
     setLoading(false);
-
   }
 
   return (
@@ -123,7 +154,7 @@ const Flights = () => {
         {loading ? (
           <ReactLoading type="bars" color="#000" height={50} width={50} />
         ) : response ? (
-          <FlightsList data={response.data.results} />
+          <FlightsList data={response} />
         ) : null}
       </Card>
 
