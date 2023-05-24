@@ -76,6 +76,15 @@ const Flights = () => {
       }
     }
 
+    const optionss = {
+      method: "GET",
+      url: "https://api.tequila.kiwi.com/v2/search",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: params
+    }
+
     setLoading(true);
     const respons = await axios.request(options);
     const responseData = convertToJSON(respons.request.response);
