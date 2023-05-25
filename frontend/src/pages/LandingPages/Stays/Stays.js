@@ -14,42 +14,41 @@ import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import { useContext } from "react";
 import { UserContext } from "../../../App";
+
+import { db, auth } from '../../../index';
+
+
 const Stays = () => {
   //let response;
   const [response, setResponse] = useState(undefined);
   //ne seri
   const [loading, setLoading] = useState(false);
 
-  const { userIdState,setUserIdState } = useContext(UserContext);
+  const { userIdState, setUserIdState } = useContext(UserContext);
   console.log(userIdState);
 
   async function handleForm(params) {
     console.log(params);
+
     const options = {
       method: "GET",
-      url: "https://europe-west2-tripsterpraktikum-e913c.cloudfunctions.net/app/airbnb",
-      params: {
-        location: params.location,
-        checkin: params.checkin,
-        checkout: params.checkout,
-        adults: params.adults,
-        children: params.children,
-        infants: params.infants,
-        pets: params.pets,
-        page: params.page,
-        currency: params.currency,
-        userid : userIdState
-      },
+      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/airbnb",
+      params: params,
+      headers: {
+        "user": auth.currentUser.email
+      }
     };
 
-    setLoading(true);
-    const respons = await axios.request(options);
-    console.log(respons);
-    setResponse(respons);
-    console.log(respons.data.results);
 
-    //    setLoading(false
+    try {
+      setLoading(true);
+      const respons = await axios.request(options);
+      setResponse(respons);
+    } catch (err) {
+      console.error(err.message);
+    }
     setLoading(false);
+
   }
 
   return (

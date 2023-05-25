@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "App";
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from 'firebase/auth';
 
 import {
   getFirestore,
@@ -25,11 +26,9 @@ const firebaseConfig = {
   measurementId: "G-S1FG8420FV"
 };
 
-initializeApp(firebaseConfig);
-
-
-// Initialize Firebase
-const db = getFirestore();
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 
 const colRef = collection(db, "users");
 

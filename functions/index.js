@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase-admin/app");
-const { getFirestore } = require("firebase-admin/firestore");
+const { getFirestore, doc, setDoc, updateDoc } = require("firebase-admin/firestore");
 const functions = require("firebase-functions");
 const express = require("express");
 const axios = require("axios");
@@ -39,9 +39,24 @@ app.post("/authenticate", async (req, res) => {
 });
 
 app.get("/airbnb", async (req, res) => {
-    //Get data from request
     console.log(req.query);
     const data = req.query;
+    const currentUser = req.headers["user"]
+
+    if (currentUser) {
+        const docRef = db.collection('users').doc(currentUser);
+        docRef.get().then(docSnapshot => {
+            if (docSnapshot.exists) {
+                updateDoc(docRef, {
+                    staySearches: arrayUnion(data.location),
+                });
+            } else {
+                db.collection('users').doc(currentUser).set({
+                    staySearches: [data.location]
+                });
+            }
+        });
+    };
 
     const options = {
         method: "GET",
@@ -54,11 +69,14 @@ app.get("/airbnb", async (req, res) => {
     };
     try {
         //API klic za airbnb
-        const response = await axios.request(options);
+        // const response = await axios.request(options);
 
         //Send data back to frontend
-        const responseData = response.data;
-        res.status(200).send(responseData);
+        // const responseData = response.data;
+        // res.status(200).send(responseData);
+        //TODO nepozabo removat!
+        res.status(500).send("lmao");
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send(err.message);
@@ -117,11 +135,11 @@ app.get("/flights", async (req, res) => {
     await docRef.set({
         result: zaNazaj
     })
-    .then(() => {
-        console.log("Document successfully written!");
-    }).catch((error) => {
-        console.error("Error writing document: ", error);
-    });
+        .then(() => {
+            console.log("Document successfully written!");
+        }).catch((error) => {
+            console.error("Error writing document: ", error);
+        });
 
     res.status(200).send(zaNazaj);
 });
