@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
-
+import AutocompleteAirports from "../../../components/Autocomplete/AutoCompleteAirports";
 function convertDateFormat(dateString) {
     const dateParts = dateString.split('-');
     const day = dateParts[2];
@@ -13,16 +13,18 @@ function convertDateFormat(dateString) {
 
 const FormFlights = ({ handleForm }) => {
     const [fromLocation, setFromLocation] = useState("LJU");
-    const [toLocation, setToLocation] = useState("JFK");
+    const [toLocation, setToLocation] = useState("VLC");
     const [from, setFrom] = useState("2023-06-01");
     const [to, setTo] = useState("2023-06-05");
     const [adults, setAdults] = useState(1);
-
     const [currency, setCurrency] = useState("EUR");
-
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
 
     const handleSubmit = (e) => {
+        console.log("fromLocation")
+        console.log(fromLocation)
+        
+        
         e.preventDefault();
         const params = {
             fly_from: fromLocation.toString(),
@@ -41,19 +43,22 @@ const FormFlights = ({ handleForm }) => {
             <MKBox display="flex" flexDirection="column" gap={2}>
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>From where :</label>
-                    <MKInput
+                    {/* <MKInput
                         type="text"
                         value={fromLocation}
                         onChange={(e) => setFromLocation(e.target.value)}
-                    />
+                    /> */}
+                <AutocompleteAirports setLocation={setFromLocation}/>
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>To where :</label> {/* primeri airport kod da nebos rabo iskat VIE MAD BCN JFK ATH LHR LJU ZAG */}
-                    <MKInput
+                    {/* <MKInput
                         type="text"
                         value={toLocation}
                         onChange={(e) => setToLocation(e.target.value)}
-                    />
+                    /> */}
+                    <AutocompleteAirports setLocation={setToLocation}/>
+
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>FROM:</label>
