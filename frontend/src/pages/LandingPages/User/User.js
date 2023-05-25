@@ -115,7 +115,7 @@ const User = () => {
                 <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
                     <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
                         <Card>
-                            fukaj pesa brate
+                            kot kaže si prijavljen
                             <MKButton variant="gradient" color="warning" width="100%" mt={3} onClick={SignOut}> SignOut </MKButton>
                         </Card>
 
