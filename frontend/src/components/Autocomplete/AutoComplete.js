@@ -36,6 +36,7 @@ const Autocomplete = (props) => {
       inputValue: e.currentTarget.innerText,
 
     });
+    setDesiredContinent(e.currentTarget.innerText);
   };    
 
   const handleKeyDown = (e) => {
