@@ -53,12 +53,6 @@ app.get("/airbnb", async (req, res) => {
         },
     };
     try {
-        //Dodajanje v bazo
-        const jsonData = req.query;
-        jsonData.search_type = "airbnb";
-        const documentId = "user1" //jsonData.id;
-        db.collection(documentId).add(jsonData);
-
         //API klic za airbnb
         const response = await axios.request(options);
 
@@ -89,7 +83,10 @@ app.get("/flights", async (req, res) => {
         params: params
     }
 
-    const respons = await axios.request(options);
+    const respons = await axios.request(options).catch((err) => {
+        console.error(err.message);
+        res.status(500).send(err.message);
+    });
     const responseData = respons.data.data;
 
     zaNazaj = []
@@ -116,7 +113,15 @@ app.get("/flights", async (req, res) => {
         zaNazaj.push(arrayItem);
     });
 
-    console.log(zaNazaj);
+    const docRef = db.collection("leti").doc(`user1`);
+    await docRef.set({
+        result: zaNazaj
+    })
+    .then(() => {
+        console.log("Document successfully written!");
+    }).catch((error) => {
+        console.error("Error writing document: ", error);
+    });
 
     res.status(200).send(zaNazaj);
 });
