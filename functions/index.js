@@ -116,7 +116,9 @@ app.get("/flights", async (req, res) => {
         const transfer = element.route.map((item) => item.flyFrom);
 
         //Za VSE prestopne lete
-        const route = [];
+        const routeTo = [];
+        const routeFrom = [];
+        let pogoj = true;
         element.route.forEach((item) => {
             const routeItem = {
                 "id": item.id,
@@ -132,7 +134,14 @@ app.get("/flights", async (req, res) => {
 
             const arrayItem = Object.assign(routeItem, formatFlightdetails(duration));
 
-            route.push(arrayItem);
+            //loci za tja in nazaj
+            if (pogoj && item.cityFrom != element.cityTo) {
+                routeTo.push(arrayItem);
+            } else {
+                pogoj = false;
+                routeFrom.push(arrayItem);
+            }
+            
         });
 
         //Tisti ta glavni let
@@ -143,7 +152,8 @@ app.get("/flights", async (req, res) => {
             "airlines": element.airlines,
             "availability": element.availability.seats,
             "price": element.conversion[req.query.curr],
-            "route": route
+            "routeTo": routeTo,
+            "routeFrom": routeFrom,
         }
 
         const duration = {
