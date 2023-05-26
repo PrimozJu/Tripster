@@ -12,7 +12,7 @@ import FlightsList from "./FlightsList";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
-import { flightsAPIkey } from "./secret-keys"
+import { db, auth } from '../../../index';
 
 
 const convertToJSON = (serverResponse) => {
@@ -62,6 +62,7 @@ const Flights = () => {
       url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/flights",
       headers: {
         "Content-Type": "application/json",
+        "user": auth.currentUser.email
       },
       params: params
     }

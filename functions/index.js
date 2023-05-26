@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI } = require("./funkcije");
 
 
 initializeApp();
@@ -41,7 +41,7 @@ app.post("/authenticate", async (req, res) => {
 app.get("/airbnb", async (req, res) => {
     console.log(req.query);
     const data = req.query;
-    const currentUser = req.headers["user"]
+    const currentUser = req.headers["user"];
 
     if (currentUser) {
         const docRef = db.collection('users').doc(currentUser);
@@ -84,29 +84,27 @@ app.get("/airbnb", async (req, res) => {
 });
 
 app.get("/flights", async (req, res) => {
-    const params = req.query;
-    params.limit = 50;
-    console.log(params);
+    const params = req.query
+    const responseData = await callFligtsAPI(params, 50);
+    const currentUser = req.headers["user"];
 
-    const options = {
-        method: "GET",
-        url: "https://api.tequila.kiwi.com/v2/search",
-        headers: {
-            "Content-Type": "application/json",
-            "apikey": flightsAPIkey
-        },
-        params: params
-    }
-
-    const respons = await axios.request(options).catch((err) => {
-        console.error(err.message);
-        res.status(500).send(err.message);
-    });
-    const responseData = respons.data.data;
+    if (currentUser) {
+        const docRef = db.collection('users').doc(currentUser);
+        docRef.get().then(docSnapshot => {
+            if (docSnapshot.exists) {
+                docRef.update({
+                    flightSearches: FieldValue.arrayUnion(params.fly_to)
+                });
+            } else {
+                docRef.set({
+                    flightSearches: [params.fly_to]
+                });
+            }
+        });
+    };
 
     zaNazaj = []
     responseData.forEach((element) => {
-
         //Da ne pošlje že zasedenih
         if (element.availability.seats == null) {
             console.log("No seats available");
@@ -141,7 +139,7 @@ app.get("/flights", async (req, res) => {
                 pogoj = false;
                 routeFrom.push(arrayItem);
             }
-            
+
         });
 
         //Tisti ta glavni let
@@ -169,7 +167,7 @@ app.get("/flights", async (req, res) => {
     const fastAndCheap = getBestFlights(zaNazaj);
     const filteredFlights = zaNazaj.filter((flight) => {
         return !fastAndCheap.includes(flight);
-      });
+    });
     const finalArray = fastAndCheap.concat(filteredFlights);
 
     res.status(200).send(finalArray);
