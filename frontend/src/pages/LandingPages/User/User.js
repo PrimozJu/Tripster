@@ -48,20 +48,43 @@ import GoogleIcon from "@mui/icons-material/Google";
 // Material Kit 2 React components
 import MKInput from "components/MKInput";
 
-// Material Kit 2 React example components
-/* import SimpleFooter from "examples/Footers/SimpleFooter";
- */
-// Material Kit 2 React page layout routes
-
-// Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import { getAuth, signOut } from "firebase/auth";
-import { useLocation, useHistory , useNavigate} from 'react-router-dom';
+import { useLocation, useHistory, useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { UserContext } from "../../../App";
+//import { getAuth } from 'firebase/auth';
+import { db } from "../../../index";
+import {
+    getFirestore,
+    collection,
+    getDocs
+} from "firebase/firestore";
+import { auth } from "../../../index";
+/* 
+const querySnapshot = await getDocs(collection(db, "cities", "SF", "landmarks"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+}); */
 const User = () => {
+
+    const colRef = collection(db, "user1");
+
+
+    console.log("prozim");
+    getDocs(colRef).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+            //tu moram zaj getnit ID pol pa spremenit da iz baze prebere samo za da faking ID, je jasno? good
+
+        });
+        console.log("ah shit")
+    });
+
+
     const navigate = useNavigate();
-    const { userIdState,setUserIdState } = useContext(UserContext);
+    const { userIdState, setUserIdState } = useContext(UserContext);
 
     const SignOut = () => {
         const auth = getAuth();
@@ -75,7 +98,7 @@ const User = () => {
         });
 
 
-        
+
 
     }
 
@@ -114,6 +137,15 @@ const User = () => {
             <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
                 <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
                     <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
+                        <Card sx={{ p: 3, borderRadius: 2, bgcolor: "background.paper" }}>
+                            <MKTypography variant="h2" fontWeight={700} gutterBottom>
+                                Pretekla iskanja
+                            </MKTypography>
+                            <MKTypography variant="body2" fontWeight={400} color="text.secondary" gutterBottom>
+                                
+                            </MKTypography>
+
+                        </Card>
                         <Card>
                             kot kaže si prijavljen
                             <MKButton variant="gradient" color="warning" width="100%" mt={3} onClick={SignOut}> SignOut </MKButton>
