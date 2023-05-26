@@ -11,11 +11,31 @@ module.exports.formatFlightdetails = (flightDetails) => {
   const durationInMinutes = Math.floor(durationInMilliseconds / 60000);
   const hours = Math.floor(durationInMinutes / 60);
   const minutes = durationInMinutes % 60;
-  const formattedDuration = `${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''}`;
+  const formattedDuration = `${hours} hour${hours !== 1 ? 's' : ''} ${minutes !== 0 ? `and ${minutes} minute${minutes !== 1 ? 's' : ''}` : ''}`;
 
   return {
     departure: formattedDeparture,
     arrival: formattedArrival,
-    duration: formattedDuration
+    duration: formattedDuration,
+    durationInMinutes: durationInMinutes
   };
+}
+
+module.exports.getCheapestFlight = (flights, value) => {
+  const cheapestFlight = flights.reduce((cheapest, current) => {
+    if (current[value] < cheapest[value]) {
+      return current;
+    }
+    return cheapest;
+  });
+
+  return cheapestFlight;
+}
+
+module.exports.getBestFlights = (flights) => {
+  let zaNazaj = [];
+  zaNazaj.push(this.getCheapestFlight(flights, "price"));
+  zaNazaj.push(this.getCheapestFlight(flights, "durationInMinutes"));
+
+  return zaNazaj;
 }

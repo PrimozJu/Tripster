@@ -1,11 +1,11 @@
 const { initializeApp } = require("firebase-admin/app");
-const { getFirestore, doc, setDoc, updateDoc } = require("firebase-admin/firestore");
+const { getFirestore, doc, setDoc, updateDoc, FieldValue } = require("firebase-admin/firestore");
 const functions = require("firebase-functions");
 const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { convertToJSON, formatFlightdetails } = require("./funkcije");
+const { getBestFlights, formatFlightdetails } = require("./funkcije");
 
 
 initializeApp();
@@ -47,11 +47,11 @@ app.get("/airbnb", async (req, res) => {
         const docRef = db.collection('users').doc(currentUser);
         docRef.get().then(docSnapshot => {
             if (docSnapshot.exists) {
-                updateDoc(docRef, {
-                    staySearches: arrayUnion(data.location),
+                docRef.update({
+                    staySearches: FieldValue.arrayUnion(data.location)
                 });
             } else {
-                db.collection('users').doc(currentUser).set({
+                docRef.set({
                     staySearches: [data.location]
                 });
             }
@@ -85,10 +85,7 @@ app.get("/airbnb", async (req, res) => {
 
 app.get("/flights", async (req, res) => {
     const params = req.query;
-
-    if (!params.hasOwnProperty("limit")) {
-        params.limit = 10;
-    }
+    params.limit = 50;
     console.log(params);
 
     const options = {
@@ -110,38 +107,62 @@ app.get("/flights", async (req, res) => {
     zaNazaj = []
     responseData.forEach((element) => {
 
-        const transfer = element.route.map((item) => item.flyFrom);
-
-        const duration = {
-            "utc_departure": element.utc_departure,
-            "utc_arrival": element.utc_arrival
+        //Da ne pošlje že zasedenih
+        if (element.availability.seats == null) {
+            console.log("No seats available");
+            return;
         }
 
+        const transfer = element.route.map((item) => item.flyFrom);
+
+        //Za VSE prestopne lete
+        const route = [];
+        element.route.forEach((item) => {
+            const routeItem = {
+                "id": item.id,
+                "cityFrom": item.cityFrom,
+                "cityTo": item.cityTo,
+                "airline": item.airline,
+            }
+
+            const duration = {
+                "utc_departure": item.utc_departure,
+                "utc_arrival": item.utc_arrival
+            };
+
+            const arrayItem = Object.assign(routeItem, formatFlightdetails(duration));
+
+            route.push(arrayItem);
+        });
+
+        //Tisti ta glavni let
         const item = {
             "id": element.id,
             "cityFrom": element.cityFrom,
             "cityTo": element.cityTo,
             "airlines": element.airlines,
             "availability": element.availability.seats,
-            "price": element.conversion[req.query.curr]
+            "price": element.conversion[req.query.curr],
+            "route": route
         }
 
+        const duration = {
+            "utc_departure": element.utc_departure,
+            "utc_arrival": element.utc_arrival
+        };
         const arrayItem = Object.assign(item, formatFlightdetails(duration));
         arrayItem.transfers = transfer;
+
         zaNazaj.push(arrayItem);
     });
 
-    const docRef = db.collection("leti").doc(`user1`);
-    await docRef.set({
-        result: zaNazaj
-    })
-        .then(() => {
-            console.log("Document successfully written!");
-        }).catch((error) => {
-            console.error("Error writing document: ", error);
-        });
+    const fastAndCheap = getBestFlights(zaNazaj);
+    const filteredFlights = zaNazaj.filter((flight) => {
+        return !fastAndCheap.includes(flight);
+      });
+    const finalArray = fastAndCheap.concat(filteredFlights);
 
-    res.status(200).send(zaNazaj);
+    res.status(200).send(finalArray);
 });
 
 //En nacin sejvanja v DB

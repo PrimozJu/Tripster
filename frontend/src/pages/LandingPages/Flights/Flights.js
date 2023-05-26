@@ -57,9 +57,6 @@ const Flights = () => {
   async function handleForm(params) {
     console.log(`parameters: ${JSON.stringify(params)}`);
 
-    //PRIMA - nastavis limit kolko rezultatov ces, default je 10
-    params.limit = 9;
-
     const options = {
       method: "GET",
       url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/flights",
@@ -69,16 +66,18 @@ const Flights = () => {
       params: params
     }
 
-    setLoading(true);
-    const respons = await axios.request(options);
-
-    //PRIMA - Tu mas array
-    const responseData = respons.data;
-    console.log(responseData);
-    
-    setResponse(responseData)
-   
-
+    try {
+      setLoading(true);
+      const respons = await axios.request(options);
+  
+      //PRIMA - Tu mas array
+      const responseData = respons.data;
+      console.log(responseData);
+      
+      setResponse(responseData)
+    } catch (err) {
+      console.error(err.message);
+    }
 
     setLoading(false);
   }
