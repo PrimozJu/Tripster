@@ -23,6 +23,22 @@ module.exports.callFligtsAPI = async (params, limit) => {
   return respons.data.data;
 }
 
+module.exports.saveSearch = (user, params, collection, db) => {
+  const docRef = db.collection('users').doc(user);
+
+  docRef.get().then(docSnapshot => {
+    const searches = docSnapshot.exists ? docSnapshot.data()[collection] || [] : [];
+
+    searches.push(params);
+    const updateData = {};
+    updateData[collection] = searches;
+
+    return docRef.set(updateData, { merge: true });
+  }).catch(err => {
+    console.error(err);
+  });
+}
+
 module.exports.formatFlightdetails = (flightDetails) => {
   const departureTime = new Date(flightDetails.utc_departure);
   const arrivalTime = new Date(flightDetails.utc_arrival);
@@ -37,7 +53,7 @@ module.exports.formatFlightdetails = (flightDetails) => {
   const hours = Math.floor(durationInMinutes / 60);
   const minutes = durationInMinutes % 60;
   const formattedDuration = `${hours !== 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : ''}${hours !== 0 && minutes !== 0 ? ' and ' : ''}${minutes !== 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : ''}`;
-  
+
   return {
     departure: formattedDeparture,
     arrival: formattedArrival,

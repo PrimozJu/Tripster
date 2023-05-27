@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch } = require("./funkcije");
 
 
 initializeApp();
@@ -39,23 +39,11 @@ app.post("/authenticate", async (req, res) => {
 });
 
 app.get("/airbnb", async (req, res) => {
-    console.log(req.query);
     const params = req.query;
     const currentUser = req.headers["user"];
 
     if (currentUser) {
-        const docRef = db.collection('users').doc(currentUser);
-        docRef.get().then(docSnapshot => {
-            if (docSnapshot.exists) {
-                docRef.update({
-                    staySearches: FieldValue.arrayUnion(params.location)
-                });
-            } else {
-                docRef.set({
-                    staySearches: [params.location]
-                });
-            }
-        });
+        saveSearch(currentUser, params, "staySearches", db);
     };
 
     const options = {
@@ -89,18 +77,7 @@ app.get("/flights", async (req, res) => {
     const currentUser = req.headers["user"];
 
     if (currentUser) {
-        const docRef = db.collection('users').doc(currentUser);
-        docRef.get().then(docSnapshot => {
-            if (docSnapshot.exists) {
-                docRef.update({
-                    flightSearches: FieldValue.arrayUnion(params.fly_to)
-                });
-            } else {
-                docRef.set({
-                    flightSearches: [params.fly_to]
-                });
-            }
-        });
+        saveSearch(currentUser, params, "flightSearches", db);
     };
 
     zaNazaj = []
@@ -111,13 +88,21 @@ app.get("/flights", async (req, res) => {
             return;
         }
 
-        const transfer = element.route.map((item) => item.flyFrom);
-
         //Za VSE prestopne lete
+        const transfer = []
         const routeTo = [];
         const routeFrom = [];
         let pogoj = true;
         element.route.forEach((item) => {
+
+            if (item.flyFrom != params.fly_from) {
+                if(item.flyFrom != params.fly_to){
+                    transfer.push(item.flyFrom);
+                } else {
+                    transfer.push("|");
+                }
+            }
+
             const routeItem = {
                 "id": item.id,
                 "cityFrom": item.cityFrom,
@@ -164,6 +149,7 @@ app.get("/flights", async (req, res) => {
         zaNazaj.push(arrayItem);
     });
 
+    console.log(zaNazaj.length);
     const fastAndCheap = getBestFlights(zaNazaj);
     const filteredFlights = zaNazaj.filter((flight) => {
         return !fastAndCheap.includes(flight);

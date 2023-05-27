@@ -5,8 +5,8 @@ import countriesList from "../../../components/Autocomplete/cities";
 import AutoComplete from "../../../components/Autocomplete/AutoComplete";
 const FormAirBnb = ({ handleForm }) => {
   const [location, setLocation] = useState("Maribor");
-  const [checkin, setCheckin] = useState("2023-05-26");
-  const [checkout, setCheckout] = useState("2023-06-01");
+  const [checkin, setCheckin] = useState("2023-06-26");
+  const [checkout, setCheckout] = useState("2023-07-01");
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
