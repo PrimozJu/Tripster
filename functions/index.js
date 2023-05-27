@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI } = require("./funkcije");
 
 
 initializeApp();
@@ -45,26 +45,11 @@ app.get("/airbnb", async (req, res) => {
     if (currentUser) {
         saveSearch(currentUser, params, "staySearches", db);
     };
-
-    const options = {
-        method: "GET",
-        url: "https://airbnb13.p.rapidapi.com/search-location",
-        params: params,
-        headers: {
-            "X-RapidAPI-Key": airbnbAPIkey,
-            "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
-        },
-    };
+    
     try {
-        //API klic za airbnb
-        // const response = await axios.request(options);
+        // res.status(200).send(await callAirbnbAPI(params));
 
-        //Send data back to frontend
-        // const responseData = response.data;
-        // res.status(200).send(responseData);
-        //TODO nepozabo removat!
         res.status(500).send("lmao");
-
     } catch (err) {
         console.error(err.message);
         res.status(500).send(err.message);

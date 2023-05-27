@@ -23,6 +23,21 @@ module.exports.callFligtsAPI = async (params, limit) => {
   return respons.data.data;
 }
 
+module.exports.callAirbnbAPI = async (params) => {
+  const options = {
+    method: "GET",
+    url: "https://airbnb13.p.rapidapi.com/search-location",
+    params: params,
+    headers: {
+      "X-RapidAPI-Key": airbnbAPIkey,
+      "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
+    },
+  };
+
+  const response = await axios.request(options);
+  return response.data;
+}
+
 module.exports.saveSearch = (user, params, collection, db) => {
   const docRef = db.collection('users').doc(user);
 
