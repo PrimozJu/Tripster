@@ -40,7 +40,7 @@ app.post("/authenticate", async (req, res) => {
 
 app.get("/airbnb", async (req, res) => {
     console.log(req.query);
-    const data = req.query;
+    const params = req.query;
     const currentUser = req.headers["user"];
 
     if (currentUser) {
@@ -48,11 +48,11 @@ app.get("/airbnb", async (req, res) => {
         docRef.get().then(docSnapshot => {
             if (docSnapshot.exists) {
                 docRef.update({
-                    staySearches: FieldValue.arrayUnion(data.location)
+                    staySearches: FieldValue.arrayUnion(params.location)
                 });
             } else {
                 docRef.set({
-                    staySearches: [data.location]
+                    staySearches: [params.location]
                 });
             }
         });
@@ -61,7 +61,7 @@ app.get("/airbnb", async (req, res) => {
     const options = {
         method: "GET",
         url: "https://airbnb13.p.rapidapi.com/search-location",
-        params: data,
+        params: params,
         headers: {
             "X-RapidAPI-Key": airbnbAPIkey,
             "X-RapidAPI-Host": "airbnb13.p.rapidapi.com",
