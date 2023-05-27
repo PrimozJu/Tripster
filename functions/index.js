@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime } = require("./funkcije");
 
 
 initializeApp();
@@ -123,6 +123,8 @@ app.get("/flights", async (req, res) => {
         const transfer = []
         const routeTo = [];
         const routeFrom = [];
+        const arrivalBack = [];
+        const departureBack = [];
         let pogoj = true;
         let durationBack = 0;
         element.route.forEach((item) => {
@@ -155,6 +157,9 @@ app.get("/flights", async (req, res) => {
             } else {
                 pogoj = false;
                 durationBack += arrayItem.durationInMinutes;
+                arrivalBack.push(fortmatTime(new Date(item.utc_arrival)));
+                departureBack.push(fortmatTime(new Date(item.utc_departure)));
+
                 routeFrom.push(arrayItem);
             }
 
@@ -171,6 +176,8 @@ app.get("/flights", async (req, res) => {
             "routeTo": routeTo,
             "routeFrom": routeFrom,
             "durationBack": formatFromMinutes(durationBack),
+            "arrivalBack": arrivalBack[arrivalBack.length - 1],
+            "departureBack": departureBack[0],
         }
 
         const duration = {

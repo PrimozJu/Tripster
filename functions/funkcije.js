@@ -70,20 +70,26 @@ module.exports.formatFromMinutes = (durationInMinutes) => {
 }
 
 
+module.exports.fortmatTime = (time) => {
+  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false, timeZone: 'UTC' };
+  const formattedTime = time.toLocaleString('en-US', options);
+
+  return formattedTime;
+}
+
+
 module.exports.formatFlightdetails = (flightDetails) => {
   const departureTime = new Date(flightDetails.utc_departure);
   const arrivalTime = new Date(flightDetails.utc_arrival);
 
-  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
-
-  const formattedDeparture = departureTime.toLocaleString('en-US', options);
-  const formattedArrival = arrivalTime.toLocaleString('en-US', options);
+  const formattedDeparture = module.exports.fortmatTime(departureTime);
+  const formattedArrival = module.exports.fortmatTime(arrivalTime);
 
   const durationInMilliseconds = arrivalTime - departureTime;
   const durationInMinutes = Math.floor(durationInMilliseconds / 60000);
 
   const formattedDuration = module.exports.formatFromMinutes(durationInMinutes);
-  
+
   return {
     departure: formattedDeparture,
     arrival: formattedArrival,
