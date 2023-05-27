@@ -34,7 +34,11 @@ module.exports.callAirbnbAPI = async (params) => {
     },
   };
 
-  const response = await axios.request(options);
+  const response = await axios.request(options).catch((err) => {
+    console.error(err.message);
+    return null;
+  });
+  
   return response.data;
 }
 

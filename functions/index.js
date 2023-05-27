@@ -45,14 +45,15 @@ app.get("/airbnb", async (req, res) => {
     if (currentUser) {
         saveSearch(currentUser, params, "staySearches", db);
     };
-    
-    try {
-        // res.status(200).send(await callAirbnbAPI(params));
 
-        res.status(500).send("lmao");
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send(err.message);
+    const responseData = await callAirbnbAPI(params);
+
+    if (responseData) {
+        return res.status(500).send("lmao");
+
+        res.status(200).send(responseData);
+    } else {
+        res.status(500).send("Something went wrong");
     }
 });
 
@@ -64,6 +65,10 @@ app.get("/flights", async (req, res) => {
     if (currentUser) {
         saveSearch(currentUser, params, "flightSearches", db);
     };
+
+    if (!responseData) {
+        return res.status(500).send("Something went wrong");
+    }
 
     zaNazaj = []
     responseData.forEach((element) => {
