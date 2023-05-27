@@ -5,6 +5,9 @@ import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Colorize } from '@mui/icons-material';
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import FlightLandIcon from '@mui/icons-material/FlightLand';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 function FlightsList({ data }) {
   console.log("nanaanan");
   console.log(data);
@@ -34,11 +37,11 @@ function FlightsList({ data }) {
           >
 
             <CardContent>
-            {index===0 && <Typography variant="h6" gutterBottom>
+              {index === 0 && <Typography variant="h6" gutterBottom>
                 <div style={divStyle}> Best Flight </div>
-                </Typography>
-          }
-              <Typography variant="h6" gutterBottom>
+              </Typography>
+              }
+              {/*  <Typography variant="h6" gutterBottom>
                 Flight Details
               </Typography>
               <Typography variant="subtitle1">
@@ -56,12 +59,51 @@ function FlightsList({ data }) {
               <Typography variant="subtitle1">
                 <strong>Price:</strong> {flight.price}
               </Typography>
+
               <Typography variant="subtitle1">
                 <strong>Availability:</strong> {flight.availability}
               </Typography>
               <Typography variant="subtitle1">
                 <strong>Transfers:</strong> {flight.transfers.join(", ")}
+              </Typography> */}
+
+              {/* flight to destination */}
+              <Typography variant="h6" gutterBottom>
+                {flight.airlines.length < 2 ? "Airline:" : "Airlines:"}{flight.airlines.join(", ")}
+                {flight.transfers.length > 2 ? "   " + flight.transfers.length + " stops(" + flight.transfers.join(", ") + ")" : "(Direct Flight)"}
               </Typography>
+              <Typography variant="subtitle1">
+                <FlightTakeoffIcon sx={{ color: 'green' }} />
+                <strong>Departure:</strong> {flight.routeTo[0].departure}
+              </Typography>
+              <Typography variant="subtitle1">
+                <FlightLandIcon sx={{ color: 'red' }} />
+                <strong>Arrival:</strong> {flight.routeTo[0].arrival}
+              </Typography>
+              <Typography variant="subtitle1">
+              <AccessTimeIcon sx={{ color: 'blue' }} />
+                <strong>Duration:</strong> {flight.routeTo[0].duration}
+              </Typography>
+              <hr/>
+              <Typography variant="subtitle1">
+                <FlightTakeoffIcon sx={{ color: 'green' }} />
+                <strong>Departure:</strong> {flight.routeFrom[0].departure}
+              </Typography>
+              <Typography variant="subtitle1">
+                <FlightLandIcon sx={{ color: 'red' }} />
+                <strong>Arrival:</strong> {flight.routeFrom[0].arrival}
+              </Typography>
+              <Typography variant="subtitle1">
+              <AccessTimeIcon sx={{ color: 'blue' }} />
+                <strong>Duration:</strong> {flight.routeFrom[0].duration}
+              </Typography>
+              <hr/>
+              <Typography variant="subtitle1">
+                <strong>Price:</strong> {flight.price} EUR
+              </Typography>
+
+
+
             </CardContent>
 
           </Card>
