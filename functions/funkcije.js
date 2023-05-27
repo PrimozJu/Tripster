@@ -61,6 +61,15 @@ module.exports.saveSearch = (user, params, collection, db) => {
 }
 
 
+module.exports.formatFromMinutes = (durationInMinutes) => {
+  const hours = Math.floor(durationInMinutes / 60);
+  const minutes = durationInMinutes % 60;
+  const formattedDuration = `${hours !== 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : ''}${hours !== 0 && minutes !== 0 ? ' and ' : ''}${minutes !== 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : ''}`;
+
+  return formattedDuration;
+}
+
+
 module.exports.formatFlightdetails = (flightDetails) => {
   const departureTime = new Date(flightDetails.utc_departure);
   const arrivalTime = new Date(flightDetails.utc_arrival);
@@ -72,10 +81,9 @@ module.exports.formatFlightdetails = (flightDetails) => {
 
   const durationInMilliseconds = arrivalTime - departureTime;
   const durationInMinutes = Math.floor(durationInMilliseconds / 60000);
-  const hours = Math.floor(durationInMinutes / 60);
-  const minutes = durationInMinutes % 60;
-  const formattedDuration = `${hours !== 0 ? `${hours} hour${hours !== 1 ? 's' : ''}` : ''}${hours !== 0 && minutes !== 0 ? ' and ' : ''}${minutes !== 0 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : ''}`;
 
+  const formattedDuration = module.exports.formatFromMinutes(durationInMinutes);
+  
   return {
     departure: formattedDeparture,
     arrival: formattedArrival,

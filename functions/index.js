@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes } = require("./funkcije");
 
 
 initializeApp();
@@ -30,8 +30,8 @@ app.get("/searches/:searchType", async (req, res) => {
 
     if (!searchType || !currentUser) {
         return res.status(400).send("Bad request");
-    } 
-    
+    }
+
     let pogoj = false;
     if (searchType === "both") {
         pogoj = true;
@@ -39,14 +39,14 @@ app.get("/searches/:searchType", async (req, res) => {
 
     const docRef = db.collection('users').doc(currentUser);
     const zaNazaj = {};
-    
+
     docRef.get().then(docSnapshot => {
-        if (searchType === "flights" || pogoj){
+        if (searchType === "flights" || pogoj) {
             const flightData = docSnapshot.exists ? docSnapshot.data()["flightSearches"] || [] : [];
             zaNazaj.flights = flightData;
         }
 
-        if (searchType === "stays" || pogoj){
+        if (searchType === "stays" || pogoj) {
             const stayData = docSnapshot.exists ? docSnapshot.data()["staySearches"] || [] : [];
             zaNazaj.stays = stayData;
         }
@@ -124,10 +124,11 @@ app.get("/flights", async (req, res) => {
         const routeTo = [];
         const routeFrom = [];
         let pogoj = true;
+        let durationBack = 0;
         element.route.forEach((item) => {
 
             if (item.flyFrom != params.fly_from) {
-                if(item.flyFrom != params.fly_to){
+                if (item.flyFrom != params.fly_to) {
                     transfer.push(item.flyFrom);
                 } else {
                     transfer.push("|");
@@ -153,6 +154,7 @@ app.get("/flights", async (req, res) => {
                 routeTo.push(arrayItem);
             } else {
                 pogoj = false;
+                durationBack += arrayItem.durationInMinutes;
                 routeFrom.push(arrayItem);
             }
 
@@ -168,6 +170,7 @@ app.get("/flights", async (req, res) => {
             "price": element.conversion[req.query.curr],
             "routeTo": routeTo,
             "routeFrom": routeFrom,
+            "durationBack": formatFromMinutes(durationBack),
         }
 
         const duration = {
