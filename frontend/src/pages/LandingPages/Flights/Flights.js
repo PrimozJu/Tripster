@@ -15,41 +15,6 @@ import ReactLoading from "react-loading";
 import { db, auth } from '../../../index';
 
 
-const convertToJSON = (serverResponse) => {
-  try {
-    const responseObj = JSON.parse(serverResponse);
-    const dataArray = responseObj.data;
-    return dataArray;
-  } catch (error) {
-    console.error('Error converting server response to JSON:', error);
-    return [];
-  }
-};
-
-
-function formatFlightDetails(flightDetails) {
-  const departureTime = new Date(flightDetails.utc_departure);
-  const arrivalTime = new Date(flightDetails.utc_arrival);
-
-  const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' };
-
-  const formattedDeparture = departureTime.toLocaleString('en-US', options);
-  const formattedArrival = arrivalTime.toLocaleString('en-US', options);
-
-  const durationInMilliseconds = arrivalTime - departureTime;
-  const durationInMinutes = Math.floor(durationInMilliseconds / 60000);
-  const hours = Math.floor(durationInMinutes / 60);
-  const minutes = durationInMinutes % 60;
-  const formattedDuration = `${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''}`;
-
-  return {
-    departure: formattedDeparture,
-    arrival: formattedArrival,
-    duration: formattedDuration
-  };
-}
-
-
 const Flights = () => {
   const [response, setResponse] = useState(undefined)
   const [loading, setLoading] = useState(false);

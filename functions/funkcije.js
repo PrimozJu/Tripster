@@ -23,6 +23,7 @@ module.exports.callFligtsAPI = async (params, limit) => {
   return respons.data.data;
 }
 
+
 module.exports.callAirbnbAPI = async (params) => {
   const options = {
     method: "GET",
@@ -38,9 +39,10 @@ module.exports.callAirbnbAPI = async (params) => {
     console.error(err.message);
     return null;
   });
-  
+
   return response.data;
 }
+
 
 module.exports.saveSearch = (user, params, collection, db) => {
   const docRef = db.collection('users').doc(user);
@@ -57,6 +59,7 @@ module.exports.saveSearch = (user, params, collection, db) => {
     console.error(err);
   });
 }
+
 
 module.exports.formatFlightdetails = (flightDetails) => {
   const departureTime = new Date(flightDetails.utc_departure);
@@ -81,6 +84,7 @@ module.exports.formatFlightdetails = (flightDetails) => {
   };
 }
 
+
 module.exports.getCheapestFlight = (flights, value) => {
   const cheapestFlight = flights.reduce((cheapest, current) => {
     if (current[value] < cheapest[value]) {
@@ -91,6 +95,7 @@ module.exports.getCheapestFlight = (flights, value) => {
 
   return cheapestFlight;
 }
+
 
 module.exports.getBestFlights = (flights) => {
   let zaNazaj = [];

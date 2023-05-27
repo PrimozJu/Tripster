@@ -19,6 +19,45 @@ app.use((req, res, next) => {
     next();
 });
 
+
+app.get("/searches/:searchType", async (req, res) => {
+    /**
+     * searchType: "flights" | "stays" | "both"
+     */
+    const searchType = req.params.searchType.toLowerCase();
+    const currentUser = req.headers["user"];
+
+
+    if (!searchType || !currentUser) {
+        return res.status(400).send("Bad request");
+    } 
+    
+    let pogoj = false;
+    if (searchType === "both") {
+        pogoj = true;
+    }
+
+    const docRef = db.collection('users').doc(currentUser);
+    const zaNazaj = {};
+    
+    docRef.get().then(docSnapshot => {
+        if (searchType === "flights" || pogoj){
+            const flightData = docSnapshot.exists ? docSnapshot.data()["flightSearches"] || [] : [];
+            zaNazaj.flights = flightData;
+        }
+
+        if (searchType === "stays" || pogoj){
+            const stayData = docSnapshot.exists ? docSnapshot.data()["staySearches"] || [] : [];
+            zaNazaj.stays = stayData;
+        }
+
+        return res.status(200).json(zaNazaj);
+    }).catch(err => {
+        console.error(err);
+    });
+});
+
+
 //kak se authenticata userja
 app.post("/authenticate", async (req, res) => {
     const idToken = req.headers["authorization"];
@@ -41,6 +80,7 @@ app.post("/authenticate", async (req, res) => {
 app.get("/airbnb", async (req, res) => {
     const params = req.query;
     const currentUser = req.headers["user"];
+    console.log(currentUser)
 
     if (currentUser) {
         saveSearch(currentUser, params, "staySearches", db);
@@ -56,6 +96,7 @@ app.get("/airbnb", async (req, res) => {
         res.status(500).send("Something went wrong");
     }
 });
+
 
 app.get("/flights", async (req, res) => {
     const params = req.query
@@ -139,7 +180,6 @@ app.get("/flights", async (req, res) => {
         zaNazaj.push(arrayItem);
     });
 
-    console.log(zaNazaj.length);
     const fastAndCheap = getBestFlights(zaNazaj);
     const filteredFlights = zaNazaj.filter((flight) => {
         return !fastAndCheap.includes(flight);
@@ -149,42 +189,6 @@ app.get("/flights", async (req, res) => {
     res.status(200).send(finalArray);
 });
 
-//En nacin sejvanja v DB
-app.get("/test", (req, res) => {
-    const collectionRef = admin.firestore().collection("test");
-
-    collectionRef
-        .get()
-        .then((querySnapshot) => {
-            const documents = [];
-            querySnapshot.forEach((doc) => {
-                documents.push(doc.data());
-            });
-            res.status(200).json(documents);
-        })
-        .catch((error) => {
-            console.error("Error retrieving documents: ", error);
-            res.status(500).send("GET request failed");
-        });
-});
-
-//drugi nacin sejvanja v DB
-app.post("/test1", async (req, res) => {
-    const docRef = db.collection("test2").doc("alovena");
-
-    await docRef
-        .set({
-            first: "Ada",
-            last: "Lovelace",
-            born: 1815,
-        })
-        .then((snapshot) => {
-            res.status(200).send(`POST request received ${JSON.stringify(snapshot)}`);
-        })
-        .catch((error) => {
-            res.status(500).send(`POST request failed ${error}`);
-        });
-});
 
 app.post("/itineary-chat-gpt", async (req, res) => {
     //const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?`;
