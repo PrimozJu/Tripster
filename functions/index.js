@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime, reccomendation } = require("./funkcije");
 
 
 initializeApp();
@@ -17,6 +17,25 @@ app.use((req, res, next) => {
     res.set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
     res.set("Access-Control-Allow-Headers", "*");
     next();
+});
+
+
+app.get("/recommendation", async (req, res) => {
+    const currentUser = req.headers["user"];
+
+    if (!currentUser) {
+        return res.status(400).send("Bad request");
+    }
+
+    try {
+        const data = await reccomendation(currentUser, db, 5);
+        console.log(data);
+        return res.status(200).json(data);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).send("Something went wrong");
+      }
+    
 });
 
 
@@ -86,12 +105,7 @@ app.get("/airbnb", async (req, res) => {
         saveSearch(currentUser, params, "staySearches", db);
     };
 
-    try {
-        // const responseData = await callAirbnbAPI(params);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).send("Something went wrong");
-    }
+    // const responseData = await callAirbnbAPI(params);
 
     if (responseData) {
         return res.status(500).send("lmao");
@@ -107,17 +121,9 @@ app.get("/flights", async (req, res) => {
     const params = req.query
 
     let responseData;
-    try {
-        responseData = await callFligtsAPI(params, 50);
+    responseData = await callFligtsAPI(params, 50);
 
-        if (!responseData) {
-            throw new Error("Something went wrong");
-        }
-    } catch (err) {
-        console.log(err);
-
-        if (err instanceof TypeError)
-            return res.status(400).send("Bad request");
+    if (!responseData) {
         return res.status(500).send("Something went wrong");
     }
 

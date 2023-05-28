@@ -1,3 +1,4 @@
+const { object } = require("firebase-functions/v1/storage");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
 const axios = require("axios");
 
@@ -20,7 +21,13 @@ module.exports.callFligtsAPI = async (params, limit) => {
     return null;
   });
 
-  return respons.data.data;
+  try {
+    const data = respons.data.data;
+    return data;
+  } catch (err) {
+    console.error(err.message);
+    return null;
+  }
 }
 
 
@@ -40,7 +47,64 @@ module.exports.callAirbnbAPI = async (params) => {
     return null;
   });
 
-  return response.data;
+  try {
+    const data = response.data;
+    return data
+  } catch (err) {
+    console.error(err.message);
+    return null;
+  }
+}
+
+
+module.exports.prestej = (item, object) => {
+  object[item] = (object[item] || 0) + 1;
+};
+
+
+module.exports.reccomendation = async (currentUser, db, number) => {
+  return new Promise((resolve, reject) => {
+    const docRef = db.collection('users').doc(currentUser);
+
+    docRef.get().then(docSnapshot => {
+      const flightData = docSnapshot.data()["flightSearches"] || [];
+      const stayData = docSnapshot.data()["staySearches"] || [];
+
+      const lastFiveFlights = flightData.slice(-number);
+      const lastFiveStays = stayData.slice(-number);
+
+      const countOccurrences = (items) => {
+        const count = {};
+        items.forEach((item) => {
+          this.prestej(item, count);
+        });
+        return count;
+      };
+
+      const data = {
+        flightCurrency: countOccurrences(lastFiveFlights.map((flight) => flight.curr)),
+        stayCurrency: countOccurrences(lastFiveStays.map((stay) => stay.currency)),
+        flightOrigins: countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom)),
+        flightDestinations: countOccurrences(lastFiveFlights.map((flight) => flight.cityTo)),
+        flightThere: countOccurrences(lastFiveFlights.map((flight) => flight.date_from)),
+        flightBack: countOccurrences(lastFiveFlights.map((flight) => flight.return_from)),
+        flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
+        flightNumberAdults: countOccurrences(lastFiveFlights.map((flight) => flight.adults)),
+        stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
+        stayCheckin: countOccurrences(lastFiveStays.map((stay) => stay.checkin)),
+        stayCheckout: countOccurrences(lastFiveStays.map((stay) => stay.checkout)),
+        stayAdults: countOccurrences(lastFiveStays.map((stay) => stay.adults)),
+        stayChildren: countOccurrences(lastFiveStays.map((stay) => stay.children)),
+        stayInfants: countOccurrences(lastFiveStays.map((stay) => stay.infants))
+      };
+
+      resolve(data);
+
+    }).catch(err => {
+      console.error(err);
+      reject(err);
+    });
+  });
 }
 
 
