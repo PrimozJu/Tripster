@@ -19,6 +19,45 @@ function FlightsList({ data }) {
     padding: '10px',
     borderRadius: '5px',
   };
+
+
+  const getTransfersComponents = (transfers, way) => { /* tota komponenta je kr yee yee ass ampak it does the job done for now */
+    const separatorIndex = transfers.indexOf("|");
+    if (separatorIndex !== -1) {
+      const beforeSeparator = transfers.slice(0, separatorIndex);
+      const afterSeparator = transfers.slice(separatorIndex + 1);
+      if (way === "to") {
+        return (
+          <div>
+            {beforeSeparator.length}
+            {beforeSeparator.length == 1 && "stop( "}
+            {beforeSeparator.length > 1 && " stop" + (beforeSeparator.length > 1 ? "s (" : " (")}
+            {beforeSeparator.join(", ") + ")"}
+          </div>
+        );
+      }
+      else if (way === "back") {
+        return (
+          <div>
+            {afterSeparator.length}
+            {afterSeparator.length == 1 && "stop("}
+            {afterSeparator.length > 1 && "stop" + (afterSeparator.length > 1 ? "s (" : " (")}
+            {afterSeparator.join(", ") + ")"}
+          </div>
+        );
+
+      } else {
+        return (
+          <Typography variant="subtitle1">
+            {transfers.join(", ")}
+          </Typography>
+        );
+      }
+    }
+  };
+
+
+
   return (
     <div className="container">
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4">
@@ -41,66 +80,51 @@ function FlightsList({ data }) {
                 <div style={divStyle}> Best Flight </div>
               </Typography>
               }
-              {/*  <Typography variant="h6" gutterBottom>
-                Flight Details
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Airlines:</strong> {flight.airlines.join(", ")}
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Departure:</strong> {flight.departure}
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Arrival:</strong> {flight.arrival}
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Duration:</strong> {flight.duration}
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Price:</strong> {flight.price}
-              </Typography>
 
-              <Typography variant="subtitle1">
-                <strong>Availability:</strong> {flight.availability}
-              </Typography>
-              <Typography variant="subtitle1">
-                <strong>Transfers:</strong> {flight.transfers.join(", ")}
-              </Typography> */}
-
-              {/* flight to destination */}
               <Typography variant="h6" gutterBottom>
-                {flight.airlines.length < 2 ? "Airline:" : "Airlines:"}{flight.airlines.join(", ")}
-                {flight.transfers.length > 2 ? "   " + flight.transfers.length + " stops(" + flight.transfers.join(", ") + ")" : "(Direct Flight)"}
+                  {flight.airlines.length < 2 ? "Airline: " : "Airlines: "}{flight.airlines.join(", ")}
+
+                </Typography>
+
+              <Typography variant="h6" gutterBottom>
+                {flight.cityFrom} - {flight.cityTo}
+                {getTransfersComponents(flight.transfers, "to")}
               </Typography>
-              <Typography variant="subtitle1">
-                <FlightTakeoffIcon sx={{ color: 'green' }} />
-                <strong>Departure:</strong> {flight.routeTo[0].departure}
-              </Typography>
-              <Typography variant="subtitle1">
-                <FlightLandIcon sx={{ color: 'red' }} />
-                <strong>Arrival:</strong> {flight.routeTo[0].arrival}
-              </Typography>
-              <Typography variant="subtitle1">
-              <AccessTimeIcon sx={{ color: 'blue' }} />
-                <strong>Duration:</strong> {flight.routeTo[0].duration}
-              </Typography>
-              <hr/>
-              <Typography variant="subtitle1">
-                <FlightTakeoffIcon sx={{ color: 'green' }} />
-                <strong>Departure:</strong> {flight.routeFrom[0].departure}
-              </Typography>
-              <Typography variant="subtitle1">
-                <FlightLandIcon sx={{ color: 'red' }} />
-                <strong>Arrival:</strong> {flight.routeFrom[0].arrival}
-              </Typography>
-              <Typography variant="subtitle1">
-              <AccessTimeIcon sx={{ color: 'blue' }} />
-                <strong>Duration:</strong> {flight.routeFrom[0].duration}
-              </Typography>
-              <hr/>
-              <Typography variant="subtitle1">
-                <strong>Price:</strong> {flight.price} EUR
-              </Typography>
+                <Typography variant="subtitle1">
+                  <FlightTakeoffIcon sx={{ color: 'green' }} />
+                  <strong>Departure:</strong> {flight.routeTo[0].departure}
+                </Typography>
+
+                <Typography variant="subtitle1">
+                  <FlightLandIcon sx={{ color: 'red' }} />
+                  <strong>Arrival:</strong> {flight.routeTo[0].arrival}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <AccessTimeIcon sx={{ color: 'blue' }} />
+                  <strong>Duration:</strong> {flight.duration}
+                </Typography>
+                <hr />
+                <Typography variant="h6" gutterBottom>
+                  {flight.cityTo} - {flight.cityFrom}
+                {getTransfersComponents(flight.transfers, "back")}
+                </Typography>
+                {/* za nazaj, naredi še lepo narjene prestope */}
+                <Typography variant="subtitle1">
+                  <FlightTakeoffIcon sx={{ color: 'green' }} />
+                  <strong>Departure:</strong> {flight.routeFrom[0].departure}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <FlightLandIcon sx={{ color: 'red' }} />
+                  <strong>Arrival:</strong> {flight.routeFrom[0].arrival}
+                </Typography>
+                <Typography variant="subtitle1">
+                  <AccessTimeIcon sx={{ color: 'blue' }} />
+                  <strong>Duration:</strong> {flight.durationBack}
+                </Typography>
+                <hr />
+                <Typography variant="subtitle1">
+                  <strong>Price:</strong> {flight.price} EUR
+                </Typography>
 
 
 
@@ -115,4 +139,3 @@ function FlightsList({ data }) {
 }
 
 export default FlightsList;
-
