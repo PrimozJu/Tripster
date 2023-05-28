@@ -9,8 +9,8 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 function FlightsList({ data }) {
-  console.log("nanaanan");
-  console.log(data);
+  
+  //console.log(data); //might be useful to see what data is passed to this component
 
   const divStyle = {
     color: 'red',

@@ -21,8 +21,7 @@ const FormFlights = ({ handleForm }) => {
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
 
     const handleSubmit = (e) => {
-        console.log("fromLocation")
-        console.log(fromLocation)
+      
         
         
         e.preventDefault();

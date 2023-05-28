@@ -7,7 +7,7 @@ import { Air } from "@mui/icons-material";
 const AutocompleteAirports = (props) => {
   const findCode = (name) => {
     console.log("prozim funkcijo findCode");
-    console.log(name);
+    //console.log(name);
     /* Airports.forEach((airport) => {
       if (airport.name == name) {
         console.log("Nasel sem letalisce");
@@ -34,7 +34,7 @@ const AutocompleteAirports = (props) => {
   .map((airport) => airport.name); // Extracting names from airport objects
   const setLocation = props.setLocation
 
-  console.log(items);
+ // console.log(items);
  
   
   
