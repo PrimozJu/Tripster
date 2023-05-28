@@ -26,9 +26,10 @@ app.get("/searches/:searchType", async (req, res) => {
      */
     const searchType = req.params.searchType.toLowerCase();
     const currentUser = req.headers["user"];
+    const allowedStrings = ['flights', 'stays', 'both'];
 
 
-    if (!searchType || !currentUser) {
+    if (!allowedStrings.includes(searchType) || !currentUser) {
         return res.status(400).send("Bad request");
     }
 
@@ -80,13 +81,17 @@ app.post("/authenticate", async (req, res) => {
 app.get("/airbnb", async (req, res) => {
     const params = req.query;
     const currentUser = req.headers["user"];
-    console.log(currentUser)
 
     if (currentUser) {
         saveSearch(currentUser, params, "staySearches", db);
     };
 
-    const responseData = await callAirbnbAPI(params);
+    try {
+        // const responseData = await callAirbnbAPI(params);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Something went wrong");
+    }
 
     if (responseData) {
         return res.status(500).send("lmao");
@@ -100,16 +105,28 @@ app.get("/airbnb", async (req, res) => {
 
 app.get("/flights", async (req, res) => {
     const params = req.query
-    const responseData = await callFligtsAPI(params, 50);
-    const currentUser = req.headers["user"];
 
+    let responseData;
+    try {
+        responseData = await callFligtsAPI(params, 50);
+
+        if (!responseData) {
+            throw new Error("Something went wrong");
+        }
+    } catch (err) {
+        console.log(err);
+
+        if (err instanceof TypeError)
+            return res.status(400).send("Bad request");
+        return res.status(500).send("Something went wrong");
+    }
+
+    const currentUser = req.headers["user"];
+    params.cityTo = responseData[0].cityTo;
+    params.cityFrom = responseData[0].cityFrom;
     if (currentUser) {
         saveSearch(currentUser, params, "flightSearches", db);
     };
-
-    if (!responseData) {
-        return res.status(500).send("Something went wrong");
-    }
 
     zaNazaj = []
     responseData.forEach((element) => {
