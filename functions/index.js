@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime, reccomendation } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime, prestej, analyzeData } = require("./funkcije");
 
 
 initializeApp();
@@ -28,9 +28,10 @@ app.get("/recommendation", async (req, res) => {
     }
 
     try {
-        const data = await reccomendation(currentUser, db, 5);
+        const data = await prestej(currentUser, db, 5);
         console.log(data);
-        return res.status(200).json(data);
+        const analyzedData = await analyzeData(data);
+        return res.status(200).json(analyzedData);
       } catch (err) {
         console.error(err);
         return res.status(500).send("Something went wrong");

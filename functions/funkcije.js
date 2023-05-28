@@ -57,12 +57,7 @@ module.exports.callAirbnbAPI = async (params) => {
 }
 
 
-module.exports.prestej = (item, object) => {
-  object[item] = (object[item] || 0) + 1;
-};
-
-
-module.exports.reccomendation = async (currentUser, db, number) => {
+module.exports.prestej = async (currentUser, db, number) => {
   return new Promise((resolve, reject) => {
     const docRef = db.collection('users').doc(currentUser);
 
@@ -70,13 +65,13 @@ module.exports.reccomendation = async (currentUser, db, number) => {
       const flightData = docSnapshot.data()["flightSearches"] || [];
       const stayData = docSnapshot.data()["staySearches"] || [];
 
-      const lastFiveFlights = flightData.slice(-number);
-      const lastFiveStays = stayData.slice(-number);
+      const lastFiveFlights = flightData.slice(-number) || [];
+      const lastFiveStays = stayData.slice(-number) || [];
 
       const countOccurrences = (items) => {
         const count = {};
         items.forEach((item) => {
-          this.prestej(item, count);
+          count[item] = (count[item] || 0) + 1;
         });
         return count;
       };
@@ -103,6 +98,45 @@ module.exports.reccomendation = async (currentUser, db, number) => {
     }).catch(err => {
       console.error(err);
       reject(err);
+    });
+  });
+}
+
+
+module.exports.analyzeData = (data) => {
+
+  const findMostCommon = (key) => {
+    const items = Object.keys(data[key]);
+    const itemCounts = items.map(item => data[key][item]);
+    const maxItemCount = Math.max(...itemCounts);
+    const mostCommonItems = items.filter(item => data[key][item] === maxItemCount);
+    return mostCommonItems;
+  }
+
+  return new Promise((resolve, reject) => {
+    const mostCommonCurrencies = findMostCommon('flightCurrency');
+    const mostCommonFlightOrigins = findMostCommon('flightOrigins');
+    const mostCommonFlightDestinations = findMostCommon('flightDestinations');
+    const mostCommonFlightClasses = findMostCommon('flightClass');
+    const mostCommonStayDestinations = findMostCommon('stayDestinations');
+
+    const flightDates = Object.keys(data.flightThere);
+    const mostRecentFlightDate = flightDates.reduce((a, b) => new Date(a) > new Date(b) ? a : b);
+
+    const numberOfAdults = Object.keys(data.stayAdults).reduce((a, b) => data.stayAdults[a] > data.stayAdults[b] ? a : b);
+    const numberOfChildren = Object.keys(data.stayChildren).reduce((a, b) => data.stayChildren[a] > data.stayChildren[b] ? a : b);
+    const numberOfInfants = Object.keys(data.stayInfants).reduce((a, b) => data.stayInfants[a] > data.stayInfants[b] ? a : b);
+
+    resolve({
+      currency: mostCommonCurrencies,
+      flightOrigin: mostCommonFlightOrigins,
+      flightDestination: mostCommonFlightDestinations,
+      recentFlightDate: mostRecentFlightDate,
+      flightClass: mostCommonFlightClasses,
+      numberOfAdults: [numberOfAdults],
+      numberOfChildren: [numberOfChildren],
+      numberOfInfants: [numberOfInfants],
+      stayDestination: mostCommonStayDestinations
     });
   });
 }
