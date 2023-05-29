@@ -33,7 +33,7 @@ Predhodno potrebujete že naložen [Node.js](https://nodejs.org/en/download).
 2. Naložite si Firebase globalno: ```$ npm install -g firebase-tools```
 3. Prijavite se v vaš račun z: ```$ firebase login```
 4. Zaženite: ```$ firebase init``` in uporabite **le** Firebase functions in firestore
-5. Vzpostavite funkije na Firebase strežnikih z ```firebase deploy --only functions```
+5. Vzpostavite funkije na Firebase strežnikih z ```$ firebase deploy --only functions```
 6. Uporabite ```$ cd .\frontend\``` in zaženite ```$ firebase init``` tokrat izberete Firebase firestore in auth
 7. V mapi `./frontend/src` ustvarite novo datoteko "secret-keys.js":
   ```javascript
@@ -47,10 +47,10 @@ Predhodno potrebujete že naložen [Node.js](https://nodejs.org/en/download).
   - `module.exports.airbnbAPIkey = "";` API ključ dobite [Rapid API - AirBnB](https://rapidapi.com/3b-data-3b-data-default/api/airbnb13) 
   - `module.exports.flightsAPIkey = "";` API ključ dobite [Tequila by Kiwi.com](https://tequila.kiwi.com/portal/login) 
   - `module.exports.chatGPTAPIkey = "";` API ključ dobite [OpenAI API](https://platform.openai.com/account/api-keys)
-9. Naložite Node modules s `npm install` v:
+9. Naložite Node modules s `$ npm install` v:
   - `./functions`
   - `./frontend`
-10. Zaženite react projekt s `npm start` v mapi `./frontend`
+10. Zaženite react projekt s `$ npm start` v mapi `./frontend`
 
 
 ## Avtorji
