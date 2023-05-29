@@ -106,7 +106,8 @@ app.get("/airbnb", async (req, res) => {
         saveSearch(currentUser, params, "staySearches", db);
     };
 
-    // const responseData = await callAirbnbAPI(params);
+    let responseData = undefined;
+    // responseData = await callAirbnbAPI(params);
 
     if (responseData) {
         return res.status(500).send("lmao");

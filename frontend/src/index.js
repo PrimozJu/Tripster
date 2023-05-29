@@ -5,6 +5,7 @@ import App from "App";
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
+import { firebaseKey } from "secret-keys";
 
 import {
   getFirestore,
@@ -16,15 +17,7 @@ import {
 const container = document.getElementById("root");
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDvrLf6ndKyHMgXCxReOOLXvGRuiW9eOhM",
-  authDomain: "tripsterpraktikum-e913c.firebaseapp.com",
-  projectId: "tripsterpraktikum-e913c",
-  storageBucket: "tripsterpraktikum-e913c.appspot.com",
-  messagingSenderId: "320340062048",
-  appId: "1:320340062048:web:be951119ae91fae5b1b805",
-  measurementId: "G-S1FG8420FV"
-};
+const firebaseConfig = firebaseKey;
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

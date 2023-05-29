@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { UserContext } from "../../../App";
 
 import { db, auth } from '../../../index';
+import { localApiStays } from "secret-keys";
 
 
 const Stays = () => {
@@ -32,7 +33,7 @@ const Stays = () => {
 
     const options = {
       method: "GET",
-      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/airbnb",
+      url: localApiStays,
       params: params,
       headers: {
         "user": auth.currentUser.email

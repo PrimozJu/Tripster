@@ -13,6 +13,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import { db, auth } from '../../../index';
+import { localApiFlights } from "secret-keys";
 
 
 const Flights = () => {
@@ -24,7 +25,7 @@ const Flights = () => {
 
     const options = {
       method: "GET",
-      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/flights",
+      url: localApiFlights,
       headers: {
         "Content-Type": "application/json",
         "user": auth.currentUser.email

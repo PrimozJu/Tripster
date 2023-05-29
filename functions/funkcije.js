@@ -62,8 +62,8 @@ module.exports.prestej = async (currentUser, db, number) => {
     const docRef = db.collection('users').doc(currentUser);
 
     docRef.get().then(docSnapshot => {
-      const flightData = docSnapshot.data()["flightSearches"] || [];
-      const stayData = docSnapshot.data()["staySearches"] || [];
+      const flightData = docSnapshot.exists ? docSnapshot.data()["flightSearches"] || [] : [];
+      const stayData = docSnapshot.exists ? docSnapshot.data()["staySearches"] || [] : [];
 
       const lastFiveFlights = flightData.slice(-number) || [];
       const lastFiveStays = stayData.slice(-number) || [];
