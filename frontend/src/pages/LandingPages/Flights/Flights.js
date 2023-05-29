@@ -23,12 +23,17 @@ const Flights = () => {
   async function handleForm(params) {
     console.log(`parameters: ${JSON.stringify(params)}`);
 
+    let userEmail = null;
+    try {
+      userEmail = auth.currentUser.email
+    } catch (err) {}
+
     const options = {
       method: "GET",
       url: localApiFlights,
       headers: {
         "Content-Type": "application/json",
-        "user": auth.currentUser.email
+        "user": userEmail
       },
       params: params
     }

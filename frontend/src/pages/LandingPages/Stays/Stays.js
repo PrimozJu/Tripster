@@ -31,12 +31,17 @@ const Stays = () => {
   async function handleForm(params) {
     console.log(params);
 
+    let userEmail = null;
+    try {
+      userEmail = auth.currentUser.email
+    } catch (err) {}
+
     const options = {
       method: "GET",
       url: localApiStays,
       params: params,
       headers: {
-        "user": auth.currentUser.email
+        "user": userEmail,
       }
     };
 
