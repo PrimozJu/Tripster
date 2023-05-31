@@ -1,13 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Flights from './Flights';
 import Card from "@mui/material/Card";
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Colorize } from '@mui/icons-material';
+import { Add, Colorize } from '@mui/icons-material';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Button from '@mui/material/Button';
 function FlightsList({ data }) {
   
   //console.log(data); //might be useful to see what data is passed to this component
@@ -56,7 +58,27 @@ function FlightsList({ data }) {
     }
   };
 
+  // Define a state variable to store the items in the cart
+  const [cartItems, setCartItems] = useState([]);
 
+  // Define a function to handle adding an item to the cart
+  const handleAddProduct = product => {
+    // Check if the product already exists in the cart
+    const productExist = cartItems.find(item => item.id === product.id);
+    if (productExist) {
+      // If so, update its quantity
+      setCartItems(
+        cartItems.map(item =>
+          item.id === product.id
+            ? { ...productExist, quantity: productExist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // Otherwise, add it to the cart with a default quantity of 1
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
 
   return (
     <div className="container">
@@ -108,28 +130,17 @@ function FlightsList({ data }) {
                   {flight.cityTo} - {flight.cityFrom}
                 {getTransfersComponents(flight.transfers, "back")}
                 </Typography>
-                {/* za nazaj, naredi še lepo narjene prestope */}
-                <Typography variant="subtitle1">
-                  <FlightTakeoffIcon sx={{ color: 'green' }} />
-                  <strong>Departure:</strong> {flight.routeFrom[0].departure}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <FlightLandIcon sx={{ color: 'red' }} />
-                  <strong>Arrival:</strong> {flight.routeFrom[0].arrival}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <AccessTimeIcon sx={{ color: 'blue' }} />
-                  <strong>Duration:</strong> {flight.durationBack}
-                </Typography>
-                <hr />
-                <Typography variant="subtitle1">
-                  <strong>Price:</strong> {flight.price} EUR
-                </Typography>
 
-
+                <Typography variant="subtitle1">
+                <Button 
+                sx={{ color: 'success.main', fontSize: 20 }}
+                onClick={() => handleAddProduct(flight)} >
+                <AddShoppingCartIcon />
+                  Add to cart
+                </Button>
+                </Typography>
 
             </CardContent>
-
           </Card>
 
         ))}
