@@ -153,6 +153,8 @@ module.exports.saveSearch = (user, params, collection, db) => {
     updateData[collection] = searches;
 
     return docRef.set(updateData, { merge: true });
+  }).then(() => {
+    console.log(`Collecttion ${collection} updated for user ${user}`);
   }).catch(err => {
     console.error(err);
   });
