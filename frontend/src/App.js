@@ -32,7 +32,7 @@ import routes from "routes";
 import { useState } from "react";
 import User from "pages/LandingPages/User/User";
 import { createContext } from "react";
-
+import Cart from "pages/LandingPages/Cart/Cart";
 export const UserContext = createContext()
 const App = () => {
 
@@ -73,7 +73,8 @@ const App = () => {
         <Route path="/user/login" element={<SignIn/>} />
         <Route path="/user/signup" element={<SignUp/>} />
         <Route path="/user/profile" element={<User/>} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+{/*         <Route path="/user/cart" element={<Cart/>} />
+ */}        <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
       </UserContext.Provider>
     </ThemeProvider>

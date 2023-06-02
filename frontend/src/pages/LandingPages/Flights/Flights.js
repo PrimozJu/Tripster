@@ -8,19 +8,18 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import bgImage from "assets/images/tnf.jpg";
 import FlightsList from "./FlightsList";
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import { db, auth } from '../../../index';
 import { localApiFlights } from "secret-keys";
 
-
 const Flights = () => {
-  const [response, setResponse] = useState(undefined)
+  const [response, setResponse] = useState(undefined);
   const [loading, setLoading] = useState(false);
-
+  
   async function handleForm(params) {
+
     console.log(`parameters: ${JSON.stringify(params)}`);
 
     let userEmail = null;

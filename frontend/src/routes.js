@@ -70,6 +70,8 @@ import Typography from "layouts/sections/elements/typography";
 import Stays from "pages/LandingPages/Stays/Stays";
 import Itinerary from "pages/LandingPages/Itinirary/Itinerary"
 import Flights from "pages/LandingPages/Flights/Flights"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Cart from "pages/LandingPages/Cart/Cart"
 const routes = [
   {
     name: "Plan",
@@ -108,15 +110,19 @@ const routes = [
         ],
       },
     ],
+
   },
-  /* {
-    name: "sections",
-    icon: <Icon>view_day</Icon>,
-    collapse: [
+   {
+    name: "Cart",
+    icon: <ShoppingCartIcon/>,
+    route: "/user/cart",
+    component: <Cart/>
+
+    /* collapse: [
       {
         name: "page sections",
         description: "See all sections",
-        dropdown: true,
+       
         collapse: [
           {
             name: "page headers",
@@ -129,7 +135,13 @@ const routes = [
             component: <Features />,
           },
         ],
-      },
+      }
+    ], */
+  },
+   
+      /*
+      ,
+      
       {
         name: "navigation",
         description: "See all navigations",
