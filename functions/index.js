@@ -121,6 +121,11 @@ app.get("/airbnb", async (req, res) => {
 
 app.get("/testData", (req, res) => {
     const currentUser = req.headers["user"];
+
+    if (!currentUser) {
+        return res.status(400).send("Bad request");
+    }
+    
     try {
         fillDB(currentUser, db);
         return res.status(200).send("OK");

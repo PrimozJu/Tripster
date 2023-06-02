@@ -58,6 +58,33 @@ module.exports.callAirbnbAPI = async (params) => {
 
 
 module.exports.prestej = async (currentUser, db, number) => {
+
+  const combineKeys = (input) => {
+    const result = {};
+
+    for (const key in input) {
+      const value = input[key];
+      for (const subKey in value) {
+        if (result[subKey]) {
+          result[subKey] += value[subKey];
+        } else {
+          result[subKey] = value[subKey];
+        }
+      }
+    }
+
+
+    return result;
+  }
+
+  const countOccurrences = (items) => {
+    const count = {};
+    items.forEach((item) => {
+      count[item] = (count[item] || 0) + 1;
+    });
+    return count;
+  };
+
   return new Promise((resolve, reject) => {
     const docRef = db.collection('users').doc(currentUser);
 
@@ -68,27 +95,28 @@ module.exports.prestej = async (currentUser, db, number) => {
       const lastFiveFlights = flightData.slice(-number) || [];
       const lastFiveStays = stayData.slice(-number) || [];
 
-      const countOccurrences = (items) => {
-        const count = {};
-        items.forEach((item) => {
-          count[item] = (count[item] || 0) + 1;
-        });
-        return count;
-      };
+      const currency = combineKeys([
+        countOccurrences(lastFiveFlights.map((flight) => flight.curr)),
+        countOccurrences(lastFiveStays.map((stay) => stay.currency))
+      ]);
+
+      const adults = combineKeys([
+        countOccurrences(lastFiveFlights.map((flight) => flight.adults)),
+        countOccurrences(lastFiveStays.map((stay) => stay.adults))
+      ]);
+
 
       const data = {
-        flightCurrency: countOccurrences(lastFiveFlights.map((flight) => flight.curr)),
-        stayCurrency: countOccurrences(lastFiveStays.map((stay) => stay.currency)),
+        currency: currency,
+        adults: adults,
         flightOrigins: countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom)),
         flightDestinations: countOccurrences(lastFiveFlights.map((flight) => flight.cityTo)),
         flightThere: countOccurrences(lastFiveFlights.map((flight) => flight.date_from)),
         flightBack: countOccurrences(lastFiveFlights.map((flight) => flight.return_from)),
         flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
-        flightNumberAdults: countOccurrences(lastFiveFlights.map((flight) => flight.adults)),
         stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
         stayCheckin: countOccurrences(lastFiveStays.map((stay) => stay.checkin)),
         stayCheckout: countOccurrences(lastFiveStays.map((stay) => stay.checkout)),
-        stayAdults: countOccurrences(lastFiveStays.map((stay) => stay.adults)),
         stayChildren: countOccurrences(lastFiveStays.map((stay) => stay.children)),
         stayInfants: countOccurrences(lastFiveStays.map((stay) => stay.infants))
       };
@@ -114,7 +142,7 @@ module.exports.analyzeData = (data) => {
   }
 
   return new Promise((resolve, reject) => {
-    const mostCommonCurrencies = findMostCommon('flightCurrency');
+    const mostCommonCurrencies = findMostCommon('currency');
     const mostCommonFlightOrigins = findMostCommon('flightOrigins');
     const mostCommonFlightDestinations = findMostCommon('flightDestinations');
     const mostCommonFlightClasses = findMostCommon('flightClass');
@@ -123,7 +151,7 @@ module.exports.analyzeData = (data) => {
     const flightDates = Object.keys(data.flightThere);
     const mostRecentFlightDate = flightDates.reduce((a, b) => new Date(a) > new Date(b) ? a : b);
 
-    const numberOfAdults = Object.keys(data.stayAdults).reduce((a, b) => data.stayAdults[a] > data.stayAdults[b] ? a : b);
+    const numberOfAdults = Object.keys(data.adults).reduce((a, b) => data.adults[a] > data.adults[b] ? a : b);
     const numberOfChildren = Object.keys(data.stayChildren).reduce((a, b) => data.stayChildren[a] > data.stayChildren[b] ? a : b);
     const numberOfInfants = Object.keys(data.stayInfants).reduce((a, b) => data.stayInfants[a] > data.stayInfants[b] ? a : b);
 
@@ -199,22 +227,22 @@ module.exports.formatFlightdetails = (flightDetails) => {
 }
 
 
-module.exports.getCheapestFlight = (flights, value) => {
-  const cheapestFlight = flights.reduce((cheapest, current) => {
-    if (current[value] < cheapest[value]) {
+module.exports.getBest = (flights, value) => {
+  const flight = flights.reduce((best, current) => {
+    if (current[value] < best[value]) {
       return current;
     }
-    return cheapest;
+    return best;
   });
 
-  return cheapestFlight;
+  return flight;
 }
 
 
 module.exports.getBestFlights = (flights) => {
   let zaNazaj = [];
-  zaNazaj.push(this.getCheapestFlight(flights, "price"));
-  zaNazaj.push(this.getCheapestFlight(flights, "durationInMinutes"));
+  zaNazaj.push(this.getBest(flights, "price"));
+  zaNazaj.push(this.getBest(flights, "durationInMinutes"));
 
   return zaNazaj;
 }
@@ -222,6 +250,7 @@ module.exports.getBestFlights = (flights) => {
 
 module.exports.fillDB = (user, db) => {
   const docRef = db.collection('users').doc(user);
+
   docRef.get().then(docSnapshot => {
     const flightSearches = docSnapshot.exists ? docSnapshot.data()["flightSearches"] || [] : [];
     const staySearches = docSnapshot.exists ? docSnapshot.data()["staySearches"] || [] : [];
