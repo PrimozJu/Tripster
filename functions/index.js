@@ -5,7 +5,7 @@ const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
-const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime, prestej, analyzeData } = require("./funkcije");
+const { getBestFlights, formatFlightdetails, callFligtsAPI, saveSearch, callAirbnbAPI, formatFromMinutes, fortmatTime, prestej, analyzeData, fillDB } = require("./funkcije");
 
 
 initializeApp();
@@ -32,11 +32,11 @@ app.get("/recommendation", async (req, res) => {
         console.log(data);
         const analyzedData = await analyzeData(data);
         return res.status(200).json(analyzedData);
-      } catch (err) {
+    } catch (err) {
         console.error(err);
         return res.status(500).send("Something went wrong");
-      }
-    
+    }
+
 });
 
 
@@ -119,19 +119,33 @@ app.get("/airbnb", async (req, res) => {
 });
 
 
+app.get("/testData", (req, res) => {
+    const currentUser = req.headers["user"];
+    try {
+        fillDB(currentUser, db);
+        return res.status(200).send("OK");
+    } catch (err) {
+        console.error(err);
+        return res.status(500).send("Something went wrong");
+    }
+});
+
+
 app.get("/flights", async (req, res) => {
     const params = req.query
 
     let responseData;
     responseData = await callFligtsAPI(params, 50);
 
-    if (!responseData) {
+    if (!responseData || responseData.length == 0) {
+        console.log("No flights found");
         return res.status(500).send("Something went wrong");
     }
 
     const currentUser = req.headers["user"];
     params.cityTo = responseData[0].cityTo;
     params.cityFrom = responseData[0].cityFrom;
+
     if (currentUser) {
         saveSearch(currentUser, params, "flightSearches", db);
     };

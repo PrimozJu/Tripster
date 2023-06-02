@@ -218,3 +218,128 @@ module.exports.getBestFlights = (flights) => {
 
   return zaNazaj;
 }
+
+
+module.exports.fillDB = (user, db) => {
+  const docRef = db.collection('users').doc(user);
+  docRef.get().then(docSnapshot => {
+    const flightSearches = docSnapshot.exists ? docSnapshot.data()["flightSearches"] || [] : [];
+    const staySearches = docSnapshot.exists ? docSnapshot.data()["staySearches"] || [] : [];
+
+    const data = {
+      "flightSearches": [
+        {
+          "adults": "2",
+          "fly_from": "ZAG",
+          "selected_cubins": "M",
+          "limit": 50,
+          "return_to": "15/07/2023",
+          "return_from": "15/07/2023",
+          "cityFrom": "Zagreb",
+          "date_to": "01/07/2023",
+          "cityTo": "New York",
+          "curr": "EUR",
+          "fly_to": "JFK",
+          "date_from": "01/07/2023"
+        },
+        {
+          "adults": "2",
+          "fly_from": "ZAG",
+          "selected_cubins": "M",
+          "limit": 50,
+          "return_to": "15/07/2023",
+          "return_from": "15/07/2023",
+          "cityFrom": "Zagreb",
+          "date_to": "01/07/2023",
+          "cityTo": "Paris",
+          "curr": "EUR",
+          "fly_to": "ORY",
+          "date_from": "01/07/2023"
+        },
+        {
+          "adults": "2",
+          "fly_from": "ZAG",
+          "selected_cubins": "M",
+          "limit": 50,
+          "return_to": "15/07/2023",
+          "return_from": "15/07/2023",
+          "cityFrom": "Zagreb",
+          "date_to": "01/07/2023",
+          "cityTo": "Edinburgh",
+          "curr": "EUR",
+          "fly_to": "EDI",
+          "date_from": "01/07/2023"
+        },
+        {
+          "adults": "2",
+          "fly_from": "ZAG",
+          "selected_cubins": "M",
+          "limit": 50,
+          "return_to": "29/07/2023",
+          "return_from": "29/07/2023",
+          "cityFrom": "Zagreb",
+          "date_to": "01/07/2023",
+          "cityTo": "New York",
+          "curr": "EUR",
+          "fly_to": "JFK",
+          "date_from": "01/07/2023"
+        },
+        {
+          "adults": "3",
+          "fly_from": "ZAG",
+          "selected_cubins": "M",
+          "limit": 50,
+          "return_to": "29/07/2023",
+          "return_from": "29/07/2023",
+          "cityFrom": "Zagreb",
+          "date_to": "01/07/2023",
+          "cityTo": "New York",
+          "curr": "EUR",
+          "fly_to": "JFK",
+          "date_from": "01/07/2023"
+        }
+      ],
+      "staySearches": [
+        {
+          "pets": "0",
+          "checkin": "2023-07-02",
+          "infants": "0",
+          "children": "0",
+          "adults": "2",
+          "location": "New York, NY",
+          "currency": "EUR",
+          "page": "1",
+          "checkout": "2023-07-14"
+        },
+        {
+          "pets": "0",
+          "checkin": "2023-07-02",
+          "infants": "0",
+          "children": "0",
+          "adults": "2",
+          "location": "New York, NY",
+          "currency": "EUR",
+          "page": "1",
+          "checkout": "2023-07-15"
+        },
+        {
+          "pets": "0",
+          "checkin": "2023-07-02",
+          "infants": "0",
+          "children": "0",
+          "adults": "2",
+          "location": "New York, NY",
+          "currency": "EUR",
+          "page": "1",
+          "checkout": "2023-07-13"
+        }
+      ]
+    };
+
+    docRef.set(data, { merge: true });
+  }).then(() => {
+    console.log(`Filled DB for user ${user}`);
+  }).catch(err => {
+    console.error(err);
+  });
+}
