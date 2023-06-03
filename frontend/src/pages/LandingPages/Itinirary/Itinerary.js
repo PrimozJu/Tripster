@@ -4,6 +4,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import bgImage from "assets/images/tnf.jpg";
 import MKBox from "components/MKBox";
@@ -13,6 +14,7 @@ import ItineraryDetails from "./ItineraryDetails";
 import firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
 import './Itinerary.css';
+import Airplane from "../../../assets/images/itinerary/airplane.png";
 //import "firebase/auth";
 
 const Itinerary = () => {
@@ -37,27 +39,23 @@ const Itinerary = () => {
       data: JSON.stringify(jsonData),
     };
 
-    fetch(options.url, {
-      method: options.method,
-      body: options.data,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response data here
-        setLoading(true);
+    setLoading(true);
 
-        console.log(data);
-        setResponse(data);
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
+    try {
+      const response = await fetch(options.url, {
+        method: options.method,
+        body: options.data,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      const data = await response.json();
+      setResponse(data);
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
   }
 
   const auth = getAuth();
@@ -73,7 +71,7 @@ const Itinerary = () => {
   }
 
   return (
-    <div>
+    <>
       <DefaultNavbar
         routes={routes}
         action={{
@@ -151,14 +149,33 @@ const Itinerary = () => {
       >
         <TripForm submit={chatTalk}></TripForm>
         <div id="chatDiv"></div>
-
-        {loading ? (
-          <ReactLoading type="bars" color="#000" height={50} width={50} />
-        ) : response ? (
-          <ItineraryDetails data={response} />
-        ) : null}
       </Card>
-    </div>
+
+      {loading && (
+        <Grid container item xs={12} justifyContent="center">
+          <img
+            src={Airplane}
+            className="loadingImg"
+            alt="Airplane"
+            style={{ height: "100px", width: "100px" }}
+          />
+        </Grid>
+      )}
+
+      {response && (
+        <Card>
+          <ItineraryDetails data={response} />
+        </Card>
+      )}
+      <footer>
+      <Grid container justifyContent="center" alignItems="center" p={2}>
+        <Typography variant="body2" color="textSecondary">
+          © {new Date().getFullYear()} Your Website. All rights reserved.
+        </Typography>
+      </Grid>
+    </footer>
+    </>
+    
   );
 };
 

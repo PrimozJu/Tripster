@@ -5,8 +5,7 @@ import MKInput from "components/MKInput";
 function TripForm({ submit }) {
   const [travelTime, setTravelTime] = useState("");
   const [travelDestination, setTravelDestination] = useState("");
-  const [additionalInfo, setAdditionalInfo] = useState([]);
-  const [additionalInfoInput, setAdditionalInfoInput] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
 
   const handleSubmit = (event) => {
@@ -20,9 +19,8 @@ function TripForm({ submit }) {
   };
 
   const handleAddInfo = () => {
-    if (additionalInfoInput !== "") {
-      setAdditionalInfo((prevInfo) => [...prevInfo, additionalInfoInput]);
-      setAdditionalInfoInput("");
+    if (additionalInfo !== "") {
+      setAdditionalInfo(additionalInfo);
     }
   };
 
@@ -49,22 +47,25 @@ function TripForm({ submit }) {
             onChange={(event) => setTravelTime(event.target.value)}
           />
         </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Additional information:</label>
-          {additionalInfo.map((info, index) => (
-            <div key={index}>{info}</div>
-          ))}
-          {showAdditionalInfo && (
+        {showAdditionalInfo && (
+          <MKBox display="flex" alignItems="center" gap={1}>
+            <label>Additional information:</label>
             <MKInput
               type="text"
-              value={additionalInfoInput}
-              onChange={(event) => setAdditionalInfoInput(event.target.value)}
+              value={additionalInfo}
+              onChange={(event) => setAdditionalInfo(event.target.value)}
             />
-          )}
-          <button type="button" onClick={toggleAdditionalInfo}>
-            +
-          </button>
-        </MKBox>
+          </MKBox>
+        )}
+        {!showAdditionalInfo && (
+          <MKBox display="flex" alignItems="center" gap={1}>
+            <label>Additional information:</label>
+            <div>{additionalInfo}</div>
+          </MKBox>
+        )}
+        <button  type="button"className="gumbDod" onClick={toggleAdditionalInfo}>
+          {showAdditionalInfo ? "-" : "+"}
+        </button>
       </MKBox>
       <button type="submit">Submit</button>
     </form>

@@ -270,7 +270,7 @@ app.post("/itineary-chat-gpt", async (req, res) => {
     const additionalInfo = params.additionalInfo;
 
     // V query se dodaj fixen izgled json formata, za lazjo predstavitev na fe
-    const query = `Hi chatGPT, can you write me itinerary for ${travelTime} days in ${travelDestination}? include  ${additionalInfo} and respond back with json format type so I can map through them like that {"travelDestination":${travelDestination},tripArray:[{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for duration of time length provided in request. Thank you!`;
+    const query = `Hi chatGPT, can you write me itinerary for ${travelTime} days in ${travelDestination}? include these paramaters in response :   ${additionalInfo} and respond back with json format type so I can map through them like that {"travelDestination":${travelDestination},tripArray:[{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for duration of time length provided in request. Thank you!`;
 
     const options = {
       method: "POST",

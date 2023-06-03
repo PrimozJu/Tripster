@@ -8,3 +8,21 @@ li {
   list-style: none;
   text-decoration: none;
 }
+
+
+.loadingImg {
+    animation: rotation 1.9s infinite linear;
+  }
+  
+  @keyframes rotation {
+    to {
+      transform: rotate(0deg);
+    }
+    from {
+      transform: rotate(359deg);
+    }
+  }
+.gumbDod {
+    border-radius: 100%;
+    width: 3vw;
+}
