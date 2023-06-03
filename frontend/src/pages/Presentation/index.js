@@ -33,6 +33,7 @@ import bgImage from "assets/images/tnf.jpg";
 
 import AutoComplete from "../../components/Autocomplete/AutoComplete";
 import countriesList from "components/Autocomplete/cities";
+import RecommendationTable from "pages/LandingPages/Recommendations/RecommendationTable";
 function Presentation() {
   return (
     <>
@@ -96,7 +97,9 @@ function Presentation() {
         }}
       >
        
-        The search engine will go here
+       {//qwertz
+       }
+        <RecommendationTable/>
         
       
 

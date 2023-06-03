@@ -12,6 +12,7 @@ import ReactLoading from "react-loading";
 import ItineraryDetails from "./ItineraryDetails";
 import firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
+import './Itinerary.css';
 //import "firebase/auth";
 
 const Itinerary = () => {
@@ -20,26 +21,14 @@ const Itinerary = () => {
 
   async function chatTalk(params) {
     console.log(params);
-    const departureDate = params.departureDate;
-    const returnDate = params.returnDate;
-    const numTravelers = params.numTravelers;
-    const desiredContinent = params.desiredContinent;
-    const travelType = params.travelType; //adventure cultural, relaxation
-    const interests = params.interest;
-    const preferredAccommodation = params.preferredAccommodation;
-    const maxBudget = params.maxBudget;
-  
-    
+    const travelTime = params.travelTime;
+    const travelDestination = params.travelDestination;
+    const additionalInfo = params.additionalInfo;
 
     const jsonData = {
-      departureDate: departureDate,
-      returnDate: returnDate,
-      numTravelers: numTravelers,
-      desiredContinent: desiredContinent,
-      travelType: travelType,
-      interests: interests,
-      preferredAccommodation: preferredAccommodation,
-      maxBudget: maxBudget,
+      travelTime,
+      travelDestination,
+      additionalInfo,
     };
 
     const options = {
@@ -71,10 +60,8 @@ const Itinerary = () => {
       });
   }
 
-  
   const auth = getAuth();
-const user = auth.currentUser;
-
+  const user = auth.currentUser;
 
   if (user) {
     // User is signed in.
@@ -84,12 +71,8 @@ const user = auth.currentUser;
     // No user is signed in.
     console.log("user NI prijavljen");
   }
-  
 
-
-
-
-return (
+  return (
     <div>
       <DefaultNavbar
         routes={routes}
