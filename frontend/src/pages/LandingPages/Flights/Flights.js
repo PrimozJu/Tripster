@@ -17,7 +17,7 @@ import { localApiFlights } from "secret-keys";
 const Flights = () => {
   const [response, setResponse] = useState(undefined);
   const [loading, setLoading] = useState(false);
-  
+  const [error, setError] = useState(null); // New state variable for error message
   async function handleForm(params) {
 
     console.log(`parameters: ${JSON.stringify(params)}`);
@@ -41,13 +41,15 @@ const Flights = () => {
       setLoading(true);
       const respons = await axios.request(options);
   
-      //PRIMA - Tu mas array
+      // PRIMA - Tu mas array
       const responseData = respons.data;
       console.log(responseData);
       
-      setResponse(responseData)
+      setResponse(responseData);
+      setError(null); // Reset error state if request succeeds
     } catch (err) {
       console.error(err.message);
+      setError("Something went wrong, try again later"); // Set error message in state
     }
 
     setLoading(false);
@@ -125,6 +127,10 @@ const Flights = () => {
 
         {loading ? (
           <ReactLoading type="bars" color="#000" height={50} width={50} />
+        ) : error ? (
+          <div>
+            <h1>{error}</h1>
+          </div>
         ) : response ? (
           <FlightsList data={response} />
         ) : null}

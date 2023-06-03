@@ -16,15 +16,14 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import OrderButton from "./OrderButton";
-
 const Cart = () => {
     const colRef = collection(db, "user1");
     const [iskanje, setIskanje] = useState([]);
     const navigate = useNavigate();
     const { userIdState, setUserIdState } = useContext(UserContext);
 
-
-
+    const { cartItems, setCartItems } = useContext(UserContext);
+    console.log(cartItems);
 
     return (
         <>
@@ -61,8 +60,23 @@ const Cart = () => {
                             <MKTypography variant="h2" fontWeight={700} gutterBottom>
                                 Cart
                             </MKTypography>
+                            <MKTypography variant="body1" fontWeight={400} gutterBottom>
+                                Here you can see your cart.
+
+
+                            </MKTypography>
+
+                            {cartItems.map((item) => (
+                                <React.Fragment key={item.id}>
+                                    
+                                            <MKTypography variant="body1" fontWeight={400} gutterBottom>
+                                                {item.cityFrom} - {item.cityTo} :  {item.price}€
+                                            </MKTypography>
+                                        
+                                </React.Fragment>
+                            ))}
                             <MKTypography variant="h6" fontWeight={600} gutterBottom>
-                        <OrderButton />
+                                <OrderButton />
                             </MKTypography>
 
                         </Card>

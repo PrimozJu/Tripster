@@ -3,11 +3,14 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import countriesList from "../../../components/Autocomplete/cities";
 import AutoComplete from "../../../components/Autocomplete/AutoComplete";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 const FormAirBnb = ({ handleForm }) => {
   const [location, setLocation] = useState("Maribor");
   const [checkin, setCheckin] = useState("2023-07-02");
   const [checkout, setCheckout] = useState("2023-07-14");
-  const [adults, setAdults] = useState(1);
+  const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [pets, setPets] = useState(0);
@@ -57,52 +60,36 @@ const FormAirBnb = ({ handleForm }) => {
           />
         </MKBox>
         <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Adults:</label>
+          <label>People:</label>
           <MKInput
             type="number"
             value={adults}
             onChange={(e) => setAdults(e.target.value)}
+            placeholder="Adults"
           />
         </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Children:</label>
-          <MKInput
-            type="number"
-            value={children}
-            onChange={(e) => setChildren(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Infants:</label>
-          <MKInput
-            type="number"
-            value={infants}
-            onChange={(e) => setInfants(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Pets:</label>
-          <MKInput
-            type="number"
-            value={pets}
-            onChange={(e) => setPets(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Page:</label>
-          <MKInput
-            type="number"
-            value={page}
-            onChange={(e) => setPage(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
+        
+       {/*  <MKBox display="flex" alignItems="center" gap={1}>
           <label>Currency:</label>
           <MKInput
             type="text"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           />
+        </MKBox> */}
+        <MKBox display="flex" alignItems="center" gap={1}>
+          <InputLabel id="demo-simple-select-label">Currency</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={currency}
+            label="currency"
+            onChange={(e) => setCurrency(e.target.value)}
+          >
+            <MenuItem value={"EUR"}>EUR</MenuItem>
+            <MenuItem value={"USD"}>USD</MenuItem>
+            <MenuItem value={"GBP"}>GBP</MenuItem>
+          </Select>
         </MKBox>
       </MKBox>
       <button type="submit">Submit</button>

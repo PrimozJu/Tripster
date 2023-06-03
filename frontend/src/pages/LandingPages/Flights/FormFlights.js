@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import AutocompleteAirports from "../../../components/Autocomplete/AutoCompleteAirports";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 function convertDateFormat(dateString) {
     const dateParts = dateString.split('-');
     const day = dateParts[2];
     const month = dateParts[1];
     const year = dateParts[0];
-  
+
     return `${day}/${month}/${year}`;
-  }
+}
 
 const FormFlights = ({ handleForm }) => {
     const [fromLocation, setFromLocation] = useState("LJU");
@@ -21,9 +24,9 @@ const FormFlights = ({ handleForm }) => {
     const [cabinClass, setCabinClass] = useState("M"); //M - economy, C - business, F - first
 
     const handleSubmit = (e) => {
-      
-        
-        
+
+
+
         e.preventDefault();
         const params = {
             fly_from: fromLocation.toString(),
@@ -49,7 +52,7 @@ const FormFlights = ({ handleForm }) => {
                         value={fromLocation}
                         onChange={(e) => setFromLocation(e.target.value)}
                     /> */}
-                <AutocompleteAirports setLocation={setFromLocation}/>
+                    <AutocompleteAirports setLocation={setFromLocation} />
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
                     <label>To where :</label> {/* primeri airport kod da nebos rabo iskat VIE MAD BCN JFK ATH LHR LJU ZAG */}
@@ -58,7 +61,7 @@ const FormFlights = ({ handleForm }) => {
                         value={toLocation}
                         onChange={(e) => setToLocation(e.target.value)}
                     /> */}
-                    <AutocompleteAirports setLocation={setToLocation}/>
+                    <AutocompleteAirports setLocation={setToLocation} />
 
                 </MKBox>
                 <MKBox display="flex" alignItems="center" gap={1}>
@@ -95,12 +98,18 @@ const FormFlights = ({ handleForm }) => {
                 </MKBox>
 
                 <MKBox display="flex" alignItems="center" gap={1}>
-                    <label>Currency:</label>
-                    <MKInput
-                        type="text"
+                    <InputLabel id="demo-simple-select-label">Currency</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
                         value={currency}
+                        label="currency"
                         onChange={(e) => setCurrency(e.target.value)}
-                    />
+                    >
+                        <MenuItem value={"EUR"}>EUR</MenuItem>
+                        <MenuItem value={"USD"}>USD</MenuItem>
+                        <MenuItem value={"GBP"}>GBP</MenuItem>
+                    </Select>
                 </MKBox>
             </MKBox>
             <button type="submit">Submit</button>

@@ -25,6 +25,9 @@ const Stays = () => {
   //ne seri
   const [loading, setLoading] = useState(false);
 
+  const [error, setError] = useState(null); // New state variable for error message
+
+
   const { userIdState, setUserIdState } = useContext(UserContext);
   console.log(userIdState);
 
@@ -52,7 +55,8 @@ const Stays = () => {
       setResponse(respons);
     } catch (err) {
       console.error(err.message);
-    }
+      setError("Something went wrong, try again later"); // Set error message in state
+      }
     setLoading(false);
 
   }
@@ -128,7 +132,11 @@ const Stays = () => {
 
         {loading ? (
           <ReactLoading type="bars" color="#000" height={50} width={50} />
-        ) : response ? (
+        ) : error ? (
+          <div>
+            <h1>{error}</h1>
+          </div>
+        ): response ? (
           <ApartmentList data={response.data.results} />
         ) : null}
       </Card>
