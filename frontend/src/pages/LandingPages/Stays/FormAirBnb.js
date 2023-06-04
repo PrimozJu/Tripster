@@ -93,7 +93,7 @@ const FormAirBnb = ({ handleForm }) => {
         sx={{ backgroundColor: "#4caf50", color: "#ffffff", '&:hover': { backgroundColor: '#388e3c' } }}
         type="submit"
       >
-        Submit
+        Get Stays
       </Button>
     </form>
   );
