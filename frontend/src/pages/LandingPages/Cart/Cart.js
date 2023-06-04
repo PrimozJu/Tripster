@@ -70,7 +70,7 @@ const Cart = () => {
                                 <React.Fragment key={item.id}>
                                     
                                             <MKTypography variant="body1" fontWeight={400} gutterBottom>
-                                                {item.cityFrom} - {item.cityTo} :  {item.price}€
+                                                {item.cityFrom || item.id||item.name}  {"-"?item.cityTo:""} {item.cityTo} {":"?item.cityTo:""}{item.price}€
                                             </MKTypography>
                                         
                                 </React.Fragment>
