@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
+import Button from "@mui/material/Button";
 
 function TripForm({ submit }) {
   const [travelTime, setTravelTime] = useState("");
   const [travelDestination, setTravelDestination] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
-  const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,56 +18,45 @@ function TripForm({ submit }) {
     submit(formData);
   };
 
-  const handleAddInfo = () => {
-    if (additionalInfo !== "") {
-      setAdditionalInfo(additionalInfo);
-    }
-  };
-
-  const toggleAdditionalInfo = () => {
-    setShowAdditionalInfo(!showAdditionalInfo);
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      <MKBox display="flex" flexDirection="column" gap={2}>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Travel destination:</label>
+      <MKBox display="grid" gap={2} sx={{ width: "400px" }}>
+        <div className="form-row">
+          <label>Travel destination:</label><br/>
           <MKInput
             type="text"
             value={travelDestination}
             onChange={(event) => setTravelDestination(event.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Travel time:</label>
+        </div>
+        <div className="form-row">
+          <label>Travel time:</label><br/>
           <MKInput
             type="text"
             value={travelTime}
             onChange={(event) => setTravelTime(event.target.value)}
           />
-        </MKBox>
-        {showAdditionalInfo && (
-          <MKBox display="flex" alignItems="center" gap={1}>
-            <label>Additional information:</label>
-            <MKInput
-              type="text"
-              value={additionalInfo}
-              onChange={(event) => setAdditionalInfo(event.target.value)}
-            />
-          </MKBox>
-        )}
-        {!showAdditionalInfo && (
-          <MKBox display="flex" alignItems="center" gap={1}>
-            <label>Additional information:</label>
-            <div>{additionalInfo}</div>
-          </MKBox>
-        )}
-        <button  type="button"className="gumbDod" onClick={toggleAdditionalInfo}>
-          {showAdditionalInfo ? "-" : "+"}
-        </button>
+        </div>
+        <div className="form-row">
+          <label>Additional information:</label><br/>
+          <MKInput
+            type="text"
+            value={additionalInfo}
+            placeholder="Optional"
+            onChange={(event) => setAdditionalInfo(event.target.value)}
+          />
+        </div>
       </MKBox>
-      <button type="submit">Submit</button>
+
+      <br />
+      <Button
+        variant="contained"
+        color="success"
+        sx={{ backgroundColor: "#4caf50", color: "#ffffff" , '&:hover': { backgroundColor: '#388e3c' }}}
+        type="submit"
+      >
+        Plan my trip
+      </Button>
     </form>
   );
 }
