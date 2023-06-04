@@ -13,8 +13,12 @@ import ReactLoading from "react-loading";
 import ItineraryDetails from "./ItineraryDetails";
 import firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
-import './Itinerary.css';
+import "./Itinerary.css";
+import footerRoutes from "../../../footer.routes";
+
 import Airplane from "../../../assets/images/itinerary/airplane.png";
+import DefaultFooter from "examples/Footers/DefaultFooter";
+
 //import "firebase/auth";
 
 const Itinerary = () => {
@@ -69,6 +73,13 @@ const Itinerary = () => {
     // No user is signed in.
     console.log("user NI prijavljen");
   }
+
+  const footerStyle = {
+    backgroundColor: "#f5f5f5",
+    paddingTop: "3vw",
+  };
+
+
 
   return (
     <>
@@ -167,15 +178,10 @@ const Itinerary = () => {
           <ItineraryDetails data={response} />
         </Card>
       )}
-      <footer>
-      <Grid container justifyContent="center" alignItems="center" p={2}>
-        <Typography variant="body2" color="textSecondary">
-          © {new Date().getFullYear()} Your Website. All rights reserved.
-        </Typography>
-      </Grid>
-    </footer>
+   <div style={footerStyle}>
+        <DefaultFooter content={footerRoutes} />
+      </div>
     </>
-    
   );
 };
 
