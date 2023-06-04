@@ -125,13 +125,14 @@ app.get("/airbnb", async (req, res) => {
   }
 
   let responseData = undefined;
-  // responseData = await callAirbnbAPI(params);
+   responseData = await callAirbnbAPI(params);
 
   if (responseData) {
-    return res.status(500).send("lmao");
+    //return res.status(500).send("lmao");
 
     res.status(200).send(responseData);
   } else {
+    console.log(responseData);
     res.status(500).send("Something went wrong");
   }
 });
