@@ -17,6 +17,8 @@ import { UserContext } from "../../../App";
 import Airplane from "../../../assets/images/itinerary/airplane.png";
 import { db, auth } from '../../../index';
 import { localApiStays } from "secret-keys";
+import footerRoutes from "../../../footer.routes";
+import DefaultFooter from "examples/Footers/DefaultFooter";
 
 
 const Stays = () => {
@@ -151,7 +153,9 @@ const Stays = () => {
       )}
       </Card>
 
-      
+      <div >
+        <DefaultFooter content={footerRoutes} />
+      </div>
     </div>
   );
 };
