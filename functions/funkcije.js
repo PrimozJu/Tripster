@@ -57,89 +57,92 @@ module.exports.callAirbnbAPI = async (params) => {
 }
 
 
-module.exports.formatFlightData = (responseData) => {
-  zaNazaj = [];
-  responseData.forEach((element) => {
-    //Da ne pošlje že zasedenih
-    if (element.availability.seats == null) {
-      console.log("No seats available");
-      return;
-    }
-
-    //Za VSE prestopne lete
-    const transfer = [];
-    const routeTo = [];
-    const routeFrom = [];
-    const arrivalBack = [];
-    const departureBack = [];
-    let pogoj = true;
-    let durationBack = 0;
-    element.route.forEach((item) => {
-      if (item.flyFrom != params.fly_from) {
-        if (item.flyFrom != params.fly_to) {
-          transfer.push(item.flyFrom);
-        } else {
-          transfer.push("|");
-        }
+module.exports.formatFlightData = async (responseData, params, currency) => {
+  return new Promise((resolve, reject) => {
+    zaNazaj = [];
+    responseData.forEach((element) => {
+      //Da ne pošlje že zasedenih
+      if (element.availability.seats == null) {
+        console.log("No seats available");
+        return;
       }
 
-      const routeItem = {
-        id: item.id,
-        cityFrom: item.cityFrom,
-        cityTo: item.cityTo,
-        airline: item.airline,
+      //Za VSE prestopne lete
+      const transfer = [];
+      const routeTo = [];
+      const routeFrom = [];
+      const arrivalBack = [];
+      const departureBack = [];
+      let pogoj = true;
+      let durationBack = 0;
+      element.route.forEach((item) => {
+        if (item.flyFrom != params.fly_from) {
+          if (item.flyFrom != params.fly_to) {
+            transfer.push(item.flyFrom);
+          } else {
+            transfer.push("|");
+          }
+        }
+
+        const routeItem = {
+          id: item.id,
+          cityFrom: item.cityFrom,
+          cityTo: item.cityTo,
+          airline: item.airline,
+        };
+
+        const duration = {
+          utc_departure: item.utc_departure,
+          utc_arrival: item.utc_arrival,
+        };
+
+        const arrayItem = Object.assign(routeItem, this.formatFlightdetails(duration));
+
+        //loci za tja in nazaj
+        if (pogoj && item.cityFrom != element.cityTo) {
+          routeTo.push(arrayItem);
+        } else {
+          pogoj = false;
+          durationBack += arrayItem.durationInMinutes;
+          arrivalBack.push(this.fortmatTime(new Date(item.utc_arrival)));
+          departureBack.push(this.fortmatTime(new Date(item.utc_departure)));
+
+          routeFrom.push(arrayItem);
+        }
+      });
+
+      //Tisti ta glavni let
+      const item = {
+        id: element.id,
+        cityFrom: element.cityFrom,
+        cityTo: element.cityTo,
+        airlines: element.airlines,
+        availability: element.availability.seats,
+        price: element.conversion[currency],
+        routeTo: routeTo,
+        routeFrom: routeFrom,
+        durationBack: this.formatFromMinutes(durationBack),
+        arrivalBack: arrivalBack[arrivalBack.length - 1],
+        departureBack: departureBack[0],
       };
 
       const duration = {
-        utc_departure: item.utc_departure,
-        utc_arrival: item.utc_arrival,
+        utc_departure: element.utc_departure,
+        utc_arrival: element.utc_arrival,
       };
+      const arrayItem = Object.assign(item, this.formatFlightdetails(duration));
+      arrayItem.transfers = transfer;
 
-      const arrayItem = Object.assign(routeItem, this.formatFlightdetails(duration));
-
-      //loci za tja in nazaj
-      if (pogoj && item.cityFrom != element.cityTo) {
-        routeTo.push(arrayItem);
-      } else {
-        pogoj = false;
-        durationBack += arrayItem.durationInMinutes;
-        arrivalBack.push(fortmatTime(new Date(item.utc_arrival)));
-        departureBack.push(fortmatTime(new Date(item.utc_departure)));
-
-        routeFrom.push(arrayItem);
-      }
+      zaNazaj.push(arrayItem);
     });
 
-    //Tisti ta glavni let
-    const item = {
-      id: element.id,
-      cityFrom: element.cityFrom,
-      cityTo: element.cityTo,
-      airlines: element.airlines,
-      availability: element.availability.seats,
-      price: element.conversion[req.query.curr],
-      routeTo: routeTo,
-      routeFrom: routeFrom,
-      durationBack: this.formatFromMinutes(durationBack),
-      arrivalBack: arrivalBack[arrivalBack.length - 1],
-      departureBack: departureBack[0],
-    };
+    const fastAndCheap = this.getBestFlights(zaNazaj);
+    const filteredFlights = zaNazaj.filter((flight) => {
+      return !fastAndCheap.includes(flight);
+    });
 
-    const duration = {
-      utc_departure: element.utc_departure,
-      utc_arrival: element.utc_arrival,
-    };
-    const arrayItem = Object.assign(item, this.formatFlightdetails(duration));
-    arrayItem.transfers = transfer;
-
-    zaNazaj.push(arrayItem);
+    resolve(fastAndCheap.concat(filteredFlights));
   });
-
-  const fastAndCheap = this.getBestFlights(zaNazaj);
-  const filteredFlights = zaNazaj.filter((flight) => {
-    return !fastAndCheap.includes(flight);
-  });
-  return this.fastAndCheap.concat(filteredFlights);
 }
 
 
@@ -266,11 +269,17 @@ module.exports.analyzeData = (data) => {
     return formattedDate;
   }
 
+  const convertDateFromat = (dateString) => {
+    const parts = dateString.split('/');
+    const day = parts[0];
+    const month = parts[1];
+    const year = parts[2];
+    const convertedDate = `${year}-${month}-${day}`;
+    return convertedDate;
+  }
+
   return new Promise((resolve, reject) => {
-    const combinations = {
-      "flights": [],
-      "stays": []
-    };
+    const combinations = [];
 
     const thereDate = getDate(14);
     const backDate = getDate(17);
@@ -278,7 +287,7 @@ module.exports.analyzeData = (data) => {
     data.flightD.forEach((destination) => {
       const index = data.flightD.findIndex(item => item === destination);
 
-      const Flightaram = {
+      const flightaram = {
         "curr": data.currency,
         "adults": data.adults,
         "fly_from": data.flightO[0],
@@ -295,12 +304,15 @@ module.exports.analyzeData = (data) => {
         "adults": data.adults,
         "location": data.flightDestinations[index],
         "page": 1,
-        "checkin": thereDate,
-        "checkout": backDate,
+        "checkin": convertDateFromat(thereDate),
+        "checkout": convertDateFromat(backDate),
       }
 
-      combinations.flights.push(Flightaram);
-      combinations.stays.push(stayParam);
+      console.log(stayParam.checkin, stayParam.checkout);
+
+      combinations.push([
+        flightaram, stayParam
+      ]);
     });
 
     resolve({
@@ -308,6 +320,31 @@ module.exports.analyzeData = (data) => {
     });
   });
 }
+
+
+
+module.exports.callAPIs = (data) => {
+  return new Promise((resolve, reject) => {
+    const results = [];
+
+    data.forEach(async (combination) => {
+      const flightParam = combination[0];
+      const stayParam = combination[1];
+
+      // const stayData = await this.callAirbnbAPI(stayParam);
+      const flightData = await this.callFligtsAPI(flightParam);
+
+      const formatedFlightData = await this.formatFlightData(flightData, flightParam, flightParam.currency)[0];
+
+      results.push({
+        flight: formatedFlightData,
+        // stay: stayData,
+      });
+    });
+    resolve({ results: results });
+  });
+}
+
 
 
 module.exports.saveSearch = (user, params, collection, db) => {
@@ -336,7 +373,7 @@ module.exports.callAPIAndTransformData = async (params) => {
     const travelTime = params.travelTime;
     const travelDestination = params.travelDestination;
     const additionalInfo = params.additionalInfo;
-    
+
     const query = `Hi chatGPT, can you write me an itinerary for ${travelTime} days in ${travelDestination}? Include these parameters in the response: ${additionalInfo}. Respond back with a JSON format so I can map through them like this: {"travelDestination": ${travelDestination}, tripArray: [{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for the duration of the provided time length. Thank you!`;
     console.log(query)
 
@@ -364,7 +401,7 @@ module.exports.callAPIAndTransformData = async (params) => {
     const startIndex = itineraryVmesni.indexOf("{");
     const endIndex = itineraryVmesni.lastIndexOf("}");
     const strippedText = itineraryVmesni.substring(startIndex, endIndex + 1);
-    
+
     // Now you can parse the strippedText as JSON
     const itinerary = JSON.parse(strippedText);
     console.log("itinerary");
