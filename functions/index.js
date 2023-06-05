@@ -46,16 +46,19 @@ app.get("/recommendation", async (req, res) => {
         await Promise.all(analyzedData.combinations.map(async (combination) => {
             const flightParam = combination[0];
             const stayParam = combination[1];
+            const chatParam = combination[2];
 
-            const stayData = await callAirbnbAPI(stayParam);
+            // const stayData = await callAirbnbAPI(stayParam);
             const flightData = await callFligtsAPI(flightParam);
+            const chatData = await callAPIAndTransformData(chatParam);
 
             const formatedFlightData = await formatFlightData(flightData, flightParam, flightParam.currency);
             const chosenFlight = formatedFlightData[0];
 
             results.push({
                 flight: chosenFlight,
-                stay: stayData.results,
+                // stay: stayData.results,
+                chat: chatData
             });
         }));
 

@@ -281,11 +281,19 @@ module.exports.analyzeData = (data) => {
   return new Promise((resolve, reject) => {
     const combinations = [];
 
-    const thereDate = getDate(14);
-    const backDate = getDate(17);
+    const daysFromNow = 14;
+    const otherDaysFromNow = 14 + 5;
+    const thereDate = getDate(daysFromNow);
+    const backDate = getDate(otherDaysFromNow);
 
     data.flightD.forEach((destination) => {
       const index = data.flightD.findIndex(item => item === destination);
+      const fullDestination = data.flightDestinations[index];
+
+      const chatParams = {
+        "travelTime": daysFromNow - otherDaysFromNow,
+        "travelDestination": fullDestination
+      }
 
       const flightaram = {
         "curr": data.currency,
@@ -302,16 +310,14 @@ module.exports.analyzeData = (data) => {
       const stayParam = {
         "currency": data.currency,
         "adults": data.adults,
-        "location": data.flightDestinations[index],
+        "location": fullDestination,
         "page": 1,
         "checkin": convertDateFromat(thereDate),
         "checkout": convertDateFromat(backDate),
       }
 
-      console.log(stayParam.checkin, stayParam.checkout);
-
       combinations.push([
-        flightaram, stayParam
+        flightaram, stayParam, chatParams
       ]);
     });
 
@@ -320,31 +326,6 @@ module.exports.analyzeData = (data) => {
     });
   });
 }
-
-
-
-module.exports.callAPIs = (data) => {
-  return new Promise((resolve, reject) => {
-    const results = [];
-
-    data.forEach(async (combination) => {
-      const flightParam = combination[0];
-      const stayParam = combination[1];
-
-      // const stayData = await this.callAirbnbAPI(stayParam);
-      const flightData = await this.callFligtsAPI(flightParam);
-
-      const formatedFlightData = await this.formatFlightData(flightData, flightParam, flightParam.currency)[0];
-
-      results.push({
-        flight: formatedFlightData,
-        // stay: stayData,
-      });
-    });
-    resolve({ results: results });
-  });
-}
-
 
 
 module.exports.saveSearch = (user, params, collection, db) => {
@@ -367,7 +348,6 @@ module.exports.saveSearch = (user, params, collection, db) => {
 
 
 module.exports.callAPIAndTransformData = async (params) => {
-  console.log("lmao")
   try {
 
     const travelTime = params.travelTime;
