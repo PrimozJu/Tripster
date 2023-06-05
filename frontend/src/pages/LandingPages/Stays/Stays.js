@@ -54,6 +54,7 @@ const Stays = () => {
     try {
       setLoading(true);
       const respons = await axios.request(options);
+      console.log(respons)
       setResponse(respons);
     } catch (err) {
       console.error(err.message);

@@ -22,6 +22,7 @@ const {
   prestej,
   analyzeData,
   fillDB,
+  callAPIAndTransformData,
 } = require("./funkcije");
 
 initializeApp();
@@ -259,65 +260,22 @@ app.get("/flights", async (req, res) => {
 });
 
 app.post("/itineary-chat-gpt", async (req, res) => {
-  //const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?`;
-
   try {
-    //Get params from request
     const params = req.body;
-    console.log("pridobljeni podatke iz requesta:");
-    console.log(params);
-    const travelTime = params.travelTime;
-    const travelDestination = params.travelDestination;
-    const additionalInfo = params.additionalInfo;
-
-    // V query se dodaj fixen izgled json formata, za lazjo predstavitev na fe
-    const query = `Hi chatGPT, can you write me itinerary for ${travelTime} days in ${travelDestination}? include these paramaters in response :   ${additionalInfo} and respond back with json format type so I can map through them like that {"travelDestination":${travelDestination},tripArray:[{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for duration of time length provided in request. Thank you!`;
-
-    const options = {
-      method: "POST",
-      url: "https://chatgpt53.p.rapidapi.com/",
-      headers: {
-        "content-type": "application/json",
-        "X-RapidAPI-Key": chatGPTAPIkey,
-        "X-RapidAPI-Host": "chatgpt53.p.rapidapi.com",
-      },
-      data: {
-        messages: [
-          {
-            role: "user",
-            content: query,
-          },
-        ],
-      },
-    };
-    console.log("JSON DATA v bazo");
-
-    //Dodajanje v bazo
+    
+    // Adding data to the database
     const jsonData = req.body;
     jsonData.search_type = "itineary-chat-gpt";
-    const documentId = "user1"; //jsonData.id;
+    const documentId = "user1";
     db.collection(documentId).add(jsonData);
 
-    //API klic za chat gpt
-    console.log("Zacenjam posiljanje chatu");
-    const respons = await axios.request(options);
-
-    const itineraryVmesni = respons.data.choices[0].message.content;
-    console.log("Te podatke je vrnil chatGPT:");
-    console.log(itineraryVmesni);
-
-    const startIndex = itineraryVmesni.indexOf("{");
-    const endIndex = itineraryVmesni.lastIndexOf("}");
-    const strippedText = itineraryVmesni.substring(startIndex, endIndex + 1);
-    
-    // Now you can parse the strippedText as JSON
-    const itinerary = JSON.parse(strippedText);
-    
-    console.log(itinerary);
+    // Calling the API and transforming the data
+    const itinerary = await callAPIAndTransformData(params);
 
     res.send(JSON.stringify(itinerary));
   } catch (error) {
-    res.status(500).send(`POST request failed ${error}`);
+    console.log(error);
+    res.status(500).send(`${error}`);
   }
 });
 

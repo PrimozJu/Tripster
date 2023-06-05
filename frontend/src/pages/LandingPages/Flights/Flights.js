@@ -13,6 +13,8 @@ import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import { db, auth } from '../../../index';
 import { localApiFlights } from "secret-keys";
+import DefaultFooter from "examples/Footers/DefaultFooter";
+import footerRoutes from "footer.routes";
 
 const Flights = () => {
   const [response, setResponse] = useState(undefined);
@@ -137,6 +139,8 @@ const Flights = () => {
       </Card>
 
 
+        <DefaultFooter content={footerRoutes} />
+    
 
     </div>
   )
