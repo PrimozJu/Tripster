@@ -329,6 +329,55 @@ module.exports.saveSearch = (user, params, collection, db) => {
 }
 
 
+module.exports.callAPIAndTransformData = async (params) => {
+  console.log("lmao")
+  try {
+
+    const travelTime = params.travelTime;
+    const travelDestination = params.travelDestination;
+    const additionalInfo = params.additionalInfo;
+    
+    const query = `Hi chatGPT, can you write me an itinerary for ${travelTime} days in ${travelDestination}? Include these parameters in the response: ${additionalInfo}. Respond back with a JSON format so I can map through them like this: {"travelDestination": ${travelDestination}, tripArray: [{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for the duration of the provided time length. Thank you!`;
+    console.log(query)
+
+    const options = {
+      method: "POST",
+      url: "https://chatgpt53.p.rapidapi.com/",
+      headers: {
+        "content-type": "application/json",
+        "X-RapidAPI-Key": chatGPTAPIkey,
+        "X-RapidAPI-Host": "chatgpt53.p.rapidapi.com",
+      },
+      data: {
+        messages: [
+          {
+            role: "user",
+            content: query,
+          },
+        ],
+      },
+    };
+
+    const response = await axios.request(options);
+
+    const itineraryVmesni = response.data.choices[0].message.content;
+    const startIndex = itineraryVmesni.indexOf("{");
+    const endIndex = itineraryVmesni.lastIndexOf("}");
+    const strippedText = itineraryVmesni.substring(startIndex, endIndex + 1);
+    
+    // Now you can parse the strippedText as JSON
+    const itinerary = JSON.parse(strippedText);
+    console.log("itinerary");
+    return itinerary;
+  } catch (error) {
+    throw new Error(`API request failed: ${error}`);
+  }
+};
+
+
+
+
+
 module.exports.formatFromMinutes = (durationInMinutes) => {
   const hours = Math.floor(durationInMinutes / 60);
   const minutes = durationInMinutes % 60;

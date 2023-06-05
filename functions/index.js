@@ -1,10 +1,10 @@
 const { initializeApp } = require("firebase-admin/app");
 const {
-    getFirestore,
-    doc,
-    setDoc,
-    updateDoc,
-    FieldValue,
+  getFirestore,
+  doc,
+  setDoc,
+  updateDoc,
+  FieldValue,
 } = require("firebase-admin/firestore");
 const functions = require("firebase-functions");
 const express = require("express");
@@ -12,17 +12,18 @@ const axios = require("axios");
 const admin = require("firebase-admin");
 const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
 const {
-    getBestFlights,
-    formatFlightdetails,
-    callFligtsAPI,
-    saveSearch,
-    callAirbnbAPI,
-    formatFromMinutes,
-    fortmatTime,
-    prestej,
-    analyzeData,
-    fillDB,
-    formatFlightData
+  getBestFlights,
+  formatFlightdetails,
+  callFligtsAPI,
+  saveSearch,
+  callAirbnbAPI,
+  formatFromMinutes,
+  fortmatTime,
+  prestej,
+  analyzeData,
+  fillDB,
+  callAPIAndTransformData,
+  formatFlightData,
 } = require("./funkcije");
 
 initializeApp();
@@ -30,213 +31,170 @@ const app = express();
 const db = getFirestore();
 
 app.use((req, res, next) => {
-    res.set("Access-Control-Allow-Origin", "*");
-    res.set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-    res.set("Access-Control-Allow-Headers", "*");
-    next();
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+  res.set("Access-Control-Allow-Headers", "*");
+  next();
 });
 
 app.get("/recommendation", async (req, res) => {
-    const currentUser = req.headers["user"];
+  const currentUser = req.headers["user"];
 
-    if (!currentUser) {
-        return res.status(400).send("Bad request");
-    }
+  if (!currentUser) {
+    return res.status(400).send("Bad request");
+  }
 
-    try {
-        const data = await prestej(currentUser, db, 5);
-        console.log(data);
-        const analyzedData = await analyzeData(data);
-        return res.status(200).json(analyzedData);
-    } catch (err) {
-        console.error(err);
-        return res.status(500).send("Something went wrong");
-    }
+  try {
+    const data = await prestej(currentUser, db, 5);
+    console.log(data);
+    const analyzedData = await analyzeData(data);
+    return res.status(200).json(analyzedData);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Something went wrong");
+  }
 });
 
 app.get("/searches/:searchType", async (req, res) => {
-    /**
-     * searchType: "flights" | "stays" | "both"
-     */
-    const searchType = req.params.searchType.toLowerCase();
-    const currentUser = req.headers["user"];
-    const allowedStrings = ["flights", "stays", "both"];
+  /**
+   * searchType: "flights" | "stays" | "both"
+   */
+  const searchType = req.params.searchType.toLowerCase();
+  const currentUser = req.headers["user"];
+  const allowedStrings = ["flights", "stays", "both"];
 
-    if (!allowedStrings.includes(searchType) || !currentUser) {
-        return res.status(400).send("Bad request");
-    }
+  if (!allowedStrings.includes(searchType) || !currentUser) {
+    return res.status(400).send("Bad request");
+  }
 
-    let pogoj = false;
-    if (searchType === "both") {
-        pogoj = true;
-    }
+  let pogoj = false;
+  if (searchType === "both") {
+    pogoj = true;
+  }
 
-    const docRef = db.collection("users").doc(currentUser);
-    const zaNazaj = {};
+  const docRef = db.collection("users").doc(currentUser);
+  const zaNazaj = {};
 
-    docRef
-        .get()
-        .then((docSnapshot) => {
-            if (searchType === "flights" || pogoj) {
-                const flightData = docSnapshot.exists
-                    ? docSnapshot.data()["flightSearches"] || []
-                    : [];
-                zaNazaj.flights = flightData;
-            }
+  docRef
+    .get()
+    .then((docSnapshot) => {
+      if (searchType === "flights" || pogoj) {
+        const flightData = docSnapshot.exists
+          ? docSnapshot.data()["flightSearches"] || []
+          : [];
+        zaNazaj.flights = flightData;
+      }
 
-            if (searchType === "stays" || pogoj) {
-                const stayData = docSnapshot.exists
-                    ? docSnapshot.data()["staySearches"] || []
-                    : [];
-                zaNazaj.stays = stayData;
-            }
+      if (searchType === "stays" || pogoj) {
+        const stayData = docSnapshot.exists
+          ? docSnapshot.data()["staySearches"] || []
+          : [];
+        zaNazaj.stays = stayData;
+      }
 
-            return res.status(200).json(zaNazaj);
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+      return res.status(200).json(zaNazaj);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 //kak se authenticata userja
 app.post("/authenticate", async (req, res) => {
-    const idToken = req.headers["authorization"];
-    const user = req.body;
+  const idToken = req.headers["authorization"];
+  const user = req.body;
 
-    if (!idToken) {
-        return res.status(401).send("Unauthorized");
-    }
+  if (!idToken) {
+    return res.status(401).send("Unauthorized");
+  }
 
-    try {
-        await admin.auth().verifyIdToken(idToken);
-        console.log(user.email + " authenticated");
-        return res.status(200).send("authenticated");
-    } catch (err) {
-        console.log(err);
-        return res.status(401).send(`POST request failed ${err}`);
-    }
+  try {
+    await admin.auth().verifyIdToken(idToken);
+    console.log(user.email + " authenticated");
+    return res.status(200).send("authenticated");
+  } catch (err) {
+    console.log(err);
+    return res.status(401).send(`POST request failed ${err}`);
+  }
 });
 
 app.get("/airbnb", async (req, res) => {
-    const params = req.query;
-    const currentUser = req.headers["user"];
+  const params = req.query;
+  const currentUser = req.headers["user"];
 
-    if (currentUser) {
-        saveSearch(currentUser, params, "staySearches", db);
-    }
+  if (currentUser) {
+    saveSearch(currentUser, params, "staySearches", db);
+  }
 
-    let responseData = undefined;
-    responseData = await callAirbnbAPI(params);
+  let responseData = undefined;
+  responseData = await callAirbnbAPI(params);
 
-    if (responseData) {
-        //return res.status(500).send("lmao");
+  if (responseData) {
+    //return res.status(500).send("lmao");
 
-        res.status(200).send(responseData);
-    } else {
-        console.log(responseData);
-        res.status(500).send("Something went wrong");
-    }
+    res.status(200).send(responseData);
+  } else {
+    console.log(responseData);
+    res.status(500).send("Something went wrong");
+  }
 });
 
 app.get("/testData", (req, res) => {
-    const currentUser = req.headers["user"];
+  const currentUser = req.headers["user"];
 
-    if (!currentUser) {
-        return res.status(400).send("Bad request");
-    }
+  if (!currentUser) {
+    return res.status(400).send("Bad request");
+  }
 
-    try {
-        fillDB(currentUser, db);
-        return res.status(200).send("OK");
-    } catch (err) {
-        console.error(err);
-        return res.status(500).send("Something went wrong");
-    }
+  try {
+    fillDB(currentUser, db);
+    return res.status(200).send("OK");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Something went wrong");
+  }
 });
 
 app.get("/flights", async (req, res) => {
-    const params = req.query;
+  const params = req.query;
 
-    let responseData;
-    responseData = await callFligtsAPI(params, 50);
+  let responseData;
+  responseData = await callFligtsAPI(params, 50);
 
-    if (!responseData || responseData.length == 0) {
-        console.log("No flights found");
-        return res.status(500).send("Something went wrong");
-    }
+  if (!responseData || responseData.length == 0) {
+    console.log("No flights found");
+    return res.status(500).send("Something went wrong");
+  }
 
-    const currentUser = req.headers["user"];
-    params.cityTo = responseData[0].cityTo;
-    params.cityFrom = responseData[0].cityFrom;
+  const currentUser = req.headers["user"];
+  params.cityTo = responseData[0].cityTo;
+  params.cityFrom = responseData[0].cityFrom;
 
-    if (currentUser) {
-        saveSearch(currentUser, params, "flightSearches", db);
-    }
+  if (currentUser) {
+    saveSearch(currentUser, params, "flightSearches", db);
+  }
 
-    res.status(200).send(formatFlightData(responseData));
+  res.status(200).send(formatFlightData(responseData));
 });
 
 app.post("/itineary-chat-gpt", async (req, res) => {
-    //const query = `Hi ChatGPT, can you recommend a trip based on my travel preferences? My desired dates of travel are ${departureDate} to ${returnDate}, and there will be ${numTravelers} traveling. I'm interested in traveling to ${desiredContinent}, and I'm looking for a ${travelType} experience. My interests include ${interests}. I would prefer to stay in a ${preferredAccommodation}, and my maximum budget is ${maxBudget}. Based on these preferences, what trip do you recommend?`;
+  try {
+    const params = req.body;
 
-    try {
-        //Get params from request
-        const params = req.body;
-        console.log("pridobljeni podatke iz requesta:");
-        console.log(params);
-        const travelTime = params.travelTime;
-        const travelDestination = params.travelDestination;
-        const additionalInfo = params.additionalInfo;
+    // Adding data to the database
+    const jsonData = req.body;
+    jsonData.search_type = "itineary-chat-gpt";
+    const documentId = "user1";
+    db.collection(documentId).add(jsonData);
 
-        // V query se dodaj fixen izgled json formata, za lazjo predstavitev na fe
-        const query = `Hi chatGPT, can you write me itinerary for ${travelTime} days in ${travelDestination}? include these paramaters in response :   ${additionalInfo} and respond back with json format type so I can map through them like that {"travelDestination":${travelDestination},tripArray:[{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for duration of time length provided in request. Thank you!`;
+    // Calling the API and transforming the data
+    const itinerary = await callAPIAndTransformData(params);
 
-        const options = {
-            method: "POST",
-            url: "https://chatgpt53.p.rapidapi.com/",
-            headers: {
-                "content-type": "application/json",
-                "X-RapidAPI-Key": chatGPTAPIkey,
-                "X-RapidAPI-Host": "chatgpt53.p.rapidapi.com",
-            },
-            data: {
-                messages: [
-                    {
-                        role: "user",
-                        content: query,
-                    },
-                ],
-            },
-        };
-        console.log("JSON DATA v bazo");
-
-        //Dodajanje v bazo
-        const jsonData = req.body;
-        jsonData.search_type = "itineary-chat-gpt";
-        const documentId = "user1"; //jsonData.id;
-        db.collection(documentId).add(jsonData);
-
-        //API klic za chat gpt
-        console.log("Zacenjam posiljanje chatu");
-        const respons = await axios.request(options);
-
-        const itineraryVmesni = respons.data.choices[0].message.content;
-        console.log("Te podatke je vrnil chatGPT:");
-        console.log(itineraryVmesni);
-
-        const startIndex = itineraryVmesni.indexOf("{");
-        const endIndex = itineraryVmesni.lastIndexOf("}");
-        const strippedText = itineraryVmesni.substring(startIndex, endIndex + 1);
-
-        // Now you can parse the strippedText as JSON
-        const itinerary = JSON.parse(strippedText);
-
-        console.log(itinerary);
-
-        res.send(JSON.stringify(itinerary));
-    } catch (error) {
-        res.status(500).send(`POST request failed ${error}`);
-    }
+    res.send(JSON.stringify(itinerary));
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(`${error}`);
+  }
 });
 
 //Deploja funkcijo

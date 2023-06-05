@@ -17,6 +17,8 @@ import { UserContext } from "../../../App";
 import Airplane from "../../../assets/images/itinerary/airplane.png";
 import { db, auth } from '../../../index';
 import { localApiStays } from "secret-keys";
+import footerRoutes from "../../../footer.routes";
+import DefaultFooter from "examples/Footers/DefaultFooter";
 
 
 const Stays = () => {
@@ -52,6 +54,7 @@ const Stays = () => {
     try {
       setLoading(true);
       const respons = await axios.request(options);
+      console.log(respons)
       setResponse(respons);
     } catch (err) {
       console.error(err.message);
@@ -151,7 +154,9 @@ const Stays = () => {
       )}
       </Card>
 
-      
+      <div >
+        <DefaultFooter content={footerRoutes} />
+      </div>
     </div>
   );
 };
