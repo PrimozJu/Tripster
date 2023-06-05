@@ -4,6 +4,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import bgImage from "assets/images/tnf.jpg";
 import MKBox from "components/MKBox";
@@ -12,6 +13,12 @@ import ReactLoading from "react-loading";
 import ItineraryDetails from "./ItineraryDetails";
 import firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
+import "./Itinerary.css";
+import footerRoutes from "../../../footer.routes";
+
+import Airplane from "../../../assets/images/itinerary/airplane.png";
+import DefaultFooter from "examples/Footers/DefaultFooter";
+
 //import "firebase/auth";
 
 const Itinerary = () => {
@@ -20,26 +27,14 @@ const Itinerary = () => {
 
   async function chatTalk(params) {
     console.log(params);
-    const departureDate = params.departureDate;
-    const returnDate = params.returnDate;
-    const numTravelers = params.numTravelers;
-    const desiredContinent = params.desiredContinent;
-    const travelType = params.travelType; //adventure cultural, relaxation
-    const interests = params.interest;
-    const preferredAccommodation = params.preferredAccommodation;
-    const maxBudget = params.maxBudget;
-  
-    
+    const travelTime = params.travelTime;
+    const travelDestination = params.travelDestination;
+    const additionalInfo = params.additionalInfo;
 
     const jsonData = {
-      departureDate: departureDate,
-      returnDate: returnDate,
-      numTravelers: numTravelers,
-      desiredContinent: desiredContinent,
-      travelType: travelType,
-      interests: interests,
-      preferredAccommodation: preferredAccommodation,
-      maxBudget: maxBudget,
+      travelTime,
+      travelDestination,
+      additionalInfo,
     };
 
     const options = {
@@ -48,33 +43,27 @@ const Itinerary = () => {
       data: JSON.stringify(jsonData),
     };
 
-    fetch(options.url, {
-      method: options.method,
-      body: options.data,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response data here
-        setLoading(true);
+    setLoading(true);
 
-        console.log(data);
-        setResponse(data);
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
+    try {
+      const response = await fetch(options.url, {
+        method: options.method,
+        body: options.data,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
+      const data = await response.json();
+      setResponse(data);
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
   }
 
-  
   const auth = getAuth();
-const user = auth.currentUser;
-
+  const user = auth.currentUser;
 
   if (user) {
     // User is signed in.
@@ -84,13 +73,16 @@ const user = auth.currentUser;
     // No user is signed in.
     console.log("user NI prijavljen");
   }
-  
+
+  const footerStyle = {
+    backgroundColor: "#f5f5f5",
+    paddingTop: "3vw",
+  };
 
 
 
-
-return (
-    <div>
+  return (
+    <>
       <DefaultNavbar
         routes={routes}
         action={{
@@ -168,14 +160,28 @@ return (
       >
         <TripForm submit={chatTalk}></TripForm>
         <div id="chatDiv"></div>
-
-        {loading ? (
-          <ReactLoading type="bars" color="#000" height={50} width={50} />
-        ) : response ? (
-          <ItineraryDetails data={response} />
-        ) : null}
       </Card>
-    </div>
+
+      {loading && (
+        <Grid container item xs={12} justifyContent="center">
+          <img
+            src={Airplane}
+            className="loadingImg"
+            alt="Airplane"
+            style={{ height: "100px", width: "100px" }}
+          />
+        </Grid>
+      )}
+
+      {response && (
+        <Card>
+          <ItineraryDetails data={response} />
+        </Card>
+      )}
+   <div style={footerStyle}>
+        <DefaultFooter content={footerRoutes} />
+      </div>
+    </>
   );
 };
 

@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from "react";
 
 // react-router components
@@ -27,7 +12,6 @@ import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import SignIn from "pages/LandingPages/SignIn/SignIn";
 import SignUp from "pages/LandingPages/SignUp/SignUp";
-// Material Kit 2 React routes
 import routes from "routes";
 import { useState } from "react";
 import User from "pages/LandingPages/User/User";
@@ -42,6 +26,7 @@ const App = () => {
 
 
   const[userIdState,setUserIdState]=useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -66,7 +51,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <UserContext.Provider value={{userIdState,setUserIdState}}>
+      <UserContext.Provider value={{userIdState,setUserIdState, cartItems, setCartItems}}>
       <Routes>
         {getRoutes(routes)}
         <Route path="/presentation" element={<Presentation />} />

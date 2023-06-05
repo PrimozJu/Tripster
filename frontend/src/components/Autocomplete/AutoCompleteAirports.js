@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
 import MKInput from "components/MKInput";
-import Airports from "../../assets/aiports/airports"
+import Airports from "../../assets/aiports/airports";
 import { Air } from "@mui/icons-material";
-
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 
 const AutocompleteAirports = (props) => {
   const findCode = (name) => {
     console.log("prozim funkcijo findCode");
-    //console.log(name);
-    /* Airports.forEach((airport) => {
-      if (airport.name == name) {
-        console.log("Nasel sem letalisce");
-        console.log(airport.iata);
-        return airport.iata;
-      }
-    }); */
-   
     const airport = Airports.find((airport) => airport.name === name);
 
     if (airport) {
@@ -23,21 +14,17 @@ const AutocompleteAirports = (props) => {
       console.log(airport.iata);
       return airport.iata;
     }
-    
+
     // Return a default value or handle the case when the airport is not found
     return null;
-  }
+  };
 
-  const airports = Airports; // Assuming Airports is an array of airport objects
+  const airports = Airports;
   const items = airports
-  .filter((airport) => airport.name) // Filter out objects without a name field
-  .map((airport) => airport.name); // Extracting names from airport objects
-  const setLocation = props.setLocation
+    .filter((airport) => airport.name)
+    .map((airport) => airport.name);
+  const setLocation = props.setLocation;
 
- // console.log(items);
- 
-  
-  
   const [state, setState] = useState({
     activeItem: 0,
     filteredItems: [],
@@ -48,10 +35,11 @@ const AutocompleteAirports = (props) => {
   const handleChange = (e) => {
     const inputValue = e.currentTarget.value;
     setLocation(e.currentTarget.value);
-    const filteredItems = items.filter(
-      (optionName) =>
-        optionName.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
-    );
+    const filteredItems = items
+      .filter((optionName) =>
+        optionName.toLowerCase().startsWith(inputValue.toLowerCase())
+      )
+      .slice(0, 3); // Display only three most accurate options
 
     setState({
       activeItem: 0,
@@ -59,7 +47,6 @@ const AutocompleteAirports = (props) => {
       displayItems: true,
       inputValue: e.currentTarget.value,
     });
-    
   };
 
   const handleClick = (e) => {
@@ -69,10 +56,8 @@ const AutocompleteAirports = (props) => {
       filteredItems: [],
       displayItems: false,
       inputValue: clickedItemValue,
-      //ah shit here we go again
-
     });
-    const AirportCode = findCode(clickedItemValue)
+    const AirportCode = findCode(clickedItemValue);
     console.log(AirportCode);
     setLocation(AirportCode);
   };
@@ -81,7 +66,6 @@ const AutocompleteAirports = (props) => {
     const { activeItem, filteredItems } = state;
 
     if (e.keyCode === 13) {
-      // keyCode 13 is the "enter" key
       setState({
         activeItem: 0,
         filteredItems: [],
@@ -89,7 +73,6 @@ const AutocompleteAirports = (props) => {
         inputValue: filteredItems[activeItem],
       });
     } else if (e.keyCode === 38) {
-      // keyCode 38 is the up arrow key
       e.preventDefault();
       if (activeItem === 0) {
         return;
@@ -101,7 +84,6 @@ const AutocompleteAirports = (props) => {
         inputValue: e.currentTarget.value,
       });
     } else if (e.keyCode === 40) {
-      // keyCode 40 is the down arrow
       e.preventDefault();
       if (
         (filteredItems && activeItem === filteredItems.length - 1) ||
@@ -131,30 +113,24 @@ const AutocompleteAirports = (props) => {
         autoCorrect="off"
         onChange={handleChange}
       />
-      {state.displayItems &&
-      state.inputValue.length &&
-      state.filteredItems.length ? (
-        <div className="list-panel uk-panel uk-padding-remove uk-box-shadow-medium">
-          <ul className="uk-list">
-            {state.filteredItems
-              .map((optionName, index) => {
-                return (
-                  <li
-                    className={`${
-                      state.activeItem === index
-                        ? "active-item"
-                        : "default-item"
-                    }`}
-                    key={optionName}
-                    onClick={handleClick} // <-- new
-                  >
-                    {optionName}
-                  </li>
-                );
-              })
-              .slice(0, 10)}
-          </ul>
-        </div>
+      {state.displayItems && state.inputValue.length && state.filteredItems.length ? (
+        <TableContainer className="list-panel uk-panel uk-padding-remove uk-box-shadow-medium">
+          <Table>
+            <TableBody>
+              {state.filteredItems.map((optionName, index) => (
+                <TableRow
+                  className={`${
+                    state.activeItem === index ? "active-item" : "default-item"
+                  }`}
+                  key={optionName}
+                  onClick={handleClick}
+                >
+                  <TableCell>{optionName}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       ) : null}
     </div>
   );

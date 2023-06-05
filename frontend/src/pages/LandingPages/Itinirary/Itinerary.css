@@ -1,0 +1,36 @@
+div{
+    text-align: center;
+    
+}
+
+ul,
+li {
+  list-style: none;
+  text-decoration: none;
+}
+
+
+.loadingImg {
+    animation: rotation 1.9s infinite linear;
+  }
+  
+  @keyframes rotation {
+    to {
+      transform: rotate(0deg);
+    }
+    from {
+      transform: rotate(359deg);
+    }
+  }
+.gumbDod {
+    border-radius: 100%;
+    width: 3vw;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}

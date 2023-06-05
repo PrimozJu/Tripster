@@ -1,0 +1,112 @@
+{
+    "recommendations": [
+        {
+            "destination": "Valencia",
+            "departure": "Zagreb",
+            "outboundFlight": "Flight XYZ123",
+            "flightDuration": "3 hours",
+            "sleepingType": "Hotel",
+            "sleepingDescription": "Stay in a cozy hotel located near the beach",
+            "itinerary": [
+                "Day 1: Arrive in Valencia and check-in at the hotel",
+                "Day 2: Explore the historic city center and visit the City of Arts and Sciences",
+                "Day 3: Relax on the beautiful beaches and try some local cuisine",
+                "Day 4: Take a bike tour along Turia Gardens and enjoy the lush greenery",
+                "Day 5: Visit the famous Oceanografic and learn about marine life",
+                "Day 6: Take a day trip to the picturesque Albufera Natural Park",
+                "Day 7: Discover the vibrant street art scene in the El Carmen neighborhood",
+                "Day 8: Explore the local markets and indulge in some shopping",
+                "Day 9: Visit the Valencia Cathedral and climb the Micalet Bell Tower for panoramic views",
+                "Day 10: Depart from Valencia"
+            ],
+            "price": {
+                "total": 1500,
+                "flight": 500,
+                "sleep": 800,
+                "attractions": 200
+            },
+            "itinerary_id": "1"
+        },
+        {
+            "destination": "Faro",
+            "departure": "Zagreb",
+            "outboundFlight": "Flight ABC456",
+            "flightDuration": "4 hours",
+            "sleepingType": "Airbnb",
+            "sleepingDescription": "Enjoy a comfortable stay in a cozy Airbnb apartment",
+            "itinerary": [
+                "Day 1: Arrive in Faro and settle into your Airbnb",
+                "Day 2: Take a boat tour to explore the stunning coastline and caves",
+                "Day 3: Visit the historic old town and enjoy the local seafood",
+                "Day 4: Relax on the beautiful beaches and soak up the sun",
+                "Day 5: Explore the Ria Formosa Natural Park and its diverse ecosystems",
+                "Day 6: Take a day trip to the charming town of Tavira",
+                "Day 7: Discover the cultural heritage of Faro at the Municipal Museum",
+                "Day 8: Visit the stunning Cathedral of Faro and enjoy the panoramic views",
+                "Day 9: Explore the lively marina area and indulge in some water activities",
+                "Day 10: Depart from Faro"
+            ],
+            "price": {
+                "total": 1200,
+                "flight": 400,
+                "sleep": 600,
+                "attractions": 200
+            },
+            "itinerary_id": "2"
+        },
+        {
+            "destination": "Bari",
+            "departure": "Trieste",
+            "outboundFlight": "Flight DEF789",
+            "flightDuration": "2 hours",
+            "sleepingType": "Hostel",
+            "sleepingDescription": "Stay in a lively hostel with a vibrant atmosphere",
+            "itinerary": [
+                "Day 1: Arrive in Bari and check-in at the hostel",
+                "Day 2: Explore the charming streets of the old town and visit the Basilica di San Nicola",
+                "Day 3: Take a day trip to the beautiful town of Alberobello and see the trulli houses",
+                "Day 4: Visit the stunning Castello Svevo and learn about its history",
+                "Day 5: Discover the local cuisine with a food tour through the city",
+                "Day 6: Explore the vibrant nightlife scene in Bari",
+                "Day 7: Relax on the sandy beaches and take a dip in the Adriatic Sea",
+                "Day 8: Visit the modern art museum Galleria d'Arte Moderna",
+                "Day 9: Explore the local markets and shop for souvenirs",
+                "Day 10: Depart from Bari"
+            ],
+            "price": {
+                "total": 1000,
+                "flight": 300,
+                "sleep": 400,
+                "attractions": 300
+            },
+            "itinerary_id": "3"
+        },
+        {
+            "destination": "Paphos",
+            "departure": "Zagreb",
+            "outboundFlight": "Flight GHI012",
+            "flightDuration": "5 hours",
+            "sleepingType": "Hotel",
+            "sleepingDescription": "Indulge in luxury at a beachfront hotel with stunning views",
+            "itinerary": [
+                "Day 1: Arrive in Paphos and check-in at the hotel",
+                "Day 2: Explore the UNESCO-listed archaeological sites and visit the Paphos Castle",
+                "Day 3: Relax on the golden sandy beaches and enjoy water sports",
+                "Day 4: Discover the stunning Akamas Peninsula and its nature trails",
+                "Day 5: Take a boat trip to the Blue Lagoon and swim in crystal-clear waters",
+                "Day 6: Visit the Tomb of the Kings and learn about ancient burial practices",
+                "Day 7: Explore the Paphos Archaeological Park and its well-preserved ruins",
+                "Day 8: Indulge in local Cypriot cuisine and try traditional dishes",
+                "Day 9: Relax in the hotel spa and enjoy a rejuvenating massage",
+                "Day 10: Depart from Paphos"
+            ],
+            "price": {
+                "total": 1800,
+                "flight": 600,
+                "sleep": 900,
+                "attractions": 300
+            },
+            "itinerary_id": "4"
+        }
+    ]
+}

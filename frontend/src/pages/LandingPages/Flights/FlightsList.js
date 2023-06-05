@@ -10,8 +10,13 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
+import FlightIcon from '@mui/icons-material/Flight';
+import { UserContext } from "../../../App";
+import { useContext } from "react";
 function FlightsList({ data }) {
-  
+
   //console.log(data); //might be useful to see what data is passed to this component
 
   const divStyle = {
@@ -28,9 +33,17 @@ function FlightsList({ data }) {
     if (separatorIndex !== -1) {
       const beforeSeparator = transfers.slice(0, separatorIndex);
       const afterSeparator = transfers.slice(separatorIndex + 1);
+
+
+
       if (way === "to") {
+        if (beforeSeparator.length == 0)
+          return (
+            <Typography variant="subtitle1"> <FlightIcon /> DIRECT </Typography>
+          )
         return (
           <div>
+            <ConnectingAirportsIcon />
             {beforeSeparator.length}
             {beforeSeparator.length == 1 && "stop( "}
             {beforeSeparator.length > 1 && " stop" + (beforeSeparator.length > 1 ? "s (" : " (")}
@@ -39,11 +52,16 @@ function FlightsList({ data }) {
         );
       }
       else if (way === "back") {
+        if (afterSeparator.length == 0)
+          return (
+            <Typography variant="subtitle1"> <FlightIcon /> DIRECT </Typography>
+          )
         return (
           <div>
+            <ConnectingAirportsIcon />
             {afterSeparator.length}
-            {afterSeparator.length == 1 && "stop("}
-            {afterSeparator.length > 1 && "stop" + (afterSeparator.length > 1 ? "s (" : " (")}
+            {afterSeparator.length == 1 && " stop("}
+            {afterSeparator.length > 1 && " stop" + (afterSeparator.length > 1 ? "s (" : " (")}
             {afterSeparator.join(", ") + ")"}
           </div>
         );
@@ -59,12 +77,15 @@ function FlightsList({ data }) {
   };
 
   // Define a state variable to store the items in the cart
-  const [cartItems, setCartItems] = useState([]);
+
+  const {cartItems, setCartItems} = useContext(UserContext);
+
 
   // Define a function to handle adding an item to the cart
   const handleAddProduct = product => {
     // Check if the product already exists in the cart
     const productExist = cartItems.find(item => item.id === product.id);
+    console.log(product);
     if (productExist) {
       // If so, update its quantity
       setCartItems(
@@ -104,41 +125,57 @@ function FlightsList({ data }) {
               }
 
               <Typography variant="h6" gutterBottom>
-                  {flight.airlines.length < 2 ? "Airline: " : "Airlines: "}{flight.airlines.join(", ")}
+                {flight.airlines.length < 2 ? "Airline: " : "Airlines: "}{flight.airlines.join(", ")}
 
-                </Typography>
+              </Typography>
 
               <Typography variant="h6" gutterBottom>
                 {flight.cityFrom} - {flight.cityTo}
                 {getTransfersComponents(flight.transfers, "to")}
               </Typography>
-                <Typography variant="subtitle1">
-                  <FlightTakeoffIcon sx={{ color: 'green' }} />
-                  <strong>Departure:</strong> {flight.routeTo[0].departure}
-                </Typography>
+              <Typography variant="subtitle1">
+                <FlightTakeoffIcon sx={{ color: 'green' }} />
+                <strong>Departure:</strong> {flight.routeTo[0].departure}
+              </Typography>
 
-                <Typography variant="subtitle1">
-                  <FlightLandIcon sx={{ color: 'red' }} />
-                  <strong>Arrival:</strong> {flight.routeTo[0].arrival}
-                </Typography>
-                <Typography variant="subtitle1">
-                  <AccessTimeIcon sx={{ color: 'blue' }} />
-                  <strong>Duration:</strong> {flight.duration}
-                </Typography>
-                <hr />
-                <Typography variant="h6" gutterBottom>
-                  {flight.cityTo} - {flight.cityFrom}
+              <Typography variant="subtitle1">
+                <FlightLandIcon sx={{ color: 'red' }} />
+                <strong>Arrival:</strong> {flight.routeTo[0].arrival}
+              </Typography>
+              <Typography variant="subtitle1">
+                <AccessTimeIcon sx={{ color: 'blue' }} />
+                <strong>Duration:</strong> {flight.duration}
+              </Typography>
+              <hr />
+              <Typography variant="h6" gutterBottom>
+                {flight.cityTo} - {flight.cityFrom}
                 {getTransfersComponents(flight.transfers, "back")}
-                </Typography>
+              </Typography>
+              <Typography variant="subtitle1">
+                <FlightTakeoffIcon sx={{ color: 'green' }} />
+                <strong>Departure:</strong> {flight.routeFrom[0].departure}
+              </Typography>
+              <Typography variant="subtitle1">
+                <FlightLandIcon sx={{ color: 'red' }} />
+                <strong>Arrival:</strong> {flight.routeFrom[0].arrival}
+              </Typography>
+              <Typography variant="subtitle1">
+                <AccessTimeIcon sx={{ color: 'blue' }} />
+                <strong>Duration:</strong> {flight.durationBack}
+              </Typography>
+              <hr />
+              <Typography variant="subtitle1">
+                <strong>Price:</strong> {flight.price} EUR
+              </Typography>
 
-                <Typography variant="subtitle1">
-                <Button 
-                sx={{ color: 'success.main', fontSize: 20 }}
-                onClick={() => handleAddProduct(flight)} >
-                <AddShoppingCartIcon />
+              <Typography variant="subtitle1">
+                <Button
+                  sx={{ color: 'success.main', fontSize: 20 }}
+                  onClick={() => handleAddProduct(flight)} >
+                  <AddShoppingCartIcon />
                   Add to cart
                 </Button>
-                </Typography>
+              </Typography>
 
             </CardContent>
           </Card>

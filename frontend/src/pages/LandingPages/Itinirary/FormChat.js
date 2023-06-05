@@ -1,102 +1,64 @@
 import React, { useState } from "react";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
-import AutoComplete from "../../../components/Autocomplete/AutoComplete";
-import countriesList from "../../../components/Autocomplete/cities";
+import Button from "@mui/material/Button";
+
 function TripForm({ submit }) {
-  const [departureDate, setDepartureDate] = useState("18-7-2023");
-  const [returnDate, setReturnDate] = useState("29-7-2023");
-  const [numTravelers, setNumTravelers] = useState("1");
-  const [desiredContinent, setDesiredContinent] = useState("Europe");
-  const [travelType, setTravelType] = useState("adventure");
-  const [interests, setInterests] = useState("hiking");
-  const [preferredAccommodation, setPreferredAccommodation] = useState("hotels");
-  const [maxBudget, setMaxBudget] = useState("10000");
+  const [travelTime, setTravelTime] = useState("");
+  const [travelDestination, setTravelDestination] = useState("");
+  const [additionalInfo, setAdditionalInfo] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
-      departureDate,
-      returnDate,
-      numTravelers,
-      desiredContinent,
-      travelType,
-      interests,
-      preferredAccommodation,
-      maxBudget,
+      travelTime,
+      travelDestination,
+      additionalInfo,
     };
     submit(formData);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <MKBox display="flex" flexDirection="column" gap={2}>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Departure date:</label>
-          <MKInput
-            type="date"
-            value={departureDate}
-            onChange={(event) => setDepartureDate(event.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Return date:</label>
-          <MKInput
-            type="date"
-            value={returnDate}
-            onChange={(event) => setReturnDate(event.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Number of travelers:</label>
+      <MKBox display="grid" gap={2} sx={{ width: "400px" }}>
+        <div className="form-row">
+          <label>Travel destination:</label><br/>
           <MKInput
             type="text"
-            value={numTravelers}
-            onChange={(event) => setNumTravelers(event.target.value)}
+            value={travelDestination}
+            onChange={(event) => setTravelDestination(event.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Desired location:</label>
-          <AutoComplete countries={countriesList} setDesiredContinent={setDesiredContinent} />
-
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Travel type:</label>
+        </div>
+        <div className="form-row">
+          <label>Travel time:</label><br/>
           <MKInput
             type="text"
-            value={travelType}
-            onChange={(event) => setTravelType(event.target.value)}
+            value={travelTime}
+            onChange={(event) => setTravelTime(event.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Interests:</label>
+        </div>
+        <div className="form-row">
+          <label>Additional information:</label><br/>
           <MKInput
             type="text"
-            value={interests}
-            onChange={(event) => setInterests(event.target.value)}
+            value={additionalInfo}
+            placeholder="Optional"
+            onChange={(event) => setAdditionalInfo(event.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Preferred accommodation:</label>
-          <MKInput
-            type="text"
-            value={preferredAccommodation}
-            onChange={(event) => setPreferredAccommodation(event.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Max budget:</label>
-          <MKInput
-            type="text"
-            value={maxBudget}
-            onChange={(event) => setMaxBudget(event.target.value)}
-          />
-        </MKBox>
+        </div>
       </MKBox>
-      <button type="submit">Submit</button>
+
+      <br />
+      <Button
+        variant="contained"
+        color="success"
+        sx={{ backgroundColor: "#4caf50", color: "#ffffff" , '&:hover': { backgroundColor: '#388e3c' }}}
+        type="submit"
+      >
+        Plan my trip
+      </Button>
     </form>
   );
 }
 
 export default TripForm;
-

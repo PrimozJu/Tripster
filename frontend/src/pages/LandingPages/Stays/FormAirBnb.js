@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
-import countriesList from "../../../components/Autocomplete/cities";
+import { Box, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import AutoComplete from "../../../components/Autocomplete/AutoComplete";
+import countriesList from "../../../components/Autocomplete/cities";
+
 const FormAirBnb = ({ handleForm }) => {
   const [location, setLocation] = useState("Maribor");
   const [checkin, setCheckin] = useState("2023-07-02");
   const [checkout, setCheckout] = useState("2023-07-14");
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
-  const [pets, setPets] = useState(0);
-  const [page, setPage] = useState(1);
+  const [adults, setAdults] = useState(2);
   const [currency, setCurrency] = useState("EUR");
 
   const handleSubmit = (e) => {
@@ -21,10 +17,6 @@ const FormAirBnb = ({ handleForm }) => {
       checkin: checkin.toString(),
       checkout: checkout.toString(),
       adults: adults.toString(),
-      children: children.toString(),
-      infants: infants.toString(),
-      pets: pets.toString(),
-      page: page.toString(),
       currency: currency.toString(),
     };
     handleForm(params);
@@ -32,80 +24,77 @@ const FormAirBnb = ({ handleForm }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <MKBox display="flex" flexDirection="column" gap={2}>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Location:</label>
+      <Box display="flex" flexDirection="column" gap={2}>
+        <Box display="flex" alignItems="center" gap={1}>
+          <InputLabel shrink htmlFor="location-input">
+            Location:
+          </InputLabel>
           <AutoComplete
             countries={countriesList}
             setDesiredContinent={setLocation}
+            maxSuggestions={4} // Set the maximum number of suggestions to show
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Checkin:</label>
-          <MKInput
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <InputLabel shrink htmlFor="checkin-input">
+            Checkin:
+          </InputLabel>
+          <TextField
+            id="checkin-input"
             type="date"
             value={checkin}
             onChange={(e) => setCheckin(e.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Checkout:</label>
-          <MKInput
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <InputLabel shrink htmlFor="checkout-input">
+            Checkout:
+          </InputLabel>
+          <TextField
+            id="checkout-input"
             type="date"
             value={checkout}
             onChange={(e) => setCheckout(e.target.value)}
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Adults:</label>
-          <MKInput
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <InputLabel shrink htmlFor="adults-input">
+            People:
+          </InputLabel>
+          <TextField
+            id="adults-input"
             type="number"
             value={adults}
             onChange={(e) => setAdults(e.target.value)}
+            placeholder="Adults"
           />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Children:</label>
-          <MKInput
-            type="number"
-            value={children}
-            onChange={(e) => setChildren(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Infants:</label>
-          <MKInput
-            type="number"
-            value={infants}
-            onChange={(e) => setInfants(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Pets:</label>
-          <MKInput
-            type="number"
-            value={pets}
-            onChange={(e) => setPets(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Page:</label>
-          <MKInput
-            type="number"
-            value={page}
-            onChange={(e) => setPage(e.target.value)}
-          />
-        </MKBox>
-        <MKBox display="flex" alignItems="center" gap={1}>
-          <label>Currency:</label>
-          <MKInput
-            type="text"
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-          />
-        </MKBox>
-      </MKBox>
-      <button type="submit">Submit</button>
+        </Box>
+        <Box display="flex" alignItems="center" gap={1}>
+          <FormControl>
+            <InputLabel shrink htmlFor="currency-select">
+              
+            </InputLabel>
+            <Select
+              labelId="currency-label"
+              id="currency-select"
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <MenuItem value={"EUR"}>EUR</MenuItem>
+              <MenuItem value={"USD"}>USD</MenuItem>
+              <MenuItem value={"GBP"}>GBP</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+      <Button
+        variant="contained"
+        color="success"
+        sx={{ backgroundColor: "#4caf50", color: "#ffffff", '&:hover': { backgroundColor: '#388e3c' } }}
+        type="submit"
+      >
+        Get Stays
+      </Button>
     </form>
   );
 };

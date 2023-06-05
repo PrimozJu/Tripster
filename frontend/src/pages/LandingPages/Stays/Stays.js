@@ -14,7 +14,7 @@ import MKTypography from "components/MKTypography";
 import ReactLoading from "react-loading";
 import { useContext } from "react";
 import { UserContext } from "../../../App";
-
+import Airplane from "../../../assets/images/itinerary/airplane.png";
 import { db, auth } from '../../../index';
 import { localApiStays } from "secret-keys";
 
@@ -24,6 +24,9 @@ const Stays = () => {
   const [response, setResponse] = useState(undefined);
   //ne seri
   const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(null); // New state variable for error message
+
 
   const { userIdState, setUserIdState } = useContext(UserContext);
   console.log(userIdState);
@@ -52,7 +55,8 @@ const Stays = () => {
       setResponse(respons);
     } catch (err) {
       console.error(err.message);
-    }
+      setError("Something went wrong, try again later"); // Set error message in state
+      }
     setLoading(false);
 
   }
@@ -103,9 +107,11 @@ const Stays = () => {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Join mekdonalc millions of travellers around the world and take
-              the journeys that matter. Using our search engine, you can find
-              the best deals on flights, hotels, and car rentals.
+              <div className="text-transparent">
+                Join mekdonalc millions of travellers around the world and take
+                the journeys that matter. Using our search engine, you can find
+                the best deals on flights, hotels, and car rentals.
+              </div>
             </MKTypography>
           </Grid>
         </Container>
@@ -126,12 +132,26 @@ const Stays = () => {
         <FormAirBnb handleForm={handleForm} />
         <div id="data"></div>
 
-        {loading ? (
-          <ReactLoading type="bars" color="#000" height={50} width={50} />
-        ) : response ? (
+
+        {loading && (
+        <Grid container item xs={12} justifyContent="center">
+          <img
+            src={Airplane}
+            className="loadingImg"
+            alt="Airplane"
+            style={{ height: "100px", width: "100px" }}
+          />
+        </Grid>
+      )}
+
+          {response && (
+        <Card>
           <ApartmentList data={response.data.results} />
-        ) : null}
+        </Card>
+      )}
       </Card>
+
+      
     </div>
   );
 };
