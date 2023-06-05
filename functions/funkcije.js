@@ -85,6 +85,16 @@ module.exports.prestej = async (currentUser, db, number) => {
     return count;
   };
 
+  const getDates = (data, key) => {
+    const resultArray = [];
+    data.forEach((item) => {
+      if (!resultArray.includes(item[key]))
+        resultArray.push(item[key]);
+    });
+
+    return resultArray;
+  }
+
   return new Promise((resolve, reject) => {
     const docRef = db.collection('users').doc(currentUser);
 
@@ -105,24 +115,35 @@ module.exports.prestej = async (currentUser, db, number) => {
         countOccurrences(lastFiveStays.map((stay) => stay.adults))
       ]);
 
+      let numberOfDays = 0;
+      lastFiveFlights.forEach((flight) => {
+        const [day2, month2, year2] = flight.return_from.split("/");
+        const dateDiff = Math.round(Math.abs(new Date(flight.date_from) - new Date(day2, month2 - 1, year2)) / (24 * 60 * 60 * 1000));
+        numberOfDays += dateDiff;
+      });
 
-      const data = {
-        currency: currency,
-        adults: adults,
-        flightOrigins: countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom)),
-        flightDestinations: countOccurrences(lastFiveFlights.map((flight) => flight.cityTo)),
-        flightThere: countOccurrences(lastFiveFlights.map((flight) => flight.date_from)),
-        flightBack: countOccurrences(lastFiveFlights.map((flight) => flight.return_from)),
-        flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
-        stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
-        stayCheckin: countOccurrences(lastFiveStays.map((stay) => stay.checkin)),
-        stayCheckout: countOccurrences(lastFiveStays.map((stay) => stay.checkout)),
-        stayChildren: countOccurrences(lastFiveStays.map((stay) => stay.children)),
-        stayInfants: countOccurrences(lastFiveStays.map((stay) => stay.infants))
+      console.log(numberOfDays);
+
+      const dates = {
+        flightDates: [
+          getDates(lastFiveFlights, "date_from"),
+          getDates(lastFiveFlights, "return_from")
+        ],
+        stayDates: [
+          getDates(lastFiveStays, "checkin"),
+          getDates(lastFiveStays, "checkout")
+        ]
       };
 
-      resolve(data);
-
+      resolve({
+        currency: currency,
+        adults: adults,
+        dates: dates,
+        flightOrigins: countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom)),
+        flightDestinations: countOccurrences(lastFiveFlights.map((flight) => flight.cityTo)),
+        flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
+        stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
+      });
     }).catch(err => {
       console.error(err);
       reject(err);
@@ -148,22 +169,14 @@ module.exports.analyzeData = (data) => {
     const mostCommonFlightClasses = findMostCommon('flightClass');
     const mostCommonStayDestinations = findMostCommon('stayDestinations');
 
-    const flightDates = Object.keys(data.flightThere);
-    const mostRecentFlightDate = flightDates.reduce((a, b) => new Date(a) > new Date(b) ? a : b);
-
     const numberOfAdults = Object.keys(data.adults).reduce((a, b) => data.adults[a] > data.adults[b] ? a : b);
-    const numberOfChildren = Object.keys(data.stayChildren).reduce((a, b) => data.stayChildren[a] > data.stayChildren[b] ? a : b);
-    const numberOfInfants = Object.keys(data.stayInfants).reduce((a, b) => data.stayInfants[a] > data.stayInfants[b] ? a : b);
 
     resolve({
       currency: mostCommonCurrencies,
       flightOrigin: mostCommonFlightOrigins,
       flightDestination: mostCommonFlightDestinations,
-      recentFlightDate: mostRecentFlightDate,
       flightClass: mostCommonFlightClasses,
       numberOfAdults: [numberOfAdults],
-      numberOfChildren: [numberOfChildren],
-      numberOfInfants: [numberOfInfants],
       stayDestination: mostCommonStayDestinations
     });
   });
