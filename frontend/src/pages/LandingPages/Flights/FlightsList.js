@@ -120,9 +120,14 @@ function FlightsList({ data }) {
 
             <CardContent>
               {index === 0 && <Typography variant="h6" gutterBottom>
-                <div style={divStyle}> Best Flight </div>
+                <div style={divStyle}> Cheapest Flight </div>
               </Typography>
               }
+              {index === 1 && <Typography variant="h6" gutterBottom>
+                <div style={divStyle}> Fastest flight </div>
+              </Typography>
+              }
+
 
               <Typography variant="h6" gutterBottom>
                 {flight.airlines.length < 2 ? "Airline: " : "Airlines: "}{flight.airlines.join(", ")}
