@@ -273,7 +273,7 @@ module.exports.analyzeData = (data) => {
     };
 
     const thereDate = getDate(14);
-    const backDate = getDate(24);
+    const backDate = getDate(17);
 
     data.flightD.forEach((destination) => {
       const index = data.flightD.findIndex(item => item === destination);
