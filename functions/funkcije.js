@@ -57,6 +57,92 @@ module.exports.callAirbnbAPI = async (params) => {
 }
 
 
+module.exports.formatFlightData = (responseData) => {
+  zaNazaj = [];
+  responseData.forEach((element) => {
+    //Da ne pošlje že zasedenih
+    if (element.availability.seats == null) {
+      console.log("No seats available");
+      return;
+    }
+
+    //Za VSE prestopne lete
+    const transfer = [];
+    const routeTo = [];
+    const routeFrom = [];
+    const arrivalBack = [];
+    const departureBack = [];
+    let pogoj = true;
+    let durationBack = 0;
+    element.route.forEach((item) => {
+      if (item.flyFrom != params.fly_from) {
+        if (item.flyFrom != params.fly_to) {
+          transfer.push(item.flyFrom);
+        } else {
+          transfer.push("|");
+        }
+      }
+
+      const routeItem = {
+        id: item.id,
+        cityFrom: item.cityFrom,
+        cityTo: item.cityTo,
+        airline: item.airline,
+      };
+
+      const duration = {
+        utc_departure: item.utc_departure,
+        utc_arrival: item.utc_arrival,
+      };
+
+      const arrayItem = Object.assign(routeItem, this.formatFlightdetails(duration));
+
+      //loci za tja in nazaj
+      if (pogoj && item.cityFrom != element.cityTo) {
+        routeTo.push(arrayItem);
+      } else {
+        pogoj = false;
+        durationBack += arrayItem.durationInMinutes;
+        arrivalBack.push(fortmatTime(new Date(item.utc_arrival)));
+        departureBack.push(fortmatTime(new Date(item.utc_departure)));
+
+        routeFrom.push(arrayItem);
+      }
+    });
+
+    //Tisti ta glavni let
+    const item = {
+      id: element.id,
+      cityFrom: element.cityFrom,
+      cityTo: element.cityTo,
+      airlines: element.airlines,
+      availability: element.availability.seats,
+      price: element.conversion[req.query.curr],
+      routeTo: routeTo,
+      routeFrom: routeFrom,
+      durationBack: this.formatFromMinutes(durationBack),
+      arrivalBack: arrivalBack[arrivalBack.length - 1],
+      departureBack: departureBack[0],
+    };
+
+    const duration = {
+      utc_departure: element.utc_departure,
+      utc_arrival: element.utc_arrival,
+    };
+    const arrayItem = Object.assign(item, this.formatFlightdetails(duration));
+    arrayItem.transfers = transfer;
+
+    zaNazaj.push(arrayItem);
+  });
+
+  const fastAndCheap = this.getBestFlights(zaNazaj);
+  const filteredFlights = zaNazaj.filter((flight) => {
+    return !fastAndCheap.includes(flight);
+  });
+  return this.fastAndCheap.concat(filteredFlights);
+}
+
+
 module.exports.prestej = async (currentUser, db, number) => {
 
   const combineKeys = (input) => {
@@ -85,6 +171,30 @@ module.exports.prestej = async (currentUser, db, number) => {
     return count;
   };
 
+  const getDates = (data, key) => {
+    const resultArray = [];
+    data.forEach((item) => {
+      if (!resultArray.includes(item[key]))
+        resultArray.push(item[key]);
+    });
+
+    return resultArray;
+  }
+
+  function findMostCommonEntry(obj) {
+    let mostCommonEntry;
+    let maxFrequency = 0;
+
+    for (const entry in obj) {
+      if (obj[entry] > maxFrequency) {
+        mostCommonEntry = entry;
+        maxFrequency = obj[entry];
+      }
+    }
+
+    return mostCommonEntry;
+  }
+
   return new Promise((resolve, reject) => {
     const docRef = db.collection('users').doc(currentUser);
 
@@ -105,24 +215,28 @@ module.exports.prestej = async (currentUser, db, number) => {
         countOccurrences(lastFiveStays.map((stay) => stay.adults))
       ]);
 
-
-      const data = {
-        currency: currency,
-        adults: adults,
-        flightOrigins: countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom)),
-        flightDestinations: countOccurrences(lastFiveFlights.map((flight) => flight.cityTo)),
-        flightThere: countOccurrences(lastFiveFlights.map((flight) => flight.date_from)),
-        flightBack: countOccurrences(lastFiveFlights.map((flight) => flight.return_from)),
-        flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
-        stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
-        stayCheckin: countOccurrences(lastFiveStays.map((stay) => stay.checkin)),
-        stayCheckout: countOccurrences(lastFiveStays.map((stay) => stay.checkout)),
-        stayChildren: countOccurrences(lastFiveStays.map((stay) => stay.children)),
-        stayInfants: countOccurrences(lastFiveStays.map((stay) => stay.infants))
+      const dates = {
+        flightDates: [
+          getDates(lastFiveFlights, "date_from"),
+          getDates(lastFiveFlights, "return_from")
+        ],
+        stayDates: [
+          getDates(lastFiveStays, "checkin"),
+          getDates(lastFiveStays, "checkout")
+        ]
       };
 
-      resolve(data);
-
+      resolve({
+        currency: findMostCommonEntry(currency),
+        adults: findMostCommonEntry(adults),
+        dates: dates,
+        flightOrigins: Object.keys(countOccurrences(lastFiveFlights.map((flight) => flight.cityFrom))),
+        flightDestinations: Object.keys(countOccurrences(lastFiveFlights.map((flight) => flight.cityTo))),
+        flightO: Object.keys(countOccurrences(lastFiveFlights.map((flight) => flight.fly_from))),
+        flightD: Object.keys(countOccurrences(lastFiveFlights.map((flight) => flight.fly_to))),
+        flightClass: countOccurrences(lastFiveFlights.map((flight) => flight.selected_cubins)),
+        stayDestinations: countOccurrences(lastFiveStays.map((stay) => stay.location)),
+      });
     }).catch(err => {
       console.error(err);
       reject(err);
@@ -141,30 +255,56 @@ module.exports.analyzeData = (data) => {
     return mostCommonItems;
   }
 
+  const getDate = (noOfDays) => {
+    const date = new Date();
+    date.setDate(date.getDate() + noOfDays);
+
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+  }
+
   return new Promise((resolve, reject) => {
-    const mostCommonCurrencies = findMostCommon('currency');
-    const mostCommonFlightOrigins = findMostCommon('flightOrigins');
-    const mostCommonFlightDestinations = findMostCommon('flightDestinations');
-    const mostCommonFlightClasses = findMostCommon('flightClass');
-    const mostCommonStayDestinations = findMostCommon('stayDestinations');
+    const combinations = {
+      "flights": [],
+      "stays": []
+    };
 
-    const flightDates = Object.keys(data.flightThere);
-    const mostRecentFlightDate = flightDates.reduce((a, b) => new Date(a) > new Date(b) ? a : b);
+    const thereDate = getDate(14);
+    const backDate = getDate(24);
 
-    const numberOfAdults = Object.keys(data.adults).reduce((a, b) => data.adults[a] > data.adults[b] ? a : b);
-    const numberOfChildren = Object.keys(data.stayChildren).reduce((a, b) => data.stayChildren[a] > data.stayChildren[b] ? a : b);
-    const numberOfInfants = Object.keys(data.stayInfants).reduce((a, b) => data.stayInfants[a] > data.stayInfants[b] ? a : b);
+    data.flightD.forEach((destination) => {
+      const index = data.flightD.findIndex(item => item === destination);
+
+      const Flightaram = {
+        "curr": data.currency,
+        "adults": data.adults,
+        "fly_from": data.flightO[0],
+        "fly_to": destination,
+        "selected_cubins": findMostCommon("flightClass")[0],
+        "limit": 10,
+        "date_from": thereDate,
+        "date_to": thereDate,
+        "return_from": backDate,
+        "return_to": backDate,
+      }
+      const stayParam = {
+        "currency": data.currency,
+        "adults": data.adults,
+        "location": data.flightDestinations[index],
+        "page": 1,
+        "checkin": thereDate,
+        "checkout": backDate,
+      }
+
+      combinations.flights.push(Flightaram);
+      combinations.stays.push(stayParam);
+    });
 
     resolve({
-      currency: mostCommonCurrencies,
-      flightOrigin: mostCommonFlightOrigins,
-      flightDestination: mostCommonFlightDestinations,
-      recentFlightDate: mostRecentFlightDate,
-      flightClass: mostCommonFlightClasses,
-      numberOfAdults: [numberOfAdults],
-      numberOfChildren: [numberOfChildren],
-      numberOfInfants: [numberOfInfants],
-      stayDestination: mostCommonStayDestinations
+      combinations: combinations,
     });
   });
 }

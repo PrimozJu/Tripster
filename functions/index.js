@@ -23,6 +23,7 @@ const {
   analyzeData,
   fillDB,
   callAPIAndTransformData,
+  formatFlightData,
 } = require("./funkcije");
 
 initializeApp();
@@ -126,7 +127,7 @@ app.get("/airbnb", async (req, res) => {
   }
 
   let responseData = undefined;
-   responseData = await callAirbnbAPI(params);
+  responseData = await callAirbnbAPI(params);
 
   if (responseData) {
     //return res.status(500).send("lmao");
@@ -173,96 +174,13 @@ app.get("/flights", async (req, res) => {
     saveSearch(currentUser, params, "flightSearches", db);
   }
 
-  zaNazaj = [];
-  responseData.forEach((element) => {
-    //Da ne pošlje že zasedenih
-    if (element.availability.seats == null) {
-      console.log("No seats available");
-      return;
-    }
-
-    //Za VSE prestopne lete
-    const transfer = [];
-    const routeTo = [];
-    const routeFrom = [];
-    const arrivalBack = [];
-    const departureBack = [];
-    let pogoj = true;
-    let durationBack = 0;
-    element.route.forEach((item) => {
-      if (item.flyFrom != params.fly_from) {
-        if (item.flyFrom != params.fly_to) {
-          transfer.push(item.flyFrom);
-        } else {
-          transfer.push("|");
-        }
-      }
-
-      const routeItem = {
-        id: item.id,
-        cityFrom: item.cityFrom,
-        cityTo: item.cityTo,
-        airline: item.airline,
-      };
-
-      const duration = {
-        utc_departure: item.utc_departure,
-        utc_arrival: item.utc_arrival,
-      };
-
-      const arrayItem = Object.assign(routeItem, formatFlightdetails(duration));
-
-      //loci za tja in nazaj
-      if (pogoj && item.cityFrom != element.cityTo) {
-        routeTo.push(arrayItem);
-      } else {
-        pogoj = false;
-        durationBack += arrayItem.durationInMinutes;
-        arrivalBack.push(fortmatTime(new Date(item.utc_arrival)));
-        departureBack.push(fortmatTime(new Date(item.utc_departure)));
-
-        routeFrom.push(arrayItem);
-      }
-    });
-
-    //Tisti ta glavni let
-    const item = {
-      id: element.id,
-      cityFrom: element.cityFrom,
-      cityTo: element.cityTo,
-      airlines: element.airlines,
-      availability: element.availability.seats,
-      price: element.conversion[req.query.curr],
-      routeTo: routeTo,
-      routeFrom: routeFrom,
-      durationBack: formatFromMinutes(durationBack),
-      arrivalBack: arrivalBack[arrivalBack.length - 1],
-      departureBack: departureBack[0],
-    };
-
-    const duration = {
-      utc_departure: element.utc_departure,
-      utc_arrival: element.utc_arrival,
-    };
-    const arrayItem = Object.assign(item, formatFlightdetails(duration));
-    arrayItem.transfers = transfer;
-
-    zaNazaj.push(arrayItem);
-  });
-
-  const fastAndCheap = getBestFlights(zaNazaj);
-  const filteredFlights = zaNazaj.filter((flight) => {
-    return !fastAndCheap.includes(flight);
-  });
-  const finalArray = fastAndCheap.concat(filteredFlights);
-
-  res.status(200).send(finalArray);
+  res.status(200).send(formatFlightData(responseData));
 });
 
 app.post("/itineary-chat-gpt", async (req, res) => {
   try {
     const params = req.body;
-    
+
     // Adding data to the database
     const jsonData = req.body;
     jsonData.search_type = "itineary-chat-gpt";
