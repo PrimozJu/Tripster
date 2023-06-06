@@ -14,9 +14,10 @@ previous_url = driver.current_url
 
 while True:
     try:
+        WebDriverWait(driver, 10).until(EC.url_changes(previous_url))
+
         current_url = driver.current_url
 
-        print("pred if")
         if current_url != previous_url:
             previous_url = current_url
 
@@ -24,14 +25,13 @@ while True:
             try:
                 iframe = driver.find_element(By.ID, "webpack-dev-server-client-overlay")
             except:
-                print("Ne najdem")
+                print("Element not found")
 
             if iframe:
-                print("Najdem")
+                print("Element found")
                 close_button = iframe.find_element(By.CSS_SELECTOR, "button[style*=background-color]")
                 close_button.click()
 
-            time.sleep(5)
     except Exception as e:
         print(f"An error occurred: {e}")
         driver.quit()
