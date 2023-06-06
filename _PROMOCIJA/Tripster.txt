@@ -1,0 +1,25 @@
+Tripster
+
+Spletna stran za načrtovanje potovanj
+
+Leto izdelave: 2022
+
+Primož Jurič
+Sašo Krepek
+Vito Zupanič
+
+Domača stran: http://86.61.28.132:63400/presentation
+
+
+Koda: https://github.com/PrimozJu/Tripster
+
+Kategorizacija: celovita informacijska rešitev, spletna aplikacija
+
+Oznake: ReactJS, MongoDB, NodeJS, Python, GitHub, UporabaAI, Express, REST...
+
+Opis projekta:
+Spletna aplikacija je namenjena uporabnikom, ki želijo enostavno iskati lete in airbnb-je. Omogoča iskanje letov med različnimi destinacijami ter primerjanje cen in razpoložljivosti.
+
+Aplikacija uporablja tudi OpenAI API, kar nam omogoča ustvarjanje personaliziranih načrtov aktivnosti v določenem mestu. Na podlagi preteklih poizvedb o letih in airbnb-jih lahko aplikacija uporabnikom priporoča zanimive aktivnosti, kot so ogled turističnih znamenitosti, obisk restavracij, nakupovanje, kulturni dogodki in še več.
+
+S tem uporabnikom nudimo celovito izkušnjo na enem mestu, kjer lahko načrtujejo svoje potovanje, rezervirajo prevoz in namestitev ter dobijo priporočila za aktivnosti v izbranem mestu. S tem prihranijo čas in trud pri iskanju informacij ter dobijo personalizirane predloge glede na njihove preference in interese.
