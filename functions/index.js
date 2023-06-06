@@ -141,10 +141,10 @@ app.get("/airbnb", async (req, res) => {
     }
 
     let responseData = undefined;
-    //   responseData = await callAirbnbAPI(params);
+    responseData = await callAirbnbAPI(params);
 
     if (responseData) {
-        return res.status(500).send("lmao");
+        // return res.status(500).send("lmao");
 
         res.status(200).send(responseData);
     } else {
@@ -187,8 +187,9 @@ app.get("/flights", async (req, res) => {
     if (currentUser) {
         saveSearch(currentUser, params, "flightSearches", db);
     }
+    const formatedFlightData = await formatFlightData(responseData, params, req.query.curr);
 
-    res.status(200).send(formatFlightData(responseData, params, req.query.curr));
+    res.status(200).send(formatedFlightData);
 });
 
 app.post("/itineary-chat-gpt", async (req, res) => {

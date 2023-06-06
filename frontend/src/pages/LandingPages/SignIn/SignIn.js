@@ -72,7 +72,10 @@ useEffect(() => {
 
 
 
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    email: "tripster@trispter.si ",
+    password: "zeloDolgoGeslo"
+  });
 
   const handleInputChange = (event) => {
     const name = event.target.name;
@@ -163,10 +166,10 @@ useEffect(() => {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" name="email" label="Email" onChange={handleInputChange} fullWidth />
+                    <MKInput type="email" name="email" label="Email" onChange={handleInputChange} value={input.email} fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" password="password" label="Password" name="password" onChange={handleInputChange} fullWidth />
+                    <MKInput type="password" password="password" label="Password" name="password" onChange={handleInputChange} value={input.password} fullWidth />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch checked={rememberMe} onChange={handleSetRememberMe} />
