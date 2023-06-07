@@ -10,9 +10,9 @@ Spletna aplikacija za organizacijo in načrtovanje potovanj, ki priporoča najbo
 aktivnosti ter potrdijo svojo rezervacijo. 
 
 ## Tehnologije
-|**Baza**|**Avtentikacija**|**Počelje**|**Zaledje**|
-|----|-------------|-------|----------|
-|<img src="slike/firestore.png" alt="Firebase firestore" width="100" height="100">|<img src="slike/auth.png" alt="Firebase auth" width="100" height="100">|<img src="slike/react.png" alt="React.js" width="100" height="100">|<img src="slike/function.png" alt="Firebase functions" width="100" height="100"> <img src="slike/node.png" alt="Node.js" width="100" height="100">|
+|**Baza**|**Avtentikacija**|**Počelje**|**Gostovanje**|**Zaledje**|
+|----|-------------|-------|----------|-------|
+|<img src="slike/firestore.png" alt="Firebase firestore" width="100" height="100">|<img src="slike/auth.png" alt="Firebase auth" width="100" height="100">|<img src="slike/react.png" alt="React.js" width="100" height="100">|<img src="slike/hosting.png" alt="Firebase hosting" width="100" height="100">|<img src="slike/function.png" alt="Firebase functions" width="100" height="100"> <img src="slike/node.png" alt="Node.js" width="100" height="100">|
 
 ## Zagon
 
