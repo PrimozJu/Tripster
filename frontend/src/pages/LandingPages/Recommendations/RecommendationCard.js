@@ -18,6 +18,7 @@ const RecommendationCard = ({ recommendation, handleAddProduct }) => {
       cityTo: destination,
       price: price.total,
       id: itinerary_id,
+      type:"2"
     };
 
     console.log("Added to cart:", item);

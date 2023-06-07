@@ -85,7 +85,7 @@ function FlightsList({ data }) {
   const handleAddProduct = product => {
     // Check if the product already exists in the cart
     const productExist = cartItems.find(item => item.id === product.id);
-    console.log(product);
+    
     if (productExist) {
       // If so, update its quantity
       setCartItems(
@@ -97,9 +97,11 @@ function FlightsList({ data }) {
       );
     } else {
       // Otherwise, add it to the cart with a default quantity of 1
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      const updatedProduct = { ...product, quantity: 1, type: "1" };
+      setCartItems([...cartItems, updatedProduct]);
     }
   };
+  
 
   return (
     <div className="container">

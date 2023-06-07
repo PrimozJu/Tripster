@@ -45,6 +45,7 @@ function ApartmentList({ data }) {
       name: name,
       price: price.total,
       id: id,
+      type:"3"
     };
 
     console.log("Added to cart:", item);
