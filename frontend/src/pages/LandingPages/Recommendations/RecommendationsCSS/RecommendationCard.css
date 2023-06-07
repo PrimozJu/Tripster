@@ -1,0 +1,102 @@
+/* Card */
+.card {
+    background-color: lightblue; /* Change this color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card:hover , .card.active:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #279affae; /* Change this color */
+  }
+  
+  /* Title */
+  .card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Paragraphs */
+  .card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .card strong {
+    color: #333;
+  }
+  
+  /* Details */
+  .card .details {
+    display: none;
+    margin-top: 15px;
+    background-color: snow; /* Change this color */
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .card.active .details {
+    display: block;
+  }
+  .card.active{
+    background-color: lightblue; /* Change this color */
+  }
+  
+  .card .details p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .card .details h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card .details ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .card .details ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #666;
+  }
+  
+  /* Add to Cart Button */
+  .card .add-to-cart {
+    margin-top: 15px;
+  }
+  
+  .card .add-to-cart button {
+    background-color: #ffa000; /* Change this color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .card .add-to-cart button:hover {
+    background-color: #ff8f00; /* Change this color */
+  }
+
+  .AddToCartDiv {
+    color: snow;
+  }
+  
