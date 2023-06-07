@@ -63,7 +63,6 @@ module.exports.formatFlightData = async (responseData, params, currency) => {
     responseData.forEach((element) => {
       //Da ne pošlje že zasedenih
       if (element.availability.seats == null) {
-        console.log("No seats available");
         return;
       }
 

@@ -48,17 +48,34 @@ app.get("/recommendation", async (req, res) => {
             const stayParam = combination[1];
             const chatParam = combination[2];
 
-            // const stayData = await callAirbnbAPI(stayParam);
+            const stayData = await callAirbnbAPI(stayParam);
             const flightData = await callFligtsAPI(flightParam);
             const chatData = await callAPIAndTransformData(chatParam);
 
-            const formatedFlightData = await formatFlightData(flightData, flightParam, flightParam.currency);
+            const formatedFlightData = await formatFlightData(flightData, flightParam, flightParam.curr);
             const chosenFlight = formatedFlightData[0];
 
+            const chosenStay = stayData.results[0];
+
+            const price = chosenFlight.price + chosenStay.price.total;
+
+            // results.push({
+            //     flight: chosenFlight,
+            //     stay: chosenStay,
+            //     chat: chatData
+            // });
             results.push({
-                flight: chosenFlight,
-                // stay: stayData.results,
-                chat: chatData
+                departure: chosenFlight.cityFrom,
+                destination: chosenFlight.cityTo,
+                price: {
+                    total: price,
+                    flight: chosenFlight.price,
+                    sleep: chosenStay.price.total
+                },
+                itinerary: chatData,
+                flightDuration: chosenFlight.duration,
+                sleepingType: chosenStay.type,
+                sleepingDescription: chosenStay.name,
             });
         }));
 
