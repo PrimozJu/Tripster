@@ -3,6 +3,12 @@ const { airbnbAPIkey, chatGPTAPIkey, flightsAPIkey } = require("./secret-keys");
 const axios = require("axios");
 
 
+/**
+    Calls the Flights API to search for flights based on the provided parameters.
+    @param {Object} params - The parameters for the flight search.
+    @param {number} limit - The maximum number of results to return.
+    @returns {Promise<Array|null>} - A promise that resolves to an array of flight data or null if an error occurs.
+    */
 module.exports.callFligtsAPI = async (params, limit) => {
   params.limit = limit;
 
@@ -31,6 +37,11 @@ module.exports.callFligtsAPI = async (params, limit) => {
 }
 
 
+/**
+    Calls the Airbnb API to search for locations based on the provided parameters.
+    @param {Object} params - The parameters for the location search.
+    @returns {Promise<Object|null>} - A promise that resolves to an object containing the search results or null if an error occurs.
+    */
 module.exports.callAirbnbAPI = async (params) => {
   const options = {
     method: "GET",
@@ -57,6 +68,13 @@ module.exports.callAirbnbAPI = async (params) => {
 }
 
 
+/**
+    Formats the flight data received from the API response.
+    @param {Array} responseData - The flight data received from the API.
+    @param {Object} params - The parameters used for the flight search.
+    @param {string} currency - The currency in which the prices should be formatted.
+    @returns {Promise<Array>} - A promise that resolves to an array of formatted flight data.
+    */
 module.exports.formatFlightData = async (responseData, params, currency) => {
   return new Promise((resolve, reject) => {
     zaNazaj = [];
@@ -145,6 +163,13 @@ module.exports.formatFlightData = async (responseData, params, currency) => {
 }
 
 
+/**
+    Retrieves and analyzes the recent search data for flights and stays for a specific user.
+    @param {string} currentUser - The ID of the current user.
+    @param {Object} db - The database object used for querying.
+    @param {number} number - The number of recent searches to consider.
+    @returns {Promise<Object>} - A promise that resolves to an object containing analyzed search data.
+    */
 module.exports.prestej = async (currentUser, db, number) => {
 
   const combineKeys = (input) => {
@@ -161,7 +186,6 @@ module.exports.prestej = async (currentUser, db, number) => {
       }
     }
 
-
     return result;
   }
 
@@ -170,6 +194,7 @@ module.exports.prestej = async (currentUser, db, number) => {
     items.forEach((item) => {
       count[item] = (count[item] || 0) + 1;
     });
+
     return count;
   };
 
@@ -247,6 +272,11 @@ module.exports.prestej = async (currentUser, db, number) => {
 }
 
 
+/**
+    Analyzes the search data and generates combinations for flight and stay searches.
+    @param {Object} data - The analyzed search data.
+    @returns {Promise<Object>} - A promise that resolves to an object containing combinations for flight and stay searches.
+    */
 module.exports.analyzeData = (data) => {
 
   const findMostCommon = (key) => {
@@ -327,6 +357,13 @@ module.exports.analyzeData = (data) => {
 }
 
 
+/**
+    Saves a search parameter object to the specified collection for a user.
+    @param {string} user - The user ID.
+    @param {Object} params - The search parameter object to be saved.
+    @param {string} collection - The name of the collection to save the search to.
+    @param {Object} db - The database instance.
+    */
 module.exports.saveSearch = (user, params, collection, db) => {
   const docRef = db.collection('users').doc(user);
 
@@ -391,9 +428,11 @@ module.exports.callAPIAndTransformData = async (params) => {
 };
 
 
-
-
-
+/**
+    Formats the duration in minutes into a human-readable format.
+    @param {number} durationInMinutes - The duration in minutes.
+    @returns {string} The formatted duration string.
+    */
 module.exports.formatFromMinutes = (durationInMinutes) => {
   const hours = Math.floor(durationInMinutes / 60);
   const minutes = durationInMinutes % 60;
@@ -403,6 +442,11 @@ module.exports.formatFromMinutes = (durationInMinutes) => {
 }
 
 
+/**
+    Formats the given time into a specific format.
+    @param {Date} time - The time to be formatted.
+    @returns {string} The formatted time string.
+    */
 module.exports.fortmatTime = (time) => {
   const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: false, timeZone: 'UTC' };
   const formattedTime = time.toLocaleString('en-US', options);
@@ -411,6 +455,13 @@ module.exports.fortmatTime = (time) => {
 }
 
 
+/**
+    Formats the flight details including departure time, arrival time, and duration.
+    @param {Object} flightDetails - The flight details object.
+    @param {string} flightDetails.utc_departure - The UTC departure time.
+    @param {string} flightDetails.utc_arrival - The UTC arrival time.
+    @returns {Object} The formatted flight details object.
+    */
 module.exports.formatFlightdetails = (flightDetails) => {
   const departureTime = new Date(flightDetails.utc_departure);
   const arrivalTime = new Date(flightDetails.utc_arrival);
@@ -432,6 +483,12 @@ module.exports.formatFlightdetails = (flightDetails) => {
 }
 
 
+/**
+    Finds the best flight based on a specified value.
+    @param {Array} flights - The array of flight objects.
+    @param {string} value - The property to compare for finding the best flight.
+    @returns {Object} The best flight object.
+    */
 module.exports.getBest = (flights, value) => {
   const flight = flights.reduce((best, current) => {
     if (current[value] < best[value]) {
@@ -444,6 +501,11 @@ module.exports.getBest = (flights, value) => {
 }
 
 
+/**
+    Retrieves the best flights based on price and duration from the given array of flights.
+    @param {Array} flights - The array of flight objects.
+    @returns {Array} The best flights based on price and duration.
+    */
 module.exports.getBestFlights = (flights) => {
   let zaNazaj = [];
   zaNazaj.push(this.getBest(flights, "price"));
@@ -453,6 +515,12 @@ module.exports.getBestFlights = (flights) => {
 }
 
 
+/**
+
+    Fills the database with sample flight and stay searches for the specified user.
+    @param {string} user - The user ID.
+    @param {Object} db - The Firestore database instance.
+    */
 module.exports.fillDB = (user, db) => {
   const docRef = db.collection('users').doc(user);
 

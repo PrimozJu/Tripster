@@ -59,11 +59,6 @@ app.get("/recommendation", async (req, res) => {
 
             const price = chosenFlight.price + chosenStay.price.total;
 
-            // results.push({
-            //     flight: chosenFlight,
-            //     stay: chosenStay,
-            //     chat: chatData
-            // });
             results.push({
                 departure: chosenFlight.cityFrom,
                 destination: chosenFlight.cityTo,
