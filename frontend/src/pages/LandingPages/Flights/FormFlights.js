@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import AutoComplete from "../../../components/Autocomplete/AutoComplete";
 import countriesList from "../../../components/Autocomplete/cities";
 
+import "./FlightsCss/Flights.css";
+
 function convertDateFormat(dateString) {
   const dateParts = dateString.split("-");
   const day = dateParts[2];
@@ -124,20 +126,22 @@ const FormFlights = ({ handleForm }) => {
       {/* <Button variant="contained" color="primary" type="button">
         Advanced
       </Button> */}
-      <MKButton
-        variant="contained"
-        color="primary"
-        sx={{
-          backgroundColor: "#2196f3",
-          color: "#ffffff",
-          "&:hover": { backgroundColor: "#1976d2" },
-          width: "40%",
-        }}
-        
-        type="submit"
-      >
-        Search flights
-      </MKButton>
+      
+      <div style={{ marginTop: '4vh' }}>
+        <MKButton
+          variant="contained"
+          color="primary"
+          sx={{
+            backgroundColor: "#2196f3",
+            color: "#ffffff",
+            "&:hover": { backgroundColor: "#1976d2" },
+            width: "25vw",
+          }}
+          type="submit"
+        >
+          Search flights
+        </MKButton>
+        </div>
     </form>
   );
 };

@@ -90,32 +90,7 @@ const Stays = () => {
       >
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
-              variant="h1"
-              color="dark blue"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              Tripster{" "}
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="dark blue"
-              textAlign="center"
-              px={{ xs: 6, lg: 12 }}
-              mt={1}
-            >
-              <div className="text-transparent">
-                Join mekdonalc millions of travellers around the world and take
-                the journeys that matter. Using our search engine, you can find
-                the best deals on flights, hotels, and car rentals.
-              </div>
-            </MKTypography>
+            
           </Grid>
         </Container>
       </MKBox>
