@@ -21,7 +21,7 @@ const RecommendationCard = ({ recommendation, handleAddProduct }) => {
       type:"2"
     };
 
-    console.log("Added to cart:", item);
+    // console.log("Added to cart:", item);
     handleAddProduct(item);
   };
 

@@ -23,7 +23,7 @@ const Cart = () => {
   const { userIdState, setUserIdState } = useContext(UserContext);
 
   const { cartItems, setCartItems } = useContext(UserContext);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <>

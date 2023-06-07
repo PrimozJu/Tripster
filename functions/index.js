@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 
 app.get("/recommendation", async (req, res) => {
     const currentUser = req.headers["user"];
+    // console.log(currentUser)
 
     if (!currentUser) {
         return res.status(400).send("Bad request");
@@ -141,10 +142,10 @@ app.post("/authenticate", async (req, res) => {
 
     try {
         await admin.auth().verifyIdToken(idToken);
-        console.log(user.email + " authenticated");
+        // console.log(user.email + " authenticated");
         return res.status(200).send("authenticated");
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         return res.status(401).send(`POST request failed ${err}`);
     }
 });
@@ -165,7 +166,7 @@ app.get("/airbnb", async (req, res) => {
 
         res.status(200).send(responseData);
     } else {
-        console.log(responseData);
+        // console.log(responseData);
         res.status(500).send("Something went wrong");
     }
 });
@@ -193,7 +194,7 @@ app.get("/flights", async (req, res) => {
     responseData = await callFligtsAPI(params, 50);
 
     if (!responseData || responseData.length == 0) {
-        console.log("No flights found");
+        // console.log("No flights found");
         return res.status(500).send("Something went wrong");
     }
 
@@ -224,7 +225,7 @@ app.post("/itineary-chat-gpt", async (req, res) => {
 
         res.send(JSON.stringify(itinerary));
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         res.status(500).send(`${error}`);
     }
 });

@@ -31,10 +31,10 @@ const Stays = () => {
 
 
   const { userIdState, setUserIdState } = useContext(UserContext);
-  console.log(userIdState);
+  // console.log(userIdState);
 
   async function handleForm(params) {
-    console.log(params);
+    // console.log(params);
 
     let userEmail = null;
     try {
@@ -54,7 +54,7 @@ const Stays = () => {
     try {
       setLoading(true);
       const respons = await axios.request(options);
-      console.log(respons)
+      // console.log(respons)
       setResponse(respons);
     } catch (err) {
       console.error(err.message);

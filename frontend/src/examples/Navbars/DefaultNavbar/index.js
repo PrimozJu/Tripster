@@ -46,14 +46,14 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     if (user) {
     
       const uid = user.uid;
-      console.log("v navbaru prijavljen" + uid); //hehe
+      // console.log("v navbaru prijavljen" + uid); //hehe
       setLogged(true);
       setUserIdState(uid);
       // ...
     } else {
       // User is signed out
       // ...
-      console.log("v navbaru odjavljen");
+      // console.log("v navbaru odjavljen");
       setLogged(false);
     }
   });

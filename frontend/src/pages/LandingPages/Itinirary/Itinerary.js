@@ -26,7 +26,7 @@ const Itinerary = () => {
   const [loading, setLoading] = useState(false);
 
   async function chatTalk(params) {
-    console.log(params);
+    // console.log(params);
     const travelTime = params.travelTime;
     const travelDestination = params.travelDestination;
     const additionalInfo = params.additionalInfo;
@@ -67,11 +67,11 @@ const Itinerary = () => {
 
   if (user) {
     // User is signed in.
-    console.log("user je prijavljen");
+    // console.log("user je prijavljen");
     // ...
   } else {
     // No user is signed in.
-    console.log("user NI prijavljen");
+    // console.log("user NI prijavljen");
   }
 
   const footerStyle = {

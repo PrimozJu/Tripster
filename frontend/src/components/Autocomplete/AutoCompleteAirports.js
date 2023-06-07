@@ -6,12 +6,12 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 
 const AutocompleteAirports = (props) => {
   const findCode = (name) => {
-    console.log("prozim funkcijo findCode");
+    // console.log("prozim funkcijo findCode");
     const airport = Airports.find((airport) => airport.name === name);
 
     if (airport) {
-      console.log("Nasel sem letalisce");
-      console.log(airport.iata);
+      // console.log("Nasel sem letalisce");
+      // console.log(airport.iata);
       return airport.iata;
     }
 
@@ -58,7 +58,7 @@ const AutocompleteAirports = (props) => {
       inputValue: clickedItemValue,
     });
     const AirportCode = findCode(clickedItemValue);
-    console.log(AirportCode);
+    // console.log(AirportCode);
     setLocation(AirportCode);
   };
 

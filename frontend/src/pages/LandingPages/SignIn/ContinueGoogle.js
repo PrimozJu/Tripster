@@ -36,7 +36,7 @@ const ConitnueGoogle = () => {
 
 
     e.preventDefault();
-    console.log("clicked google");
+    // console.log("clicked google");
 
 
     const auth = getAuth();
@@ -48,7 +48,7 @@ const ConitnueGoogle = () => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
-        console.log("logged in buddy");
+        // console.log("logged in buddy");
         setUserIdState(user.uid);
         navigate("/Presentation");
 
@@ -62,7 +62,7 @@ const ConitnueGoogle = () => {
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email,);
+        // console.log(errorCode, errorMessage, email,);
         // ...
       });
   }

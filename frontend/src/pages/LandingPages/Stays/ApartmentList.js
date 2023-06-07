@@ -38,7 +38,7 @@ function ApartmentList({ data }) {
   };
 
   const addToCart = (recommendation) => {
-    console.log(recommendation)
+    // console.log(recommendation)
     const { id,  name, price } = recommendation;
     
     const item = {
@@ -48,7 +48,7 @@ function ApartmentList({ data }) {
       type:"3"
     };
 
-    console.log("Added to cart:", item);
+    // console.log("Added to cart:", item);
     handleAddProduct(item);
   };
 

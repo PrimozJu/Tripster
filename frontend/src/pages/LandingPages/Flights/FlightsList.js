@@ -17,7 +17,7 @@ import { UserContext } from "../../../App";
 import { useContext } from "react";
 function FlightsList({ data }) {
 
-  //console.log(data); //might be useful to see what data is passed to this component
+  //// console.log(data); //might be useful to see what data is passed to this component
 
   const divStyle = {
     color: 'red',

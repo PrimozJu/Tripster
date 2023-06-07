@@ -23,7 +23,7 @@ const Flights = () => {
   const [error, setError] = useState(null); // New state variable for error message
   async function handleForm(params) {
 
-    console.log(`parameters: ${JSON.stringify(params)}`);
+    // console.log(`parameters: ${JSON.stringify(params)}`);
 
     let userEmail = null;
     try {
@@ -46,7 +46,7 @@ const Flights = () => {
   
       // PRIMA - Tu mas array
       const responseData = respons.data;
-      console.log(responseData);
+      // console.log(responseData);
       
       setResponse(responseData);
       setError(null); // Reset error state if request succeeds
