@@ -35,6 +35,7 @@ import { UserContext } from "../../../App";
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
 
  const { userIdState,setUserIdState } = useContext(UserContext);
+ const { cartItems, setCartItems } = useContext(UserContext);
 
 
   const auth = getAuth();
@@ -244,6 +245,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               "&:hover": {
                 backgroundColor: grey[200],
                 color: dark.main,
+                
 
                 "& *": {
                   color: dark.main,
@@ -263,6 +265,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
               }
             }}
           >
+           
             {item.description ? (
               <MKBox>
                 {item.name}
@@ -394,7 +397,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                       },
                     },
                   })}
-                >
+                > 
                   {item.description ? (
                     <MKBox>
                       {item.name}
@@ -552,7 +555,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 color={"primary"}
                 size="small" //button za login size
               >
-                Uporabnik
+                USER
+                
               </MKButton>
             )}
 

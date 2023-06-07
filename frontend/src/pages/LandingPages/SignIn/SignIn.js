@@ -38,13 +38,14 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import ConitnueGoogle from "./ContinueGoogle";
 
-
+import { firebaseConfig } from "../../../secret-keys";
 import { onAuthStateChanged } from "firebase/auth";
 import { useContext } from "react";
 import { UserContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
 
 function SignInBasic() {
-
+  const navigate = useNavigate();
   const { userIdState,setUserIdState } = useContext(UserContext);
 
 
@@ -73,7 +74,7 @@ useEffect(() => {
 
 
   const [input, setInput] = useState({
-    email: "tripster@trispter.si ",
+    email: "tripster@praktikum.si",
     password: "zeloDolgoGeslo"
   });
 
@@ -90,6 +91,7 @@ useEffect(() => {
     console.log("clicked");
     const email = input.email; //to je to
     const password = input.password; //to je to
+    console.log (email + " " + password);
 
 
     const auth = getAuth();
@@ -98,11 +100,12 @@ useEffect(() => {
         // Signed in 
         const user = userCredential.user;
         console.log("uspesno prijavlen ", user);
-        // ...
+        navigate("/Presentation");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log("napaka pri prijavi ", errorCode, errorMessage);
       });
 
   }

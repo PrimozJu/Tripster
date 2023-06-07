@@ -28,19 +28,19 @@ import { useNavigate } from "react-router-dom";
 const provider = new GoogleAuthProvider();
 
 const ConitnueGoogle = () => {
-  const { userIdState,setUserIdState } = useContext(UserContext);
+  const { userIdState, setUserIdState } = useContext(UserContext);
   const navigate = useNavigate();
 
-    const handleClickGoogle = (e) => {
+  const handleClickGoogle = (e) => {
 
 
 
-        e.preventDefault();
-        console.log("clicked google");
-    
-    
-        const auth = getAuth();
-        signInWithPopup(auth, provider)
+    e.preventDefault();
+    console.log("clicked google");
+
+
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -65,14 +65,14 @@ const ConitnueGoogle = () => {
         console.log(errorCode, errorMessage, email,);
         // ...
       });
-    }
-    return (
-        <MKBox mt={4} mb={1}>
-            <MKButton variant="gradient" color="info" fullWidth onClick={handleClickGoogle}>
-                Continue with google
-            </MKButton>
-        </MKBox>
-    )
+  }
+  return (
+    <MKBox mt={4} mb={1}>
+      <MKButton variant="gradient" color="info" fullWidth onClick={handleClickGoogle}>
+        Continue with google
+      </MKButton>
+    </MKBox>
+  )
 
 
 }
