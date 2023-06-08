@@ -8,7 +8,7 @@ Primož Jurič
 Sašo Krepek
 Vito Zupanič
 
-Domača stran: http://86.61.28.132:63400/presentation
+Domača stran: https://tripsterpraktikum-e913c.web.app/presentation
 
 
 Koda: https://github.com/PrimozJu/Tripster
