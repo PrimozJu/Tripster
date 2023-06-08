@@ -28,19 +28,19 @@ import { useNavigate } from "react-router-dom";
 const provider = new GoogleAuthProvider();
 
 const ConitnueGoogle = () => {
-  const { userIdState,setUserIdState } = useContext(UserContext);
+  const { userIdState, setUserIdState } = useContext(UserContext);
   const navigate = useNavigate();
 
-    const handleClickGoogle = (e) => {
+  const handleClickGoogle = (e) => {
 
 
 
-        e.preventDefault();
-        console.log("clicked google");
-    
-    
-        const auth = getAuth();
-        signInWithPopup(auth, provider)
+    e.preventDefault();
+    // console.log("clicked google");
+
+
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -48,7 +48,7 @@ const ConitnueGoogle = () => {
         // The signed-in user info.
         const user = result.user;
         // IdP data available using getAdditionalUserInfo(result)
-        console.log("logged in buddy");
+        // console.log("logged in buddy");
         setUserIdState(user.uid);
         navigate("/Presentation");
 
@@ -62,17 +62,17 @@ const ConitnueGoogle = () => {
         const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(errorCode, errorMessage, email,);
+        // console.log(errorCode, errorMessage, email,);
         // ...
       });
-    }
-    return (
-        <MKBox mt={4} mb={1}>
-            <MKButton variant="gradient" color="info" fullWidth onClick={handleClickGoogle}>
-                Continue with google
-            </MKButton>
-        </MKBox>
-    )
+  }
+  return (
+    <MKBox mt={4} mb={1}>
+      <MKButton variant="gradient" color="info" fullWidth onClick={handleClickGoogle}>
+        Continue with google
+      </MKButton>
+    </MKBox>
+  )
 
 
 }

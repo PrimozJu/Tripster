@@ -17,76 +17,113 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import routes from "routes";
 import OrderButton from "./OrderButton";
 const Cart = () => {
-    const colRef = collection(db, "user1");
-    const [iskanje, setIskanje] = useState([]);
-    const navigate = useNavigate();
-    const { userIdState, setUserIdState } = useContext(UserContext);
+  const colRef = collection(db, "user1");
+  const [iskanje, setIskanje] = useState([]);
+  const navigate = useNavigate();
+  const { userIdState, setUserIdState } = useContext(UserContext);
 
-    const { cartItems, setCartItems } = useContext(UserContext);
-    console.log(cartItems);
+  const { cartItems, setCartItems } = useContext(UserContext);
+  // console.log(cartItems);
 
-    return (
-        <>
-            <DefaultNavbar
-                routes={routes}
-                action={{
-                    type: "external",
-                    route: "/user/login",
-                    label: "Login",
-                    color: "info",
-                }}
-                transparent
-                light
-            />
-            <MKBox
-                position="absolute"
-                top={0}
-                left={0}
-                zIndex={1}
-                width="100%"
-                minHeight="100vh"
-                sx={{
-                    backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-                        `${linearGradient(rgba(gradients.dark.main, 0.6), rgba(gradients.dark.state, 0.6))}, url(${bgImage})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}
-            />
-            <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
-                <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
-                    <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
-                        <Card sx={{ p: 3, borderRadius: 2, bgcolor: "background.paper" }}>
-                            <MKTypography variant="h2" fontWeight={700} gutterBottom>
-                                Cart
-                            </MKTypography>
-                            <MKTypography variant="body1" fontWeight={400} gutterBottom>
-                                Here you can see your cart.
+  return (
+    <>
+      <DefaultNavbar
+        routes={routes}
+        action={{
+          type: "external",
+          route: "/user/login",
+          label: "Login",
+          color: "info",
+        }}
+        transparent
+        light
+      />
+      <MKBox
+        position="absolute"
+        top={0}
+        left={0}
+        zIndex={1}
+        width="100%"
+        minHeight="100vh"
+        sx={{
+          backgroundImage: ({
+            functions: { linearGradient, rgba },
+            palette: { gradients },
+          }) =>
+            `${linearGradient(
+              rgba(gradients.dark.main, 0.6),
+              rgba(gradients.dark.state, 0.6)
+            )}, url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <MKBox
+        px={1}
+        width="100%"
+        height="100vh"
+        mx="auto"
+        position="relative"
+        zIndex={2}
+      >
+        <Grid
+          container
+          spacing={1}
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+        >
+          <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
+            <Card sx={{ p: 3, borderRadius: 2, bgcolor: "background.paper" }}>
+              <MKTypography variant="h2" fontWeight={700} gutterBottom>
+                Cart
+              </MKTypography>
+              <MKTypography variant="body1" fontWeight={400} gutterBottom>
+                Here you can see your cart.
+              </MKTypography>
 
-
-                            </MKTypography>
-
-                            {cartItems.map((item) => (
-                                <React.Fragment key={item.id}>
-                                    
-                                            <MKTypography variant="body1" fontWeight={400} gutterBottom>
-                                                {item.cityFrom || item.id||item.name}  {"-"?item.cityTo:""} {item.cityTo} {":"?item.cityTo:""}{item.price}€
-                                            </MKTypography>
-                                        
-                                </React.Fragment>
-                            ))}
-                            <MKTypography variant="h6" fontWeight={600} gutterBottom>
-                                <OrderButton />
-                            </MKTypography>
-
-                        </Card>
-
-                    </Grid>
-                </Grid>
-            </MKBox>
-            <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem"></MKBox>
-        </>
-    );
+              {cartItems.map((item) => (
+                <React.Fragment key={item.id}>
+                  <MKTypography variant="body1" fontWeight={400} gutterBottom>
+                    {item.type === "1" && (
+                      <>
+                        Flight: {item.cityFrom || item.id || item.name}{" "}
+                        {item.cityTo && `- ${item.cityTo}`}{" "}
+                        {item.price && `${item.price}€`}
+                      </>
+                    )}
+                    {item.type === "2" && (
+                      <>
+                        Trip: {item.cityFrom || item.id || item.name}{" "}
+                        {item.cityTo && `- ${item.cityTo}`}{" "}
+                        {item.price && `${item.price}€`}
+                      </>
+                    )}
+                    {item.type === "3" && (
+                      <>
+                        AirBnB: {item.name} <br />
+                        price: {item.price}
+                      </>
+                    )}
+                  </MKTypography>
+                </React.Fragment>
+              ))}
+              <MKTypography variant="h6" fontWeight={600} gutterBottom>
+                <OrderButton />
+              </MKTypography>
+            </Card>
+          </Grid>
+        </Grid>
+      </MKBox>
+      <MKBox
+        width="100%"
+        position="absolute"
+        zIndex={2}
+        bottom="1.625rem"
+      ></MKBox>
+    </>
+  );
 };
 
 export default Cart;

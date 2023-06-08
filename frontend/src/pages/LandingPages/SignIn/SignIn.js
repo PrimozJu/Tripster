@@ -38,13 +38,14 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import ConitnueGoogle from "./ContinueGoogle";
 
-
+import { firebaseConfig } from "../../../secret-keys";
 import { onAuthStateChanged } from "firebase/auth";
 import { useContext } from "react";
 import { UserContext } from "../../../App";
+import { useNavigate } from "react-router-dom";
 
 function SignInBasic() {
-
+  const navigate = useNavigate();
   const { userIdState,setUserIdState } = useContext(UserContext);
 
 
@@ -55,13 +56,13 @@ useEffect(() => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
-      console.log("prijavljen " + uid);
+      // console.log("prijavljen " + uid);
       setUserIdState(uid);
-      console.log("userIdState " + userIdState);
+      // console.log("userIdState " + userIdState);
     } else {
       // User is signed out
       // ...
-      console.log("ni prijavljen ");
+      // console.log("ni prijavljen ");
     }
   });
 
@@ -73,7 +74,7 @@ useEffect(() => {
 
 
   const [input, setInput] = useState({
-    email: "tripster@trispter.si ",
+    email: "tripster@praktikum.si",
     password: "zeloDolgoGeslo"
   });
 
@@ -81,15 +82,16 @@ useEffect(() => {
     const name = event.target.name;
     const value = event.target.value;
     setInput(values => ({ ...values, [name]: value })) //to ne deluje sploh jebote
-    //console.log(newDocData);   //LIGHTWEIGHT BABY
+    //// console.log(newDocData);   //LIGHTWEIGHT BABY
 
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
     const email = input.email; //to je to
     const password = input.password; //to je to
+    // console.log (email + " " + password);
 
 
     const auth = getAuth();
@@ -97,12 +99,13 @@ useEffect(() => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log("uspesno prijavlen ", user);
-        // ...
+        // console.log("uspesno prijavlen ", user);
+        navigate("/Presentation");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        // console.log("napaka pri prijavi ", errorCode, errorMessage);
       });
 
   }

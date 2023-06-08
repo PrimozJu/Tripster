@@ -26,7 +26,7 @@ const Itinerary = () => {
   const [loading, setLoading] = useState(false);
 
   async function chatTalk(params) {
-    console.log(params);
+    // console.log(params);
     const travelTime = params.travelTime;
     const travelDestination = params.travelDestination;
     const additionalInfo = params.additionalInfo;
@@ -67,11 +67,11 @@ const Itinerary = () => {
 
   if (user) {
     // User is signed in.
-    console.log("user je prijavljen");
+    // console.log("user je prijavljen");
     // ...
   } else {
     // No user is signed in.
-    console.log("user NI prijavljen");
+    // console.log("user NI prijavljen");
   }
 
   const footerStyle = {
@@ -107,41 +107,7 @@ const Itinerary = () => {
       >
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
-              variant="h1"
-              color="dark blue"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            />
-            <MKTypography
-              variant="h1"
-              color="dark blue"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              Tripster{" "}
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="dark blue"
-              textAlign="center"
-              px={{ xs: 6, lg: 12 }}
-              mt={1}
-            >
-              Join millions of travelers around the world and take the journeys
-              that matter. Using our search engine, you can find the best deals
-              on flights, hotels, and car rentals.
-            </MKTypography>
+            
           </Grid>
         </Container>
       </MKBox>

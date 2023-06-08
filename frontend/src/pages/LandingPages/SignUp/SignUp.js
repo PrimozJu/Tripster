@@ -43,25 +43,25 @@ const SignUp = () => {
     const name = event.target.name;
     const value = event.target.value;
     setNewDocData(values => ({ ...values, [name]: value })) //to ne deluje sploh jebote
-    //console.log(newDocData);   //LIGHTWEIGHT BABY
+    //// console.log(newDocData);   //LIGHTWEIGHT BABY
 
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
 
 
     if (newDocData.password === newDocData.password2) {
       const email = newDocData.email; //to je to
       const password = newDocData.password; //to je to
-      console.log(email, password);
+      // console.log(email, password);
       const db = getFirestore();
       const addNewDoc = async () => {
-        console.log(newDocData);
+        // console.log(newDocData);
 
         /* const docRef = await addDoc(collection(db, "users"), newDocData);
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
         setNewDocData({}); */
 
         const db = getFirestore();
@@ -76,14 +76,14 @@ const SignUp = () => {
             const userRef = doc(db, "users", email);
             setDoc(userRef, { uid, email, name, last_name, country })
               .then(() => {
-                console.log(`Document written with ID: ${uid}`);
+                // console.log(`Document written with ID: ${uid}`);
               }).catch((error) => {
                 console.error("Error adding document: ", error.message);
               });
           }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log("napaka pri registraciji: ", errorCode, errorMessage);
+            // console.log("napaka pri registraciji: ", errorCode, errorMessage);
           });
       };
       addNewDoc()
@@ -94,7 +94,7 @@ const SignUp = () => {
   /* const handleClickGoogle = (e) => {
 
     e.preventDefault();
-    console.log("clicked google");
+    // console.log("clicked google");
 
 
     const auth = getAuth();

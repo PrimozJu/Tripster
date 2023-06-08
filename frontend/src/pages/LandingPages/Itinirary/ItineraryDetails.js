@@ -2,7 +2,7 @@ import React from "react";
 import { Typography, Card, CardContent, List, ListItem, ListItemText, Grid } from "@mui/material";
 
 const ItineraryDetails = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   if (!data || data.tripArray.length === 0) {
     return null; // If data or tripArray is undefined or empty, don't display anything
   }

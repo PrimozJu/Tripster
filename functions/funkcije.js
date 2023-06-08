@@ -320,8 +320,9 @@ module.exports.analyzeData = (data) => {
       const fullDestination = data.flightDestinations[index];
 
       const chatParams = {
-        "travelTime": daysFromNow - otherDaysFromNow,
-        "travelDestination": fullDestination
+        "travelTime": otherDaysFromNow - daysFromNow ,
+        "travelDestination": fullDestination,
+        "additionalInfo": ""
       }
 
       const flightaram = {
@@ -376,7 +377,7 @@ module.exports.saveSearch = (user, params, collection, db) => {
 
     return docRef.set(updateData, { merge: true });
   }).then(() => {
-    console.log(`Collecttion ${collection} updated for user ${user}`);
+    // console.log(`Collecttion ${collection} updated for user ${user}`);
   }).catch(err => {
     console.error(err);
   });
@@ -390,8 +391,9 @@ module.exports.callAPIAndTransformData = async (params) => {
     const travelDestination = params.travelDestination;
     const additionalInfo = params.additionalInfo;
 
-    const query = `Hi chatGPT, can you write me an itinerary for ${travelTime} days in ${travelDestination}? Include these parameters in the response: ${additionalInfo}. Respond back with a JSON format so I can map through them like this: {"travelDestination": ${travelDestination}, tripArray: [{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for the duration of the provided time length. Thank you!`;
-    console.log(query)
+    const query = `Hi chatGPT, can you write me an itinerary for ${travelTime} days in ${travelDestination}? Include these parameters in the response: ${additionalInfo!=undefined?additionalInfo:""}. Respond back with a JSON format so I can map through them like this: {"travelDestination": ${travelDestination}, tripArray: [{ "day": 1, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }, { "day": 2, "description": "description of the day", "activities": ["activity1", "activity2", "activity3"] }]} and continue for the duration of the provided time length., Dont give me normal sentences I need json format as I provided you in format, because you giving me normal sentence is making it difficult for my website to work. Please be kind to me and consider giving me JSON format. Thank you!
+    `;
+    // console.log(query)
 
     const options = {
       method: "POST",
@@ -420,7 +422,7 @@ module.exports.callAPIAndTransformData = async (params) => {
 
     // Now you can parse the strippedText as JSON
     const itinerary = JSON.parse(strippedText);
-    console.log("itinerary");
+    // console.log("itinerary");
     return itinerary;
   } catch (error) {
     throw new Error(`API request failed: ${error}`);
@@ -640,7 +642,7 @@ module.exports.fillDB = (user, db) => {
 
     docRef.set(data, { merge: true });
   }).then(() => {
-    console.log(`Filled DB for user ${user}`);
+    // console.log(`Filled DB for user ${user}`);
   }).catch(err => {
     console.error(err);
   });

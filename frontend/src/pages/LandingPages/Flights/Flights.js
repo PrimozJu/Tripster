@@ -15,6 +15,7 @@ import { db, auth } from '../../../index';
 import { localApiFlights } from "secret-keys";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import Airplane from "../../../assets/images/itinerary/airplane.png";
 
 const Flights = () => {
   const [response, setResponse] = useState(undefined);
@@ -22,7 +23,7 @@ const Flights = () => {
   const [error, setError] = useState(null); // New state variable for error message
   async function handleForm(params) {
 
-    console.log(`parameters: ${JSON.stringify(params)}`);
+    // console.log(`parameters: ${JSON.stringify(params)}`);
 
     let userEmail = null;
     try {
@@ -45,7 +46,7 @@ const Flights = () => {
   
       // PRIMA - Tu mas array
       const responseData = respons.data;
-      console.log(responseData);
+      // console.log(responseData);
       
       setResponse(responseData);
       setError(null); // Reset error state if request succeeds
@@ -83,29 +84,7 @@ const Flights = () => {
       >
         <Container>
           <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-            <MKTypography
-              variant="h1"
-              color="dark blue"
-              mt={-6}
-              mb={1}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              Tripster{" "}
-            </MKTypography>
-            <MKTypography
-              variant="body1"
-              color="dark blue"
-              textAlign="center"
-              px={{ xs: 6, lg: 12 }}
-              mt={1}
-            >
-              Join mekdonalc millions of travellers around the world and take the journeys that matter. Using our search engine, you can find the best deals on flights, hotels, and car rentals.
             
-            </MKTypography>
           </Grid>
         </Container>
       </MKBox>
@@ -127,15 +106,25 @@ const Flights = () => {
         <div id="data"></div>
        
 
-        {loading ? (
-          <ReactLoading type="bars" color="#000" height={50} width={50} />
-        ) : error ? (
-          <div>
-            <h1>{error}</h1>
-          </div>
-        ) : response ? (
+       
+      
+
+      {loading && (
+        <Grid container item xs={12} justifyContent="center">
+          <img
+            src={Airplane}
+            className="loadingImg"
+            alt="Airplane"
+            style={{ height: "100px", width: "100px" }}
+          />
+        </Grid>
+      )}
+
+      {response && (
+        <Card>
           <FlightsList data={response} />
-        ) : null}
+        </Card>
+      )}
       </Card>
 
 

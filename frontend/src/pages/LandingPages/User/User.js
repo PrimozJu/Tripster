@@ -30,7 +30,7 @@ const User = () => {
             .then((querySnapshot) => {
                 const data = [];
                 querySnapshot.forEach((doc) => {
-                    console.log(`${doc.id} => ${doc.data()}`);
+                    // console.log(`${doc.id} => ${doc.data()}`);
                     if (doc.data().userid == userIdState) {
                         data.push(doc.data());
                     }
@@ -38,7 +38,7 @@ const User = () => {
                 setIskanje(data);
             })
             .catch((error) => {
-                console.log("napaka pri branju iz baze", error);
+                // console.log("napaka pri branju iz baze", error);
             });
     };
 
@@ -46,12 +46,12 @@ const User = () => {
         const auth = getAuth();
         signOut(auth)
             .then(() => {
-                console.log("odjavljen");
+                // console.log("odjavljen");
                 navigate("/Presentation");
                 setUserIdState(null);
             })
             .catch((error) => {
-                console.log("napaka pri odjavi", error);
+                // console.log("napaka pri odjavi", error);
             });
     };
 
