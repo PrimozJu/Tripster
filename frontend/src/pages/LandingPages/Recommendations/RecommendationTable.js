@@ -4,10 +4,17 @@ import { Button } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { UserContext } from "../../../App";
 import RecommendationCard from "./RecommendationCard";
+import { reccommendation } from "secret-keys";
+import { auth } from "index";
 
 const RecommendationTable = () => {
   const [recommendations, setRecommendations] = useState([]);
   const { cartItems, setCartItems } = useContext(UserContext);
+
+  let userEmail = null;
+  try {
+    userEmail = auth.currentUser.email
+  } catch (err) {}
 
   useEffect(() => {
     fetchData();
@@ -16,9 +23,10 @@ const RecommendationTable = () => {
   const fetchData = async () => {
     // console.log("Fetching data");
     try {
-       const response = await fetch('http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/recommendation', { 
+       const response = await fetch(reccommendation, { 
+        method: 'GET',
         headers: {
-          'user': 'lmao@gmail.com',
+          'user': userEmail,
           // Add any other headers you need
         }});
        const data = await response.json();

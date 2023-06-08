@@ -15,6 +15,7 @@ import firebase from "firebase/app";
 import { getAuth } from "firebase/auth";
 import "./Itinerary.css";
 import footerRoutes from "../../../footer.routes";
+import { chatAPI } from "secret-keys";
 
 import Airplane from "../../../assets/images/itinerary/airplane.png";
 import DefaultFooter from "examples/Footers/DefaultFooter";
@@ -39,7 +40,7 @@ const Itinerary = () => {
 
     const options = {
       method: "POST",
-      url: "http://127.0.0.1:5001/tripsterpraktikum-e913c/europe-west2/app/itineary-chat-gpt",
+      url: chatAPI,
       data: JSON.stringify(jsonData),
     };
 
