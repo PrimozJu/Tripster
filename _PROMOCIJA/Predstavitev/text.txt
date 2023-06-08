@@ -1,17 +1,13 @@
 (1. slajd)
 Pozdravljeni,
 
-najveretneje vas zanima zakaj smo tako počitniško oblečeni. Zato ker se kmalu odpravljamo na dopust, ki smo si ga splanirali prek naše aplikacije Tripster. 
+najverjetneje vas zanima, zakaj smo tako počitniško oblečeni. Razlog je, ker se kmalu odpravljamo na dopust, ki smo si ga načrtovali preko naše aplikacije Tripster.
 
 (2. slajd)
-Naš namen je omogočiti čim prepostejšo iskanje letov in airBnB nastavitev na enem mestu. vedno ko uporabnik išče lete ali nastanitve se podatki shranijo v bazo. Ti se potem uporabijo za kreiranje kompletnega priporočila za potovanje. Omogočamo tudi priporočen plan dela v posameznem mestu.
-To vse je omogočeno s OpenAI, Tequilla by Kiwi Flights API in AirBnB API-ji.
+Naša aplikacija Tripster ima namen omogočiti čim preprostejše iskanje letov in nastanitev preko enega samega vmesnika. Vsakič, ko uporabnik išče lete ali nastanitve, se podatki shranijo v našo bazo. Ti podatki se nato uporabijo za ustvarjanje celovitega priporočila za potovanje. Poleg tega aplikacija omogoča tudi priporočen dnevni načrt za posamezno destinacijo. Vse to je omogočeno z uporabo OpenAI, Tequilla by Kiwi Flights API in AirBnB API-jev.
 
 (3. slajd)
-Naša aplikacija deluje popolnoma na Serverless arhitekturi s pomočjo Firebase-a. Za frontend smo uporabili React, ki ga gostujemo na Firebase Hosting. 
-Za Backend smo se odločili za Node.js z Expressom, ki je pravtako na Firebasu s pomočjo Functions.
-Za bazo uporabljamo Firebase Firestore, ki je NoSQL baza.
-Za avtentikacijo uporabnikov uporabljamo Firebase Authentication.
+Naša aplikacija deluje na Serverless arhitekturi s pomočjo platforme Firebase. Za frontend smo uporabili React, ki je gostovan na Firebase Hosting-u. Za backend smo se odločili za Node.js z Express-om, ki prav tako deluje na Firebase Functions. Kot podatkovno bazo uporabljamo Firebase Firestore, ki je NoSQL baza. Za avtentikacijo uporabnikov pa uporabljamo Firebase Authentication.
 
 (Gremo na 1. tab)
 Uporabnik se lahko registrira ali prijavi zelo preporosto
@@ -45,4 +41,4 @@ No zaradi časovne zahtevnosti odgovorov OpenAI API-jev, smo se odločili, da si
 ((ČE GRE KARKOLI NAROBE MAMO VIDEJE/SKRINE V POWER POINTU, KI SE UPORABIJO SAMO ČE JE ERROR)
 
 (greš nazaj na slajde, 4. slajd)
-No za na konec pa kako bi še lahko razširili našo aplikacijo, Lahko bi dodali plačevanje, in dodali rezerviranje letov, saj to Tequilla by Kiwi flights API to omogoča, sam kolko sebe poznam, bi si popomoti spraznil račun. Prav tako bi lahko razširili odgovore OpenAI s dejanskimi aktivnostmi, s povezavami, mogoče tudi dodatnimi API-ji. Dodali bi lahko tudi podporo avtobusom in hotelom.
+No za na konec pa kako bi še lahko razširili našo aplikacijo, Lahko bi dodali plačevanje, in dodali rezerviranje letov, saj to Tequilla by Kiwi flights API to omogoča, sam kolko sebe poznam, bi si popomoti spraznil račun, če bi želel to implementirati. Prav tako bi lahko razširili odgovore OpenAI s dejanskimi aktivnostmi, s povezavami, mogoče tudi dodatnimi API-ji. Dodali bi lahko tudi podporo avtobusom in hotelom.
