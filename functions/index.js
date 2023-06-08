@@ -75,6 +75,7 @@ app.get("/recommendation", async (req, res) => {
             });
         }));
 
+        console.log(results);
         return res.status(200).json(results);
     } catch (err) {
         console.error(err);

@@ -425,6 +425,7 @@ module.exports.callAPIAndTransformData = async (params) => {
     // console.log("itinerary");
     return itinerary;
   } catch (error) {
+    console.error(error);
     throw new Error(`API request failed: ${error}`);
   }
 };
