@@ -40,6 +40,8 @@ Predhodno potrebujete že naložen [Node.js](https://nodejs.org/en/download).
   export const firebaseKey = { sem prekopirate dobljen text iz 4. točke v prejšnem delu } 
   export const globalApiFlights = "http://naslov.do.vasih/funkcij/app/flights";
   export const globalApiStays = "http://naslov.do.vasih/funkcij/app/stays";
+  export const chatAPI = "http://naslov.do.vasih/funkcij/app/itineary-chat-gpt";
+  export const reccommendation = "http://naslov.do.vasih/funkcij/app/recommendation";
   ```
   
 8. V mapi ./functions ustvarito novo datoteko "secret-keys.js":
